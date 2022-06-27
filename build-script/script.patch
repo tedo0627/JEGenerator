@@ -1,16 +1,25 @@
 diff --git a/windows-compile-vs.bat b/windows-compile-vs.bat
-index 1bb8851..3d48fe5 100644
+index 1bb8851..4ec9240 100644
 --- a/windows-compile-vs.bat
 +++ b/windows-compile-vs.bat
-@@ -201,6 +201,7 @@ call :get-extension-zip-from-github "recursionguard"        "%PHP_RECURSIONGUARD
+@@ -40,6 +40,8 @@ echo.>"%log_file%"
+ 
+ set outpath="%cd%"
+ 
++set CALL_JAVA_DIR=%~dp0..\..\extension\
++
+ where git >nul 2>nul || (call :pm-echo-error "git is required" & exit 1)
+ where cmake >nul 2>nul || (call :pm-echo-error "cmake is required" & exit 1)
+ where 7z >nul 2>nul || (call :pm-echo-error "7z is required" & exit 1)
+@@ -201,6 +203,7 @@ call :get-extension-zip-from-github "recursionguard"        "%PHP_RECURSIONGUARD
  call :get-extension-zip-from-github "morton"                "%PHP_MORTON_VER%"                "pmmp"     "ext-morton"              || exit 1
  call :get-extension-zip-from-github "libdeflate"            "%PHP_LIBDEFLATE_VER%"            "pmmp"     "ext-libdeflate"          || exit 1
  call :get-extension-zip-from-github "xxhash"                "%PHP_XXHASH_VER%"                "pmmp"     "ext-xxhash"              || exit 1
-+xcopy C:\php-sdk\phpdev\vs16\x86\php-8.0.13\ext\calljava calljava /e /h /i
++xcopy %CALL_JAVA_DIR% calljava /e /h /i
  
  call :pm-echo " - crypto: downloading %PHP_CRYPTO_VER%..."
  git clone https://github.com/bukka/php-crypto.git crypto >>"%log_file%" 2>&1 || exit 1
-@@ -251,6 +252,7 @@ call configure^
+@@ -251,6 +254,7 @@ call configure^
   --enable-xxhash^
   --enable-zip^
   --enable-zlib^
@@ -18,7 +27,7 @@ index 1bb8851..3d48fe5 100644
   --with-bz2=shared^
   --with-crypto=shared^
   --with-curl^
-@@ -311,6 +313,7 @@ call :pm-echo "Generating php.ini..."
+@@ -311,6 +315,7 @@ call :pm-echo "Generating php.ini..."
  (echo extension=php_leveldb.dll)>>"%php_ini%"
  (echo extension=php_crypto.dll)>>"%php_ini%"
  (echo extension=php_libdeflate.dll)>>"%php_ini%
