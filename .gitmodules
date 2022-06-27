@@ -1,0 +1,3 @@
+[submodule "build-script/php-build-scripts"]
+	path = build-script/php-build-scripts
+	url = https://github.com/pmmp/php-build-scripts
