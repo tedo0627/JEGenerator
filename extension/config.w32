@@ -3,5 +3,5 @@ ARG_ENABLE('calljava', 'calljava support', 'no');
 if (PHP_CALLJAVA != 'no') {
 	AC_DEFINE('HAVE_CALLJAVA', 1, 'calljava support enabled');
 
-	EXTENSION('calljava', 'calljava.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+	EXTENSION('calljava', 'calljava.cpp', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
 }
