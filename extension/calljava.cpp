@@ -2,6 +2,8 @@
 #include "config.h"
 #endif
 
+#include "src/Sample.h"
+
 extern "C" {
 #include "php.h"
 #include "ext/standard/info.h"
@@ -9,6 +11,7 @@ extern "C" {
 }
 
 PHP_MINIT_FUNCTION(calljava) {
+    register_sample_class();
     return SUCCESS;
 }
 
