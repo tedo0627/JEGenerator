@@ -1,10 +1,10 @@
 ARG_ENABLE("calljava", "calljava support", "no");
 
 if (PHP_CALLJAVA != "no") {
-	EXTENSION("calljava", "calljava.cpp", PHP_CALLJAVA_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 /I" + configure_module_dirname);
-	ADD_SOURCES(
-		configure_module_dirname + "/src",
-		"Sample.cpp",
-		"calljava"
-	);
+    EXTENSION("calljava", "calljava.cpp", PHP_CALLJAVA_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 /I" + configure_module_dirname);
+    ADD_SOURCES(
+        configure_module_dirname + "/src",
+        "Sample.cpp",
+        "calljava"
+    );
 }
