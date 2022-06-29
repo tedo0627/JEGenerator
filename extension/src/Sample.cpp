@@ -25,7 +25,6 @@ SAMPLE_METHOD(__construct) {
 
 }
 
-/*
 SAMPLE_METHOD(get) {
     zend_long x;
     ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
@@ -34,7 +33,6 @@ SAMPLE_METHOD(get) {
 
     RETURN_LONG(x + 1);
 }
-*/
 
 void register_sample_class() {
     memcpy(&sample_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
