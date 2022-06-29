@@ -1,6 +1,6 @@
 #include "Sample.h"
 #include "ZendUtil.h"
-#include "stubs/Sample_arginfo.h"
+#include "stubs/sample/Sample_arginfo.h"
 
 static zend_object_handlers sample_handlers;
 
@@ -37,7 +37,7 @@ SAMPLE_METHOD(get) {
 */
 
 void register_sample_class() {
-    mcmcpy(&sample_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
+    memcpy(&sample_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
     sample_handlers.offset = XtOffsetOf(sample_obj, std);
     sample_handlers.free_obj = sample_free;
 
