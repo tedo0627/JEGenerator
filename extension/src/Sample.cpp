@@ -42,7 +42,7 @@ SAMPLE_METHOD(__construct) {
     vm_args.nOptions = 1;
     vm_args.options = options;
     vm_args.ignoreUnrecognized = false;
-    jint rc = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
+    jint rc = JNI_CreateJavaVM(&jvm, (void**) &env, &vm_args);
     delete options;
     if (rc != JNI_OK) {
         cout << "jvm load failed" << endl;
@@ -50,29 +50,32 @@ SAMPLE_METHOD(__construct) {
 
     cout << "JVM load succeeded: Version ";
     jint ver = env->GetVersion();
-    cout << ((ver>>16)&0x0f) << "."<<(ver&0x0f) << endl;
-    jclass cls2 = env->FindClass("MyTest");
-    if(cls2== nullptr) {
-        cerr<<"ERROR : class not find";
+    cout << ((ver >> 16) & 0x0f) << "." << (ver & 0x0f) << endl;
+    jclass cls2 = env->FindClass("jp\\tedo0627\\jeloader\\JELoader");
+    if (cls2 == nullptr) {
+        cerr << "ERROR : class not find" << endl;
     } else {
-        cout<<"Class MyTest found"<<endl;
-        jmethodID mid= env->GetStaticMethodID(cls2,"sayHi","()V");
-        if(mid==nullptr) {
-            cerr<<"ERROR : method void sayHi() not found!"<<endl;
+        cout << "Class JELoader found" << endl;
+        jmethodID mid = env->GetStaticMethodID(cls2, "sayHi", "()V");
+        if(mid == nullptr) {
+            cerr << "ERROR : method void sayHi() not found!" << endl;
         } else {
-            env->CallStaticVoidMethod(cls2,mid);
+            env->CallStaticVoidMethod(cls2, mid);
         }
     }
+    
+    jclass cls3 = env->FindClass("Ljp/tedo0627/jeloader/JELoader;");
+    if (cls3 != nullptr) {
+        cout << "find JELoader" << endl;
+    }
 
-    jmethodID mid2 = env->GetStaticMethodID(cls2,"Square","(I)I");
-    if(mid2==nullptr) {
-        cerr<<"ERROR: method Square(int) not find!"<<endl;
+    jmethodID mid2 = env->GetStaticMethodID(cls2, "Square", "(I)I");
+    if (mid2 == nullptr) {
+        cerr << "ERROR: method Square(int) not find!" << endl;
     } else {
-        int i;
-        cout<<"input a number"<<endl;
-        cin>>i;
-        cout<<"get Square return = "<< env->CallStaticIntMethod(cls2,mid2,(jint)i);
-        cout<<endl;
+        int i = 11;
+        cout << "get Square return = " << env->CallStaticIntMethod(cls2, mid2, (jint) i);
+        cout << endl;
     }
     jvm->DestroyJavaVM();
 }
