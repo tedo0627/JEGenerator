@@ -2,9 +2,10 @@ ARG_ENABLE("calljava", "calljava support", "no");
 
 if (PHP_CALLJAVA != "no") {
     if (CHECK_LIB("jvm.lib", "calljava", PHP_CALLJAVA)) {
+        var JAVA_HOME = WshShell.Environment("Process").Item("JAVA_HOME");
         EXTENSION("calljava", "calljava.cpp", PHP_CALLJAVA_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 /I" + configure_module_dirname
-            + " /I\"C:/Program Files/Java/jdk-17.0.1/include\""
-            + " /I\"C:/Program Files/Java/jdk-17.0.1/include/win32\""
+            + " /I\"" + JAVA_HOME + "\\include\""
+            + " /I\"" + JAVA_HOME + "\\include\\win32\""
         );
         ADD_SOURCES(
             configure_module_dirname + "/src",
