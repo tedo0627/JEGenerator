@@ -1,10 +1,15 @@
 ARG_ENABLE("calljava", "calljava support", "no");
 
 if (PHP_CALLJAVA != "no") {
-    EXTENSION("calljava", "calljava.cpp", PHP_CALLJAVA_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 /I" + configure_module_dirname);
-    ADD_SOURCES(
-        configure_module_dirname + "/src",
-        "Sample.cpp",
-        "calljava"
-    );
+    if (CHECK_LIB("jvm.lib", "calljava", PHP_CALLJAVA)) {
+        EXTENSION("calljava", "calljava.cpp", PHP_CALLJAVA_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 /I" + configure_module_dirname
+            + " /I\"C:/Program Files/Java/jdk-17.0.1/include\""
+            + " /I\"C:/Program Files/Java/jdk-17.0.1/include/win32\""
+        );
+        ADD_SOURCES(
+            configure_module_dirname + "/src",
+            "Sample.cpp",
+            "calljava"
+        );
+    }
 }

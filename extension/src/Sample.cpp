@@ -2,6 +2,12 @@
 #include "ZendUtil.h"
 #include "stubs/sample/Sample_arginfo.h"
 
+#include <jni.h>
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+
 static zend_object_handlers sample_handlers;
 
 typedef struct {
@@ -22,7 +28,53 @@ static void sample_free(zend_object* obj) {
 #define SAMPLE_METHOD(name) PHP_METHOD(sample_Sample, name)
 
 SAMPLE_METHOD(__construct) {
+    string str = "-Djava.class.path=.";
+    char* cstr = new char[str.size() + 1];
+    strcpy(cstr, str.c_str());
 
+    JavaVM *jvm;
+    JNIEnv *env;
+
+    JavaVMInitArgs vm_args;
+    JavaVMOption* options = new JavaVMOption[1];
+    options[0].optionString = cstr;
+    vm_args.version = JNI_VERSION_1_6;
+    vm_args.nOptions = 1;
+    vm_args.options = options;
+    vm_args.ignoreUnrecognized = false;
+    jint rc = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
+    delete options;
+    if (rc != JNI_OK) {
+        cout << "jvm load failed" << endl;
+    }
+
+    cout << "JVM load succeeded: Version ";
+    jint ver = env->GetVersion();
+    cout << ((ver>>16)&0x0f) << "."<<(ver&0x0f) << endl;
+    jclass cls2 = env->FindClass("MyTest");
+    if(cls2== nullptr) {
+        cerr<<"ERROR : class not find";
+    } else {
+        cout<<"Class MyTest found"<<endl;
+        jmethodID mid= env->GetStaticMethodID(cls2,"sayHi","()V");
+        if(mid==nullptr) {
+            cerr<<"ERROR : method void sayHi() not found!"<<endl;
+        } else {
+            env->CallStaticVoidMethod(cls2,mid);
+        }
+    }
+
+    jmethodID mid2 = env->GetStaticMethodID(cls2,"Square","(I)I");
+    if(mid2==nullptr) {
+        cerr<<"ERROR: method Square(int) not find!"<<endl;
+    } else {
+        int i;
+        cout<<"input a number"<<endl;
+        cin>>i;
+        cout<<"get Square return = "<< env->CallStaticIntMethod(cls2,mid2,(jint)i);
+        cout<<endl;
+    }
+    jvm->DestroyJavaVM();
 }
 
 SAMPLE_METHOD(get) {
