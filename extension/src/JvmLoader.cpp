@@ -11,6 +11,9 @@ using namespace std;
 static zend_object_handlers jvmloader_handlers;
 
 typedef struct {
+    zend_string* path;
+    JavaVM* jvm;
+    JNIEnv* env;
     zend_object std;
 } jvm_obj;
 
@@ -32,7 +35,14 @@ JVMLOADER_METHOD(__construct) {
         Z_PARAM_STR_EX(path, 1, 1)
     ZEND_PARSE_PARAMETERS_END();
 
-    //string str = "-Djava.class.path=C:\\tedo0627\\php\\pmmp4\\debug\\JELoader-1.0-SNAPSHOT-all.jar";
+    auto object = fetch_from_zend_object<jvm_obj>(Z_OBJ_P(getThis()));
+    object->path = path;
+}
+
+JVMLOADER_METHOD(init) {
+    auto object = fetch_from_zend_object<jvm_obj>(Z_OBJ_P(getThis()));
+    zend_string* path = object->path;
+
     string str = "-Djava.class.path=";
     str.append(ZSTR_VAL(path));
     char* cstr = new char[str.size() + 1];
@@ -51,7 +61,8 @@ JVMLOADER_METHOD(__construct) {
     jint rc = JNI_CreateJavaVM(&jvm, (void**) &env, &vm_args);
     delete options;
     if (rc != JNI_OK) {
-        cout << "jvm load failed" << endl;
+        RETURN_BOOL(false);
+        return;
     }
 
     cout << "JVM load succeeded: Version ";
@@ -84,10 +95,7 @@ JVMLOADER_METHOD(__construct) {
         cout << endl;
     }
     jvm->DestroyJavaVM();
-}
-
-JVMLOADER_METHOD(init) {
-    RETURN_BOOL(false);
+    RETURN_BOOL(true);
 }
 
 void register_jvmloader_class() {
