@@ -13,7 +13,7 @@ ZEND_METHOD(tedo0627_jegenerator_extension_JELoader, __construct);
 ZEND_METHOD(tedo0627_jegenerator_extension_JELoader, checkEula);
 ZEND_METHOD(tedo0627_jegenerator_extension_JELoader, init);
 
-static const zend_function_entry sample_methods[] = {
+static const zend_function_entry tedo0627_jegenerator_extension_jeloader_methods[] = {
     ZEND_ME(tedo0627_jegenerator_extension_JELoader, __construct, arginfo_tedo0627_jegenerator_extension_JELoader___construct, ZEND_ACC_PUBLIC)
     ZEND_ME(tedo0627_jegenerator_extension_JELoader, checkEula, arginfo_tedo0627_jegenerator_extension_JELoader_checkEula, ZEND_ACC_PUBLIC)
     ZEND_ME(tedo0627_jegenerator_extension_JELoader, init, arginfo_tedo0627_jegenerator_extension_JELoader_init, ZEND_ACC_PUBLIC)
