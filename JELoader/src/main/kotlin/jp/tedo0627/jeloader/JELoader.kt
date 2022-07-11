@@ -1,5 +1,8 @@
 package jp.tedo0627.jeloader
 
+import net.minecraft.server.Eula
+import java.nio.file.Paths
+
 class JELoader {
 
     companion object {
@@ -7,6 +10,8 @@ class JELoader {
         @JvmStatic
         fun sayHi() {
             println("hi")
+            val eula = Eula(Paths.get("eula.txt"))
+            println("eula: ${eula.hasAgreedToEULA()}")
         }
 
         @JvmStatic

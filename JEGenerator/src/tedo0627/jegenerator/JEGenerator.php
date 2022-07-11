@@ -10,7 +10,7 @@ class JEGenerator extends PluginBase {
 
     public function onEnable(): void {
         $this->getServer()->getLogger()->info("sample message");
-        $jvm = new JvmLoader(Path::join($this->getServer()->getDataPath(), "JELoader-1.0-SNAPSHOT-all.jar"));
+        $jvm = new JvmLoader(Path::join($this->getServer()->getDataPath(), "JELoader-1.0-SNAPSHOT-all.jar") . ";" . Path::join($this->getServer()->getDataPath(), "server.jar"));
         var_dump($jvm->init());
     }
 }
