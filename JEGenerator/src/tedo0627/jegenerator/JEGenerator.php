@@ -9,8 +9,10 @@ use Webmozart\PathUtil\Path;
 class JEGenerator extends PluginBase {
 
     public function onEnable(): void {
-        $this->getServer()->getLogger()->info("sample message");
-        $jvm = new JvmLoader(Path::join($this->getServer()->getDataPath(), "JELoader-1.0-SNAPSHOT-all.jar") . ";" . Path::join($this->getServer()->getDataPath(), "server.jar"));
+        $config = $this->getConfig();
+        $loader = Path::join($this->getServer()->getDataPath(), $config->get("loader-path"));
+        $server = Path::join($this->getServer()->getDataPath(), $config->get("server-path"));
+        $jvm = new JvmLoader($loader . ";" . $server);
         var_dump($jvm->init());
     }
 }
