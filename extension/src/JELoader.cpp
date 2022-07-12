@@ -12,6 +12,9 @@ using namespace std;
 static zend_object_handlers jeloader_handlers;
 
 typedef struct {
+    jvm_obj* jvm_obj;
+    jclass jeloader_class;
+    jobject jeloader_obj;
     zend_object std;
 } je_obj;
 
@@ -27,21 +30,30 @@ static void jeloader_free(zend_object* obj) {
 #define JELOADER_METHOD(name) PHP_METHOD(tedo0627_jegenerator_extension_JELoader, name)
 
 JELOADER_METHOD(__construct) {
-    zend_object* zobj;
+    zend_object* zend_obj;
 
     ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
-        Z_PARAM_OBJ_EX(zobj, 1, 1)
+        Z_PARAM_OBJ_EX(zend_obj, 1, 1)
     ZEND_PARSE_PARAMETERS_END();
 
-    jvm_obj* jvm = fetch_from_zend_object<jvm_obj>(zobj);
-    jint ver = jvm->env->GetVersion();
-    cout << ((ver >> 16) & 0x0f) << "." << (ver & 0x0f) << endl;
-
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
+    object->jvm_obj = fetch_from_zend_object<jvm_obj>(zend_obj);
+    
+    JNIEnv *env = object->jvm_obj->env;
+    jclass cls = env->FindClass("jp/tedo0627/jeloader/JELoader");
+    jmethodID mid = env->GetMethodID(cls, "<init>", "()V");
+    jobject obj = env->NewObject(cls, mid);
+
+    object->jeloader_class = cls;
+    object->jeloader_obj = obj;
 }
 
 JELOADER_METHOD(checkEula) {
-    RETURN_BOOL(false);
+    auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
+    JNIEnv *env = object->jvm_obj->env;
+    jclass cls = object->jeloader_class;
+    jmethodID mid = env->GetMethodID(cls, "checkEula", "()Z");
+    RETURN_BOOL((bool) env->CallBooleanMethod(object->jeloader_obj, mid));
 }
 
 JELOADER_METHOD(init) {

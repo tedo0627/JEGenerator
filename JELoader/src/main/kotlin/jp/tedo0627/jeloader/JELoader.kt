@@ -10,14 +10,19 @@ class JELoader {
         @JvmStatic
         fun sayHi() {
             println("hi")
-            val eula = Eula(Paths.get("eula.txt"))
-            println("eula: ${eula.hasAgreedToEULA()}")
         }
 
         @JvmStatic
         fun Square(i: Int): Int {
             return i * i
         }
+    }
+
+    private var agreedToEULA = false
+
+    fun checkEula(): Boolean {
+        agreedToEULA = Eula(Paths.get("eula.txt")).hasAgreedToEULA()
+        return agreedToEULA
     }
 
     fun init() {

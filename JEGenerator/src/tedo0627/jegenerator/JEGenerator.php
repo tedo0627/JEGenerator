@@ -16,5 +16,6 @@ class JEGenerator extends PluginBase {
         $jvm = new JvmLoader($loader . ";" . $server);
         var_dump($jvm->init());
         $je = new JELoader($jvm);
+        var_dump($je->checkEula());
     }
 }
