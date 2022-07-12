@@ -3,6 +3,8 @@
 #endif
 
 #include "src/Sample.h"
+#include "src/JELoader.h"
+#include "src/JvmLoader.h"
 
 extern "C" {
 #include "php.h"
@@ -12,6 +14,8 @@ extern "C" {
 
 PHP_MINIT_FUNCTION(calljava) {
     register_sample_class();
+    register_jeloader_class();
+    register_jvmloader_class();
     return SUCCESS;
 }
 
