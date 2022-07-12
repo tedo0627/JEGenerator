@@ -3,6 +3,7 @@
 namespace tedo0627\jegenerator;
 
 use pocketmine\plugin\PluginBase;
+use tedo0627\jegenerator\extension\JELoader;
 use tedo0627\jegenerator\extension\JvmLoader;
 use Webmozart\PathUtil\Path;
 
@@ -14,5 +15,6 @@ class JEGenerator extends PluginBase {
         $server = Path::join($this->getServer()->getDataPath(), $config->get("server-path"));
         $jvm = new JvmLoader($loader . ";" . $server);
         var_dump($jvm->init());
+        $je = new JELoader($jvm);
     }
 }

@@ -1,6 +1,7 @@
 #include "JvmLoader.h"
 #include "ZendUtil.h"
 #include "stubs/tedo0627/jegenerator/extension/JvmLoader_arginfo.h"
+#include "JvmLoaderObj.h"
 
 #include <jni.h>
 #include <iostream>
@@ -9,13 +10,6 @@
 using namespace std;
 
 static zend_object_handlers jvmloader_handlers;
-
-typedef struct {
-    zend_string* path;
-    JavaVM* jvm;
-    JNIEnv* env;
-    zend_object std;
-} jvm_obj;
 
 static zend_object* jvmloader_new(zend_class_entry* class_type) {
     auto object = alloc_custom_zend_object<jvm_obj>(class_type, &jvmloader_handlers);
@@ -65,6 +59,9 @@ JVMLOADER_METHOD(init) {
         return;
     }
 
+    object->jvm = jvm;
+    object->env = env;
+
     cout << "JVM load succeeded: Version ";
     jint ver = env->GetVersion();
     cout << ((ver >> 16) & 0x0f) << "." << (ver & 0x0f) << endl;
@@ -94,7 +91,7 @@ JVMLOADER_METHOD(init) {
         cout << "get Square return = " << env->CallStaticIntMethod(cls2, mid2, (jint) i);
         cout << endl;
     }
-    jvm->DestroyJavaVM();
+    //jvm->DestroyJavaVM();
     RETURN_BOOL(true);
 }
 
