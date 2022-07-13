@@ -112,10 +112,10 @@ index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad
  set package_filename=php-%PHP_DISPLAY_VER%-%VC_VER%-%ARCH%.zip
 diff --git a/windows-ext-compile.bat b/windows-ext-compile.bat
 new file mode 100644
-index 0000000000000000000000000000000000000000..193a004a43263462b394f4a6696431755446d66d
+index 0000000000000000000000000000000000000000..a5e5d27c99a7e26ee9741ce28c3d821339c932e0
 --- /dev/null
 +++ b/windows-ext-compile.bat
-@@ -0,0 +1,253 @@
+@@ -0,0 +1,174 @@
 +@echo off
 +
 +REM For future users: This file MUST have CRLF line endings. If it doesn't, lots of inexplicable undesirable strange behaviour will result.
@@ -220,6 +220,7 @@ index 0000000000000000000000000000000000000000..193a004a43263462b394f4a669643175
 +call :pm-echo "Getting additional PHP extensions..."
 +cd /D php-src\ext
 +
++rd calljava /s /q
 +xcopy %CALL_JAVA_DIR% calljava /e /h /i /y
 +copy "%JAVA_HOME%\bin\server\jvm.dll" "%DEPS_DIR%\bin\jvm.dll" /y
 +copy "%JAVA_HOME%\lib\jvm.lib" "%DEPS_DIR%\lib\jvm.lib" /y
@@ -247,9 +248,6 @@ index 0000000000000000000000000000000000000000..193a004a43263462b394f4a669643175
 +call :pm-echo "Compiling PHP..."
 +nmake >>"%log_file%" 2>&1 || call :pm-fatal-error "Error compiling PHP"
 +
-+call :pm-echo "Assembling artifacts..."
-+nmake snap >>"%log_file%" 2>&1 || call :pm-fatal-error "Error assembling artifacts"
-+
 +call :pm-echo "Removing unneeded dependency DLLs..."
 +REM remove ICU DLLs copied unnecessarily by nmake snap - this needs to be removed if we ever have ext/intl as a dependency
 +del /q "%SOURCES_PATH%\php-src\%ARCH%\Release_TS\php-%PHP_DISPLAY_VER%\icu*.dll" 2>&1
@@ -262,70 +260,6 @@ index 0000000000000000000000000000000000000000..193a004a43263462b394f4a669643175
 +cd /D "%outpath%"
 +mkdir bin
 +xcopy "%SOURCES_PATH%\php-src\%ARCH%\%OUT_PATH_REL%_TS\php-%PHP_DISPLAY_VER%" bin\php /e /h /i
-+cd /D bin\php
-+
-+set php_ini=php.ini
-+call :pm-echo "Generating php.ini..."
-+(echo ;Custom PocketMine-MP php.ini file)>"%php_ini%"
-+(echo memory_limit=1024M)>>"%php_ini%"
-+(echo display_errors=1)>>"%php_ini%"
-+(echo display_startup_errors=1)>>"%php_ini%"
-+(echo error_reporting=-1)>>"%php_ini%"
-+(echo zend.assertions=-1)>>"%php_ini%"
-+(echo extension_dir=ext)>>"%php_ini%"
-+(echo extension=php_pthreads.dll)>>"%php_ini%"
-+(echo extension=php_openssl.dll)>>"%php_ini%"
-+(echo extension=php_chunkutils2.dll)>>"%php_ini%"
-+(echo extension=php_igbinary.dll)>>"%php_ini%"
-+(echo extension=php_leveldb.dll)>>"%php_ini%"
-+(echo extension=php_crypto.dll)>>"%php_ini%"
-+(echo extension=php_libdeflate.dll)>>"%php_ini%
-+(echo extension=php_calljava.dll)>>"%php_ini%
-+(echo igbinary.compact_strings=0)>>"%php_ini%"
-+(echo zend_extension=php_opcache.dll)>>"%php_ini%"
-+(echo opcache.enable=1)>>"%php_ini%"
-+(echo opcache.enable_cli=1)>>"%php_ini%"
-+(echo opcache.save_comments=1)>>"%php_ini%"
-+(echo opcache.validate_timestamps=1)>>"%php_ini%"
-+(echo opcache.revalidate_freq=0)>>"%php_ini%"
-+(echo opcache.file_update_protection=0)>>"%php_ini%"
-+(echo opcache.optimization_level=0x7FFEBFFF)>>"%php_ini%"
-+(echo opcache.cache_id=PHP_BINARY ;prevent sharing SHM between different binaries - they won't work because of ASLR)>>"%php_ini%"
-+(echo ;Optional extensions, supplied for PM3 use)>>"%php_ini%"
-+(echo ;Optional extensions, supplied for plugin use)>>"%php_ini%"
-+(echo extension=php_fileinfo.dll)>>"%php_ini%"
-+(echo extension=php_gd.dll)>>"%php_ini%"
-+(echo extension=php_mysqli.dll)>>"%php_ini%"
-+(echo extension=php_sqlite3.dll)>>"%php_ini%"
-+(echo ;Optional extensions, supplied for debugging)>>"%php_ini%"
-+(echo extension=php_recursionguard.dll)>>"%php_ini%"
-+(echo recursionguard.enabled=0 ;disabled due to minor performance impact, only enable this if you need it for debugging)>>"%php_ini%"
-+(echo.)>>"%php_ini%"
-+(echo ; ---- ! WARNING ! ----)>>"%php_ini%"
-+(echo ; JIT can provide big performance improvements, but as of PHP 8.0.8 it is still unstable. For this reason, it is disabled by default.)>>"%php_ini%"
-+(echo ; Enable it at your own risk. See https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit for possible options.)>>"%php_ini%"
-+(echo opcache.jit=off)>>"%php_ini%"
-+(echo opcache.jit_buffer_size=128M)>>"%php_ini%"
-+REM TODO: more entries
-+
-+cd /D ..\..
-+
-+REM this includes all the stuff necessary to run anything needing 2015, 2017 and 2019 in one package
-+call :pm-echo "Downloading Microsoft Visual C++ Redistributable 2015-2019"
-+wget https://aka.ms/vs/16/release/vc_redist.x64.exe --no-check-certificate -q -O vc_redist.x64.exe || exit 1
-+
-+call :pm-echo "Checking PHP build works..."
-+rem bin\php\php.exe --version >>"%log_file%" 2>&1 || call :pm-fatal-error "PHP build isn't working"
-+rem bin\php\php.exe -m >>"%log_file%" 2>&1
-+
-+call :pm-echo "Packaging build..."
-+set package_filename=php-%PHP_DISPLAY_VER%-%VC_VER%-%ARCH%.zip
-+if exist %package_filename% del /s /q %package_filename%
-+7z a -bd %package_filename% bin vc_redist.x64.exe >nul || call :pm-fatal-error "Failed to package the build"
-+
-+call :pm-echo "Created build package %package_filename%"
-+call :pm-echo "Moving debugging symbols to output directory..."
-+copy "%SOURCES_PATH%\php-src\%ARCH%\%OUT_PATH_REL%_TS\php-debug-pack*.zip" . /b /y
 +call :pm-echo "Done?"
 +
 +exit 0
@@ -343,19 +277,6 @@ index 0000000000000000000000000000000000000000..193a004a43263462b394f4a669643175
 +    set VS_YEAR=
 +    exit /B 1
 +)
-+
-+:get-extension-zip-from-github:
-+call :pm-echo " - %~1: downloading %~2..."
-+call :get-zip https://github.com/%~3/%~4/archive/%~2.zip || exit /B 1
-+move %~4-%~2 %~1 >>"%log_file%" 2>&1 || exit /B 1
-+exit /B 0
-+
-+
-+:get-zip
-+wget %~1 --no-check-certificate -q -O temp.zip || exit /B 1
-+7z x -y temp.zip >nul || exit /B 1
-+del /s /q temp.zip >nul || exit /B 1
-+exit /B 0
 +
 +:pm-fatal-error
 +call :pm-echo-error "%~1 - check compile.log for details"
