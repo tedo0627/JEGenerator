@@ -1,5 +1,11 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: tedo0627 <24734045+tedo0627@users.noreply.github.com>
+Date: Wed, 13 Jul 2022 10:58:31 +0900
+Subject: [PATCH] Support calljava extension
+
+
 diff --git a/windows-compile-vs.bat b/windows-compile-vs.bat
-index 1bb8851..915fc75 100644
+index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad18577a1c 100644
 --- a/windows-compile-vs.bat
 +++ b/windows-compile-vs.bat
 @@ -40,6 +40,8 @@ echo.>"%log_file%"
@@ -106,7 +112,7 @@ index 1bb8851..915fc75 100644
  set package_filename=php-%PHP_DISPLAY_VER%-%VC_VER%-%ARCH%.zip
 diff --git a/windows-ext-compile.bat b/windows-ext-compile.bat
 new file mode 100644
-index 0000000..193a004
+index 0000000000000000000000000000000000000000..193a004a43263462b394f4a6696431755446d66d
 --- /dev/null
 +++ b/windows-ext-compile.bat
 @@ -0,0 +1,253 @@
