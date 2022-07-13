@@ -58,7 +58,10 @@ JELOADER_METHOD(checkEula) {
 
 JELOADER_METHOD(init) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
-
+    JNIEnv *env = object->jvm_obj->env;
+    jclass cls = object->jeloader_class;
+    jmethodID mid = env->GetMethodID(cls, "init", "()V");
+    env->CallVoidMethod(object->jeloader_obj, mid);
     RETURN_BOOL(true);
 }
 
