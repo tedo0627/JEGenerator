@@ -112,10 +112,10 @@ index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad
  set package_filename=php-%PHP_DISPLAY_VER%-%VC_VER%-%ARCH%.zip
 diff --git a/windows-ext-compile.bat b/windows-ext-compile.bat
 new file mode 100644
-index 0000000000000000000000000000000000000000..a5e5d27c99a7e26ee9741ce28c3d821339c932e0
+index 0000000000000000000000000000000000000000..c79071ec02c6eefd74553a39c6b1002f564dfc2f
 --- /dev/null
 +++ b/windows-ext-compile.bat
-@@ -0,0 +1,174 @@
+@@ -0,0 +1,177 @@
 +@echo off
 +
 +REM For future users: This file MUST have CRLF line endings. If it doesn't, lots of inexplicable undesirable strange behaviour will result.
@@ -247,6 +247,9 @@ index 0000000000000000000000000000000000000000..a5e5d27c99a7e26ee9741ce28c3d8213
 +
 +call :pm-echo "Compiling PHP..."
 +nmake >>"%log_file%" 2>&1 || call :pm-fatal-error "Error compiling PHP"
++
++call :pm-echo "Assembling artifacts..."
++nmake snap >>"%log_file%" 2>&1 || call :pm-fatal-error "Error assembling artifacts"
 +
 +call :pm-echo "Removing unneeded dependency DLLs..."
 +REM remove ICU DLLs copied unnecessarily by nmake snap - this needs to be removed if we ever have ext/intl as a dependency
