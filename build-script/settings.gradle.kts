@@ -4,5 +4,5 @@ pluginManagement {
         maven("https://files.minecraftforge.net/maven/")
     }
 }
-rootProject.name = "build"
+rootProject.name = "build-script"
 
