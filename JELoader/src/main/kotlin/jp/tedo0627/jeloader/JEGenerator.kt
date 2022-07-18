@@ -17,7 +17,7 @@ class JEGenerator(
         remove(ChunkStatus.FULL)
     }
 
-    fun generateChunk(x: Int, z: Int) {//: JEChunk {
+    fun generateChunk(x: Int, z: Int): JEChunk {
         var chunk: ChunkAccess? = null
         for (chunkStats in status) {
             chunk = level.chunkSource.getChunk(x, z, chunkStats, true) ?: continue
@@ -27,6 +27,6 @@ class JEGenerator(
 
         println("call generate chunk")
 
-        //return JEChunk(chunk, blockConverter)
+        return JEChunk(chunk, blockConverter)
     }
 }

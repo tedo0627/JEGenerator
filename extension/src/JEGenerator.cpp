@@ -40,10 +40,8 @@ JEGENERATOR_METHOD(__construct) {
 JEGENERATOR_METHOD(generateChunk) {
     auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
     JNIEnv *env = object->jvm_obj->env;
-    cout << "c++ generate chunk" << endl;
-    //jclass cls = object->jeloader_class;
-    //jmethodID mid = env->GetMethodID(cls, "generateChunk", "(II)Ltedo0627/jegenerator/extension/JEGenerator;");
-    //env->CallObjectMethod(object->jeloader_obj, mid, 0, 0)
+    jmethodID mid = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
+    env->CallObjectMethod(object->jegenerator_obj, mid, 0, 0);
 }
 
 void register_jegenerator_class() {

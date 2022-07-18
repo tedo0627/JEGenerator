@@ -9,6 +9,8 @@ extern "C" {
 
 typedef struct {
     jvm_obj* jvm_obj;
+    jclass jegenerator_class;
+    jobject jegenerator_obj;
     zend_object std;
 } jegenerator_obj;
 

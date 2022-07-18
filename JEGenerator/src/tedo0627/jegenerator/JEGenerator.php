@@ -20,7 +20,8 @@ class JEGenerator extends PluginBase {
         echo "1\n";
         $je->init();
         echo "2\n";
-        var_dump($je->getGenerator("OVERWORLD", 0));
+        $generator = $je->getGenerator("OVERWORLD", 0);
+        $generator->generateChunk(0, 0);
         echo "3\n";
     }
 }

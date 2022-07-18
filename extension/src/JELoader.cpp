@@ -85,6 +85,8 @@ JELOADER_METHOD(getGenerator) {
     object_init_ex(return_value, jegenerator_class_entry);
     jegenerator_obj* generator_obj = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(return_value));
     generator_obj->jvm_obj = object->jvm_obj;
+    generator_obj->jegenerator_class = env->FindClass("jp/tedo0627/jeloader/JEGenerator");
+    generator_obj->jegenerator_obj = jegenerator;
 }
 
 void register_jeloader_class() {
