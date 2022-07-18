@@ -10,7 +10,7 @@ ZEND_METHOD(tedo0627_jegenerator_extension_JEGenerator, __construct);
 ZEND_METHOD(tedo0627_jegenerator_extension_JEGenerator, generateChunk);
 
 static const zend_function_entry tedo0627_jegenerator_extension_jegenerator_methods[] = {
-    ZEND_ME(tedo0627_jegenerator_extension_JEGenerator, __construct, arginfo_tedo0627_jegenerator_extension_JEGenerator___construct, ZEND_ACC_PUBLIC)
+    ZEND_ME(tedo0627_jegenerator_extension_JEGenerator, __construct, arginfo_tedo0627_jegenerator_extension_JEGenerator___construct, ZEND_ACC_PRIVATE)
     ZEND_ME(tedo0627_jegenerator_extension_JEGenerator, generateChunk, arginfo_tedo0627_jegenerator_extension_JEGenerator_generateChunk, ZEND_ACC_PUBLIC)
     ZEND_FE_END
 };

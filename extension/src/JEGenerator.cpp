@@ -25,16 +25,6 @@ static void jegenerator_free(zend_object* obj) {
 #define JEGENERATOR_METHOD(name) PHP_METHOD(tedo0627_jegenerator_extension_JEGenerator, name)
 
 JEGENERATOR_METHOD(__construct) {
-    zend_object* zend_obj;
-
-    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
-        Z_PARAM_OBJ_EX(zend_obj, 1, 1)
-    ZEND_PARSE_PARAMETERS_END();
-
-    auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
-    object->jvm_obj = fetch_from_zend_object<jvm_obj>(zend_obj);
-
-    cout << "JEGenerator construct" << endl;
 }
 
 JEGENERATOR_METHOD(generateChunk) {
