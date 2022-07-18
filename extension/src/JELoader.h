@@ -8,6 +8,7 @@ extern "C" {
 PHP_METHOD(JELoader, __construct);
 PHP_METHOD(JELoader, checkEula);
 PHP_METHOD(JELoader, init);
+PHP_METHOD(JELoader, getGenerator);
 
 void register_jeloader_class();
 

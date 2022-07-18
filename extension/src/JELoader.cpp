@@ -2,6 +2,8 @@
 #include "ZendUtil.h"
 #include "stubs/tedo0627/jegenerator/extension/JELoader_arginfo.h"
 #include "JvmLoaderObj.h"
+#include "JEGeneratorObj.h"
+#include "JEGenerator.h"
 
 #include <jni.h>
 #include <iostream>
@@ -63,6 +65,26 @@ JELOADER_METHOD(init) {
     jmethodID mid = env->GetMethodID(cls, "init", "()V");
     env->CallVoidMethod(object->jeloader_obj, mid);
     RETURN_BOOL(true);
+}
+
+JELOADER_METHOD(getGenerator) {
+    zend_string* type;
+    zend_long seed;
+
+    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 2, 2)
+        Z_PARAM_STR_EX(type, 1, 1)
+        Z_PARAM_LONG(seed)
+    ZEND_PARSE_PARAMETERS_END();
+
+    auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
+    JNIEnv *env = object->jvm_obj->env;
+    jclass cls = object->jeloader_class;
+    jmethodID mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
+    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(type)), (long) seed, env->NewStringUTF(""));
+
+    object_init_ex(return_value, jegenerator_class_entry);
+    jegenerator_obj* generator_obj = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(return_value));
+    generator_obj->jvm_obj = object->jvm_obj;
 }
 
 void register_jeloader_class() {
