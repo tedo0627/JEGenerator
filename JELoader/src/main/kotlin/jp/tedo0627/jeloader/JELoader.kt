@@ -49,19 +49,6 @@ import java.nio.file.Paths
 
 class JELoader {
 
-    companion object {
-
-        @JvmStatic
-        fun sayHi() {
-            println("hi")
-        }
-
-        @JvmStatic
-        fun Square(i: Int): Int {
-            return i * i
-        }
-    }
-
     private var initialized = false
     private var agreedToEULA = false
 

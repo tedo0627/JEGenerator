@@ -2,7 +2,6 @@
 #include "config.h"
 #endif
 
-#include "src/Sample.h"
 #include "src/JEGenerator.h"
 #include "src/JELoader.h"
 #include "src/JvmLoader.h"
@@ -14,7 +13,6 @@ extern "C" {
 }
 
 PHP_MINIT_FUNCTION(calljava) {
-    register_sample_class();
     register_jegenerator_class();
     register_jeloader_class();
     register_jvmloader_class();

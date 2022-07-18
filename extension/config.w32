@@ -9,7 +9,7 @@ if (PHP_CALLJAVA != "no") {
         );
         ADD_SOURCES(
             configure_module_dirname + "/src",
-            "Sample.cpp JEGenerator.cpp JELoader.cpp JvmLoader.cpp",
+            "JEGenerator.cpp JELoader.cpp JvmLoader.cpp",
             "calljava"
         );
     }
