@@ -31,7 +31,7 @@ JECHUNK_METHOD(getBlocks) {
     auto object = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(getThis()));
     JNIEnv *env = object->jvm_obj->env;
     jmethodID mid = env->GetMethodID(object->jechunk_class, "getBlocks", "()[I");
-    jintarray obj = (jintarray) env->CallObjectMethod(object->jechunk_obj, mid, 0, 0);
+    jintArray obj = (jintArray) env->CallObjectMethod(object->jechunk_obj, mid, 0, 0);
 }
 
 void register_jechunk_class() {

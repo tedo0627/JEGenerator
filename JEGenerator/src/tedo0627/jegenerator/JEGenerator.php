@@ -21,7 +21,10 @@ class JEGenerator extends PluginBase {
         $je->init();
         echo "2\n";
         $generator = $je->getGenerator("OVERWORLD", 0);
-        $generator->generateChunk(0, 0);
         echo "3\n";
+        $chunk = $generator->generateChunk(0, 0);
+        echo "4\n";
+        $chunk->getBlocks();
+        echo "5\n";
     }
 }
