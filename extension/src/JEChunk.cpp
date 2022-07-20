@@ -31,7 +31,47 @@ JECHUNK_METHOD(getBlocks) {
     auto object = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(getThis()));
     JNIEnv *env = object->jvm_obj->env;
     jmethodID mid = env->GetMethodID(object->jechunk_class, "getBlocks", "()[I");
-    jintArray obj = (jintArray) env->CallObjectMethod(object->jechunk_obj, mid, 0, 0);
+    jarray jarr = (jarray) env->CallObjectMethod(object->jechunk_obj, mid, 0, 0);
+
+    array_init(return_value);
+    /*
+    int len = env->GetArrayLength(jarray);
+    for (int i = 0; i < len; i++) {
+        //jint value = (jint) env->GetIntArrayElement(jarray, i);
+        env->GetObjectArrayElement(jarray, i);
+
+        //add_next_index_long(return_value, (int) value);
+        //cout << (int) value << endl;
+    }
+    */
+    /*
+    jint* jintarray = (jint*) env->GetPrimitiveArrayCritical((jintArray) jarr, NULL);
+    int len = env->GetArrayLength(jarr);
+    for (int i = 0; i < len; i++) {
+        jint value = jint[i];
+        add_next_index_long(return_value, (int) jint[i]);
+        //cout << (int) value << endl;
+    }
+    */
+
+    int len = env->GetArrayLength(jarr);
+    jint* jintarray = env->GetIntArrayElements((jintArray) jarr, 0);
+    for (int i = 0; i < len; i++) {
+        jint value = jintarray[i];
+        add_next_index_long(return_value, (int) value);
+        //cout << (int) value << endl;
+    }
+    env->ReleaseIntArrayElements((jintArray) jarr, jintarray, 0);
+    
+    //cout << "size: " << len << endl;
+
+
+/*
+    add_index_long(return_value, 0, 123);
+    add_index_string(return_value, 1, "AAA");
+    add_next_index_long(return_value, 999);
+    add_next_index_string(return_value, "BBB");
+    */
 }
 
 void register_jechunk_class() {
