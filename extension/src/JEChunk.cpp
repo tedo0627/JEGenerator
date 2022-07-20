@@ -28,8 +28,15 @@ JECHUNK_METHOD(__construct) {
 }
 
 JECHUNK_METHOD(getBlocks) {
+    JavaVM* jvm;
+    jsize ct;
+    JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
+    JNIEnv* env;
+    jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
+    jvm->AttachCurrentThread((void**) &env, NULL);
+
     auto object = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(getThis()));
-    JNIEnv *env = object->jvm_obj->env;
+    //JNIEnv *env = object->jvm_obj->env;
     jmethodID mid = env->GetMethodID(object->jechunk_class, "getBlocks", "()[I");
     jarray jarr = (jarray) env->CallObjectMethod(object->jechunk_obj, mid, 0, 0);
 
@@ -64,7 +71,8 @@ JECHUNK_METHOD(getBlocks) {
     env->ReleaseIntArrayElements((jintArray) jarr, jintarray, 0);
     
     //cout << "size: " << len << endl;
-
+    
+    //jvm->DetachCurrentThread();
 
 /*
     add_index_long(return_value, 0, 123);

@@ -18,6 +18,7 @@ class JEGenerator(
     }
 
     fun generateChunk(x: Int, z: Int): JEChunk {
+        println("call generate chunk1 thread: ${Thread.currentThread().id}")
         var chunk: ChunkAccess? = null
         for (chunkStats in status) {
             chunk = level.chunkSource.getChunk(x, z, chunkStats, true) ?: continue
@@ -25,7 +26,7 @@ class JEGenerator(
 
         if (chunk == null) throw IllegalStateException()
 
-        println("call generate chunk")
+        println("call generate chunk2")
 
         return JEChunk(chunk, blockConverter)
     }

@@ -117,6 +117,8 @@ class JELoader {
     }
 
     fun getGenerator(type: String, seed: Long, biome: String = ""): JEGenerator {
+        println("call kotlin getGenerator")
+        println("thread: ${Thread.currentThread().id}")
         if (!initialized) throw IllegalStateException("Not initialized")
         if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
 

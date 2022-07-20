@@ -30,12 +30,12 @@ class JEGeneratorPlugin extends PluginBase {
 
         self::$loader = $je;
         echo "2\n";
-        $generator = $je->getGenerator("OVERWORLD", 0);
+        //$generator = JELoader::getGenerator("OVERWORLD", 0);
         echo "3\n";
-        $chunk = $generator->generateChunk(0, 0);
+        //$chunk = $generator->generateChunk(0, 0);
         echo "4\n";
 
-        echo "count: " . count($chunk->getBlocks()) . "\n";
+        //echo "count: " . count($chunk->getBlocks()) . "\n";
         /*
         $x = -1;
         $z = -1;
