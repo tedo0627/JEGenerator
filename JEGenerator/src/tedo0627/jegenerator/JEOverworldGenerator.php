@@ -24,12 +24,14 @@ class JEOverworldGenerator extends Generator {
     }
 
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
+        $chunk = new Chunk([], BiomeArray::fill(0), false);
+        $world->setChunk($chunkX, $chunkZ, $chunk);
     }
 
     public function populateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
         echo "thread id: " . \Thread::getCurrentThreadId() . "\n";
         echo "pupulate chunk x: " . $chunkX . ", z: " . $chunkZ . "\n";
-        $chunk = new Chunk([], BiomeArray::fill(0), false);
+        $chunk = $world->getChunk($chunkX, $chunkZ);
         $jechunk = $this->generator->generateChunk($chunkX, $chunkZ);
         echo "aaa2\n";
         foreach ($jechunk->getBlocks() as $i => $value) {
