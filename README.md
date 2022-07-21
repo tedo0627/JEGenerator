@@ -1,9 +1,2 @@
 # JEGenerator
-
-## Apply patch build scripts
-```
-git diff > ../script.patch
-```
-```
-git apply ../script.patch
-```
+This is the PocketMine plugin that generates the terrain for Minecraft Java Edition v1.17
