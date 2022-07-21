@@ -45,15 +45,25 @@ JEGENERATOR_METHOD(generateChunk) {
     jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
     jvm->AttachCurrentThreadAsDaemon((void**) &env, NULL);
 
+    cout << "c++ generate chunk 1" << endl;
+
     auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
+    //JNIEnv *env = object->jvm_obj->env;
+    cout << "c++ generate chunk 2" << endl;
     jmethodID mid = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
+    cout << "c++ generate chunk 3" << endl;
     jobject jechunk = env->CallObjectMethod(object->jegenerator_obj, mid, (int) x, (int) z);
+    cout << "c++ generate chunk 4" << endl;
 
     object_init_ex(return_value, jechunk_class_entry);
     jechunk_obj* jechunk_o = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(return_value));
     jechunk_o->jvm_obj = object->jvm_obj;
     jechunk_o->jechunk_class = env->FindClass("jp/tedo0627/jeloader/JEChunk");
     jechunk_o->jechunk_obj = jechunk;
+    
+    cout << "c++ generate chunk 5" << endl;
+    //jvm->DetachCurrentThread();
+    cout << "c++ generate chunk 6" << endl;
 }
 
 void register_jegenerator_class() {
