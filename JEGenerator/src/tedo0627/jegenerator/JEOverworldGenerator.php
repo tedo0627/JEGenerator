@@ -14,8 +14,6 @@ class JEOverworldGenerator extends Generator {
 
     private JEGenerator $generator;
 
-    public static JEGenerator $sgenerator;
-
     public function __construct(int $seed, string $preset) {
         parent::__construct($seed, $preset);
 
