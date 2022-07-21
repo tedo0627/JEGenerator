@@ -84,40 +84,31 @@ JELOADER_METHOD(getGenerator) {
         Z_PARAM_LONG(seed)
     ZEND_PARSE_PARAMETERS_END();
 
-    cout << "getGenerator: 1" << endl;
-
     auto object = instance;
-    cout << "getGenerator: 2" << endl;
     //JNIEnv *env = object->jvm_obj->env;
     JavaVM* jvm;
     jsize ct;
     JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
     JNIEnv* env;
-    jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
+    //jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
 
     jvm->AttachCurrentThread((void**) &env, NULL);
     //JNIEnv *env = object->env;
     jclass cls = object->jeloader_class;
-    cout << "getGenerator: 3" << endl;
-    if (object->mid == nullptr) {
-        cout << "mid is null" << endl;
-        //object->mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
-    }
-    jint version = env->GetVersion();
-    cout << "version: " << ((int) version) << endl;
-    cout << "getGenerator: 4" << endl;
-    cout << "jvmp: " << object->jvm_obj << ", envp: "<< env << ", objp: " << object->jeloader_obj << ", midp: " << object->mid << endl;
-    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, object->mid, env->NewStringUTF(ZSTR_VAL(type)), (long) seed, env->NewStringUTF(""));
-    cout << "getGenerator: 5" << endl;
+    cout << "call getGenerator method" << endl;
+    cout << "jeloader" << object->jeloader_obj << endl;
+    jmethodID mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
+    cout << "jeloader mid " << object->mid << endl;
+    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(""));
+    cout << "jegenerator from JELoader" << jegenerator << endl;
 
     object_init_ex(return_value, jegenerator_class_entry);
-    cout << "getGenerator: 6" << endl;
     jegenerator_obj* generator_obj = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(return_value));
     generator_obj->jvm_obj = object->jvm_obj;
     generator_obj->jegenerator_class = env->FindClass("jp/tedo0627/jeloader/JEGenerator");
     generator_obj->jegenerator_obj = jegenerator;
     //jvm->DetachCurrentThread();
-    cout << "getGenerator: 7" << endl;
+    cout << "getGenerator method successful" << endl;
 }
 
 void register_jeloader_class() {

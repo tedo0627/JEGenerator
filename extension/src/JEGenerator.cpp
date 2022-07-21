@@ -43,7 +43,7 @@ JEGENERATOR_METHOD(generateChunk) {
     JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
     JNIEnv* env;
     jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
-    jvm->AttachCurrentThreadAsDaemon((void**) &env, NULL);
+    jvm->AttachCurrentThread((void**) &env, NULL);
 
     cout << "c++ generate chunk 1" << endl;
 

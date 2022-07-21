@@ -20,7 +20,7 @@ class JEOverworldGenerator extends Generator {
         parent::__construct($seed, $preset);
 
         $this->generator = JELoader::getGenerator("OVERWORLD", $seed);
-        echo "construct thread id: " . \Thread::getCurrentThreadId() . "\n";
+        echo "construct thread id: " . \Thread::getCurrentThreadId() . ", seed: " . $seed . "\n";
     }
 
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
@@ -33,8 +33,10 @@ class JEOverworldGenerator extends Generator {
         echo "pupulate chunk x: " . $chunkX . ", z: " . $chunkZ . "\n";
         $chunk = $world->getChunk($chunkX, $chunkZ);
         $jechunk = $this->generator->generateChunk($chunkX, $chunkZ);
-        echo "aaa2\n";
-        foreach ($jechunk->getBlocks() as $i => $value) {
+        echo "populate 2\n";
+        $blocks = $jechunk->getBlocks();
+        echo "populate 3\n";
+        foreach ($blocks as $i => $value) {
             if ($value == 0) continue;
 
             $y = $i % 256;

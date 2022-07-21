@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("org.javassist:javassist:3.29.0-GA")
     implementation(fileTree(mapOf("dir" to "lib", "include" to "server.jar")))
 }
 
