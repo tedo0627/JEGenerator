@@ -20,7 +20,6 @@ class JEOverworldGenerator extends Generator {
         parent::__construct($seed, $preset);
 
         $this->generator = JELoader::getGenerator("OVERWORLD", $seed);
-        echo "construct thread id: " . \Thread::getCurrentThreadId() . ", seed: " . $seed . "\n";
     }
 
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
@@ -29,14 +28,9 @@ class JEOverworldGenerator extends Generator {
     }
 
     public function populateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
-        echo "thread id: " . \Thread::getCurrentThreadId() . "\n";
-        echo "pupulate chunk x: " . $chunkX . ", z: " . $chunkZ . "\n";
         $chunk = $world->getChunk($chunkX, $chunkZ);
         $jechunk = $this->generator->generateChunk($chunkX, $chunkZ);
-        echo "populate 2\n";
-        $blocks = $jechunk->getBlocks();
-        echo "populate 3\n";
-        foreach ($blocks as $i => $value) {
+        foreach ($jechunk->getBlocks() as $i => $value) {
             if ($value == 0) continue;
 
             $y = $i % 256;
@@ -44,8 +38,6 @@ class JEOverworldGenerator extends Generator {
             $x = $i / (16 * 256);
 
             $chunk->setFullBlock($x, $y, $z, ($value << Block::INTERNAL_METADATA_BITS) | 0);
-            //echo "set: " . $value . ", full: " . (($value << Block::INTERNAL_METADATA_BITS) | 0) . "\n";
         }
-        echo "pupulate chunk finish x: " . $chunkX . ", z: " . $chunkZ . "\n";
     }
 }

@@ -120,113 +120,104 @@ class JELoader {
     }
 
     fun getGenerator(type: String, seed: Long, biome: String = ""): JEGenerator {
-        println("call kotlin getGenerator thread: ${Thread.currentThread().id}, seed: $seed")
-        try {
-            synchronized(storageAccess) {
+        synchronized(storageAccess) {
+            if (!initialized) throw IllegalStateException("Not initialized")
+            if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
 
-                if (!initialized) throw IllegalStateException("Not initialized")
-                if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
+            val levelSettings = LevelSettings(
+                "world",
+                GameType.SURVIVAL,
+                false,
+                Difficulty.PEACEFUL,
+                false,
+                GameRules(),
+                dataPackConfig
+            )
 
-                val levelSettings = LevelSettings(
-                    "world",
-                    GameType.SURVIVAL,
-                    false,
-                    Difficulty.PEACEFUL,
-                    false,
-                    GameRules(),
-                    dataPackConfig
-                )
+            val biomeRegistry = registryHolder.registryOrThrow(Registry.BIOME_REGISTRY)
+            val dimensionRegistry = registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
+            val settingsRegistry = registryHolder.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY)
 
-                val biomeRegistry = registryHolder.registryOrThrow(Registry.BIOME_REGISTRY)
-                val dimensionRegistry = registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
-                val settingsRegistry = registryHolder.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY)
-
-                var targetBiomeOrNull: Biome? = null
-                biomeRegistry.forEach {
-                    val location = biomeRegistry.getKey(it) ?: return@forEach
-                    if (location.path == biome) targetBiomeOrNull = it
-                }
-                val targetBiome = targetBiomeOrNull ?: biomeRegistry.get(Biomes.PLAINS)!!
-
-                val mappedRegistry =
-                    DimensionType.defaultDimensions(dimensionRegistry, biomeRegistry, settingsRegistry, seed)
-                val genSettings = WorldGenSettings(seed, true, false,
-                    WorldGenSettings.withOverworld(dimensionRegistry, mappedRegistry,
-                        when (type) {
-                            "OVERWORLD" -> NoiseBasedChunkGenerator(
-                                OverworldBiomeSource(seed, false, false, biomeRegistry),
-                                seed
-                            ) {
-                                settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-                            }
-                            "NETHER" -> mappedRegistry.get(LevelStem.NETHER)?.generator() ?: throw IllegalStateException()
-                            "END" -> mappedRegistry.get(LevelStem.END)?.generator() ?: throw IllegalStateException()
-                            "LARGE_BIOMES" -> NoiseBasedChunkGenerator(
-                                OverworldBiomeSource(
-                                    seed,
-                                    false,
-                                    true,
-                                    biomeRegistry
-                                ), seed
-                            ) {
-                                settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-                            }
-                            "AMPLIFIED" -> NoiseBasedChunkGenerator(
-                                OverworldBiomeSource(seed, false, false, biomeRegistry),
-                                seed
-                            ) {
-                                settingsRegistry.getOrThrow(NoiseGeneratorSettings.AMPLIFIED)
-                            }
-                            "SINGLE_BIOME" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
-                                settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-                            }
-                            "CAVES" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
-                                settingsRegistry.getOrThrow(NoiseGeneratorSettings.CAVES)
-                            }
-                            "FLOATING_ISLANDS" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
-                                settingsRegistry.getOrThrow(NoiseGeneratorSettings.FLOATING_ISLANDS)
-                            }
-                            else -> throw IllegalArgumentException("$type is not support generator type")
-                        }
-                    )
-                )
-                val chunkGenerator = genSettings.overworld()
-                val levelData = PrimaryLevelData(levelSettings, genSettings, Lifecycle.stable())
-
-                val chunkProgressListener = ::LoggerChunkProgressListener
-                val chunkProgressListenerFactory = ChunkProgressListenerFactory { chunkProgressListener(it) }
-
-                val server = DedicatedServer(
-                    Thread.currentThread(), registryHolder, storageAccess,
-                    packRepository, serverResources, levelData, serverSettings,
-                    DataFixers.getDataFixer(), sessionService, profileRepository,
-                    profileCache, chunkProgressListenerFactory
-                )
-                server.playerList = DedicatedPlayerList(server, registryHolder, storageAccess.createPlayerStorage())
-
-                val level = ServerLevel(
-                    server, Util.backgroundExecutor(), storageAccess,
-                    server.worldData.overworldData(), Level.OVERWORLD,
-                    registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
-                        .getOrThrow(DimensionType.OVERWORLD_LOCATION),
-                    chunkProgressListenerFactory.create(11), chunkGenerator,
-                    server.worldData.worldGenSettings().isDebug,
-                    BiomeManager.obfuscateSeed(seed), mutableListOf(), true
-                )
-
-                val field = MinecraftServer::class.java.getDeclaredField("levels")
-                field.isAccessible = true
-                @Suppress("UNCHECKED_CAST")
-                val map = field.get(server) as MutableMap<ResourceKey<Level>, Level>
-                map[Level.OVERWORLD] = level
-
-                println("kotlin getGenerator finish")
-                return JEGenerator(level, blockConverter)
+            var targetBiomeOrNull: Biome? = null
+            biomeRegistry.forEach {
+                val location = biomeRegistry.getKey(it) ?: return@forEach
+                if (location.path == biome) targetBiomeOrNull = it
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+            val targetBiome = targetBiomeOrNull ?: biomeRegistry.get(Biomes.PLAINS)!!
 
-        throw IllegalStateException()
+            val mappedRegistry =
+                DimensionType.defaultDimensions(dimensionRegistry, biomeRegistry, settingsRegistry, seed)
+            val genSettings = WorldGenSettings(seed, true, false,
+                WorldGenSettings.withOverworld(dimensionRegistry, mappedRegistry,
+                    when (type) {
+                        "OVERWORLD" -> NoiseBasedChunkGenerator(
+                            OverworldBiomeSource(seed, false, false, biomeRegistry),
+                            seed
+                        ) {
+                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
+                        }
+                        "NETHER" -> mappedRegistry.get(LevelStem.NETHER)?.generator() ?: throw IllegalStateException()
+                        "END" -> mappedRegistry.get(LevelStem.END)?.generator() ?: throw IllegalStateException()
+                        "LARGE_BIOMES" -> NoiseBasedChunkGenerator(
+                            OverworldBiomeSource(
+                                seed,
+                                false,
+                                true,
+                                biomeRegistry
+                            ), seed
+                        ) {
+                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
+                        }
+                        "AMPLIFIED" -> NoiseBasedChunkGenerator(
+                            OverworldBiomeSource(seed, false, false, biomeRegistry),
+                            seed
+                        ) {
+                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.AMPLIFIED)
+                        }
+                        "SINGLE_BIOME" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
+                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
+                        }
+                        "CAVES" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
+                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.CAVES)
+                        }
+                        "FLOATING_ISLANDS" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
+                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.FLOATING_ISLANDS)
+                        }
+                        else -> throw IllegalArgumentException("$type is not support generator type")
+                    }
+                )
+            )
+            val chunkGenerator = genSettings.overworld()
+            val levelData = PrimaryLevelData(levelSettings, genSettings, Lifecycle.stable())
+
+            val chunkProgressListener = ::LoggerChunkProgressListener
+            val chunkProgressListenerFactory = ChunkProgressListenerFactory { chunkProgressListener(it) }
+
+            val server = DedicatedServer(
+                Thread.currentThread(), registryHolder, storageAccess,
+                packRepository, serverResources, levelData, serverSettings,
+                DataFixers.getDataFixer(), sessionService, profileRepository,
+                profileCache, chunkProgressListenerFactory
+            )
+            server.playerList = DedicatedPlayerList(server, registryHolder, storageAccess.createPlayerStorage())
+
+            val level = ServerLevel(
+                server, Util.backgroundExecutor(), storageAccess,
+                server.worldData.overworldData(), Level.OVERWORLD,
+                registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
+                    .getOrThrow(DimensionType.OVERWORLD_LOCATION),
+                chunkProgressListenerFactory.create(11), chunkGenerator,
+                server.worldData.worldGenSettings().isDebug,
+                BiomeManager.obfuscateSeed(seed), mutableListOf(), true
+            )
+
+            val field = MinecraftServer::class.java.getDeclaredField("levels")
+            field.isAccessible = true
+            @Suppress("UNCHECKED_CAST")
+            val map = field.get(server) as MutableMap<ResourceKey<Level>, Level>
+            map[Level.OVERWORLD] = level
+
+            return JEGenerator(level, blockConverter)
+        }
     }
 }

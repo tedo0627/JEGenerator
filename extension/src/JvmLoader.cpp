@@ -66,8 +66,7 @@ JVMLOADER_METHOD(init) {
 
     object->jvm = jvm;
     object->env = env;
-    
-    //jvm->DestroyJavaVM();
+
     RETURN_BOOL(true);
 }
 
