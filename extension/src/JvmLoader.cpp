@@ -20,6 +20,12 @@ static void jvmloader_free(zend_object* obj) {
     zend_object_std_dtor(obj);
 }
 
+char* getCstr(string str) {
+    char* cstr = new char[str.size() + 1];
+    char_traits<char>::copy(cstr, str.c_str(), str.size() + 1);
+    return cstr;
+}
+
 #define JVMLOADER_METHOD(name) PHP_METHOD(tedo0627_jegenerator_extension_JvmLoader, name)
 
 JVMLOADER_METHOD(__construct) {
@@ -39,17 +45,16 @@ JVMLOADER_METHOD(init) {
 
     string str = "-Djava.class.path=";
     str.append(ZSTR_VAL(path));
-    char* cstr = new char[str.size() + 1];
-    char_traits<char>::copy(cstr, str.c_str(), str.size() + 1);
 
     JavaVM *jvm;
     JNIEnv *env;
 
     JavaVMInitArgs vm_args;
-    JavaVMOption* options = new JavaVMOption[1];
-    options[0].optionString = cstr;
+    JavaVMOption* options = new JavaVMOption[2];
+    options[0].optionString = getCstr(str);
+    options[1].optionString = getCstr("--add-opens=java.base/java.lang=ALL-UNNAMED");
     vm_args.version = JNI_VERSION_1_6;
-    vm_args.nOptions = 1;
+    vm_args.nOptions = 2;
     vm_args.options = options;
     vm_args.ignoreUnrecognized = false;
     jint rc = JNI_CreateJavaVM(&jvm, (void**) &env, &vm_args);
@@ -61,8 +66,7 @@ JVMLOADER_METHOD(init) {
 
     object->jvm = jvm;
     object->env = env;
-    
-    //jvm->DestroyJavaVM();
+
     RETURN_BOOL(true);
 }
 

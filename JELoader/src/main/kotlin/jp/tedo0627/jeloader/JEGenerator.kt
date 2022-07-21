@@ -25,8 +25,6 @@ class JEGenerator(
 
         if (chunk == null) throw IllegalStateException()
 
-        println("call generate chunk")
-
         return JEChunk(chunk, blockConverter)
     }
 }

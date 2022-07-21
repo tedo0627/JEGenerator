@@ -15,10 +15,14 @@ static zend_object_handlers jeloader_handlers;
 
 typedef struct {
     jvm_obj* jvm_obj;
+    JNIEnv* env;
     jclass jeloader_class;
     jobject jeloader_obj;
+    jmethodID mid = nullptr;
     zend_object std;
 } je_obj;
+
+static je_obj* instance;
 
 static zend_object* jeloader_new(zend_class_entry* class_type) {
     auto object = alloc_custom_zend_object<je_obj>(class_type, &jeloader_handlers);
@@ -40,6 +44,7 @@ JELOADER_METHOD(__construct) {
 
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     object->jvm_obj = fetch_from_zend_object<jvm_obj>(zend_obj);
+    object->env = fetch_from_zend_object<jvm_obj>(zend_obj)->env;
     
     JNIEnv *env = object->jvm_obj->env;
     jclass cls = env->FindClass("jp/tedo0627/jeloader/JELoader");
@@ -48,6 +53,9 @@ JELOADER_METHOD(__construct) {
 
     object->jeloader_class = cls;
     object->jeloader_obj = obj;
+    object->mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
+
+    instance = object;
 }
 
 JELOADER_METHOD(checkEula) {
@@ -76,11 +84,16 @@ JELOADER_METHOD(getGenerator) {
         Z_PARAM_LONG(seed)
     ZEND_PARSE_PARAMETERS_END();
 
-    auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
-    JNIEnv *env = object->jvm_obj->env;
+    auto object = instance;
+    JavaVM* jvm;
+    jsize ct;
+    JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
+    JNIEnv* env;
+
+    jvm->AttachCurrentThread((void**) &env, NULL);
     jclass cls = object->jeloader_class;
     jmethodID mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
-    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(type)), (long) seed, env->NewStringUTF(""));
+    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(""));
 
     object_init_ex(return_value, jegenerator_class_entry);
     jegenerator_obj* generator_obj = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(return_value));

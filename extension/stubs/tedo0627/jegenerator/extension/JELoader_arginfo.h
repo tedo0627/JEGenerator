@@ -23,6 +23,6 @@ static const zend_function_entry tedo0627_jegenerator_extension_jeloader_methods
     ZEND_ME(tedo0627_jegenerator_extension_JELoader, __construct, arginfo_tedo0627_jegenerator_extension_JELoader___construct, ZEND_ACC_PUBLIC)
     ZEND_ME(tedo0627_jegenerator_extension_JELoader, checkEula, arginfo_tedo0627_jegenerator_extension_JELoader_checkEula, ZEND_ACC_PUBLIC)
     ZEND_ME(tedo0627_jegenerator_extension_JELoader, init, arginfo_tedo0627_jegenerator_extension_JELoader_init, ZEND_ACC_PUBLIC)
-    ZEND_ME(tedo0627_jegenerator_extension_JELoader, getGenerator, arginfo_tedo0627_jegenerator_extension_JELoader_getGenerator, ZEND_ACC_PUBLIC)
+    ZEND_ME(tedo0627_jegenerator_extension_JELoader, getGenerator, arginfo_tedo0627_jegenerator_extension_JELoader_getGenerator, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
     ZEND_FE_END
 };
