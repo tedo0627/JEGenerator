@@ -37,7 +37,7 @@ class JEOverworldGenerator extends Generator {
             $z = $i / 256;
             $x = $i / (16 * 256);
 
-            $chunk->setFullBlock($x, $y, $z, ($value << Block::INTERNAL_METADATA_BITS) | 0);
+            $chunk->setFullBlock($x, $y, $z, $value);
         }
     }
 }

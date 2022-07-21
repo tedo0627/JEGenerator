@@ -22,6 +22,10 @@ class BlockConverter {
     }
 
     fun get(name: String): Int {
-        return map[name]?.first ?: 0
+        val pair = map[name]
+        if (pair != null) {
+            return pair.first.shl(4) + pair.second
+        }
+        return 0
     }
 }
