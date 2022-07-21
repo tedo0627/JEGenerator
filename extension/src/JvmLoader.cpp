@@ -76,19 +76,3 @@ void register_jvmloader_class() {
     ce.create_object = jvmloader_new;
     zend_register_internal_class(&ce);
 }
-
-JavaVM* getJvm() {
-    JavaVM* jvm;
-    jsize ct;
-    JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
-
-    return jvm;
-}
-
-JNIEnv* getEnv() {
-    JavaVM* jvm = getJvm();
-    JNIEnv* env;
-    jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
-
-    return env;
-}

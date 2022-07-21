@@ -4,7 +4,6 @@
 #include "JvmLoaderObj.h"
 #include "JEGeneratorObj.h"
 #include "JEGenerator.h"
-#include "JvmLoader.h"
 
 #include <jni.h>
 #include <iostream>
@@ -46,8 +45,8 @@ JELOADER_METHOD(__construct) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     object->jvm_obj = fetch_from_zend_object<jvm_obj>(zend_obj);
     object->env = fetch_from_zend_object<jvm_obj>(zend_obj)->env;
-
-    JNIEnv *env = getEnv();
+    
+    JNIEnv *env = object->jvm_obj->env;
     jclass cls = env->FindClass("jp/tedo0627/jeloader/JELoader");
     jmethodID mid = env->GetMethodID(cls, "<init>", "()V");
     jobject obj = env->NewObject(cls, mid);
