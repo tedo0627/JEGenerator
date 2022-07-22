@@ -60,12 +60,8 @@ JVMLOADER_METHOD(init) {
     vm_args.ignoreUnrecognized = false;
     jint rc = JNI_CreateJavaVM(&jvm, (void**) &env, &vm_args);
     delete options;
-    if (rc != JNI_OK) {
-        RETURN_BOOL(false);
-        return;
-    }
 
-    RETURN_BOOL(true);
+    RETURN_BOOL(rc == JNI_OK);
 }
 
 JavaVM* getJvm() {

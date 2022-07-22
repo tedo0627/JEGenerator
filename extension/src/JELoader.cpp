@@ -35,12 +35,6 @@ static void jeloader_free(zend_object* obj) {
 #define JELOADER_METHOD(name) PHP_METHOD(tedo0627_jegenerator_extension_JELoader, name)
 
 JELOADER_METHOD(__construct) {
-    zend_object* zend_obj;
-
-    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
-        Z_PARAM_OBJ_EX(zend_obj, 1, 1)
-    ZEND_PARSE_PARAMETERS_END();
-
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     
     JNIEnv* env = getEnv();
