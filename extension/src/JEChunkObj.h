@@ -8,9 +8,9 @@ extern "C" {
 }
 
 typedef struct {
-    jvm_obj* jvm_obj;
-    jclass jechunk_class;
     jobject jechunk_obj;
+    jclass jechunk_class;
+    jmethodID get_blocks_method;
     zend_object std;
 } jechunk_obj;
 

@@ -1,24 +1,18 @@
+#include "JEGenerator.h"
+#include "JEGeneratorObj.h"
 #include "JELoader.h"
+#include "JvmLoader.h"
 #include "ZendUtil.h"
 #include "stubs/tedo0627/jegenerator/extension/JELoader_arginfo.h"
-#include "JvmLoaderObj.h"
-#include "JEGeneratorObj.h"
-#include "JEGenerator.h"
 
 #include <jni.h>
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-using namespace std;
 
 static zend_object_handlers jeloader_handlers;
 
 typedef struct {
-    jvm_obj* jvm_obj;
-    JNIEnv* env;
-    jclass jeloader_class;
     jobject jeloader_obj;
-    jmethodID mid = nullptr;
+    jclass jeloader_class;
+    jmethodID get_generator_method;
     zend_object std;
 } je_obj;
 
@@ -26,6 +20,11 @@ static je_obj* instance;
 
 static zend_object* jeloader_new(zend_class_entry* class_type) {
     auto object = alloc_custom_zend_object<je_obj>(class_type, &jeloader_handlers);
+
+    JNIEnv* env = attachThread();
+    object->jeloader_class = env->FindClass("jp/tedo0627/jeloader/JELoader");
+    object->get_generator_method = env->GetMethodID(object->jeloader_class, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
+
     return &object->std;
 }
 
@@ -43,34 +42,29 @@ JELOADER_METHOD(__construct) {
     ZEND_PARSE_PARAMETERS_END();
 
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
-    object->jvm_obj = fetch_from_zend_object<jvm_obj>(zend_obj);
-    object->env = fetch_from_zend_object<jvm_obj>(zend_obj)->env;
     
-    JNIEnv *env = object->jvm_obj->env;
+    JNIEnv* env = getEnv();
     jclass cls = env->FindClass("jp/tedo0627/jeloader/JELoader");
     jmethodID mid = env->GetMethodID(cls, "<init>", "()V");
     jobject obj = env->NewObject(cls, mid);
 
     object->jeloader_class = cls;
     object->jeloader_obj = obj;
-    object->mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
 
     instance = object;
 }
 
 JELOADER_METHOD(checkEula) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
-    JNIEnv *env = object->jvm_obj->env;
-    jclass cls = object->jeloader_class;
-    jmethodID mid = env->GetMethodID(cls, "checkEula", "()Z");
+    JNIEnv* env = getEnv();
+    jmethodID mid = env->GetMethodID(object->jeloader_class, "checkEula", "()Z");
     RETURN_BOOL((bool) env->CallBooleanMethod(object->jeloader_obj, mid));
 }
 
 JELOADER_METHOD(init) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
-    JNIEnv *env = object->jvm_obj->env;
-    jclass cls = object->jeloader_class;
-    jmethodID mid = env->GetMethodID(cls, "init", "()V");
+    JNIEnv* env = getEnv();
+    jmethodID mid = env->GetMethodID(object->jeloader_class, "init", "()V");
     env->CallVoidMethod(object->jeloader_obj, mid);
     RETURN_BOOL(true);
 }
@@ -85,20 +79,11 @@ JELOADER_METHOD(getGenerator) {
     ZEND_PARSE_PARAMETERS_END();
 
     auto object = instance;
-    JavaVM* jvm;
-    jsize ct;
-    JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
-    JNIEnv* env;
-
-    jvm->AttachCurrentThread((void**) &env, NULL);
-    jclass cls = object->jeloader_class;
-    jmethodID mid = env->GetMethodID(cls, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
-    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(""));
+    JNIEnv* env = attachThread();
+    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, object->get_generator_method, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(""));
 
     object_init_ex(return_value, jegenerator_class_entry);
     jegenerator_obj* generator_obj = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(return_value));
-    generator_obj->jvm_obj = object->jvm_obj;
-    generator_obj->jegenerator_class = env->FindClass("jp/tedo0627/jeloader/JEGenerator");
     generator_obj->jegenerator_obj = jegenerator;
 }
 

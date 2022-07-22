@@ -6,5 +6,8 @@ class JEChunk {
 
     private function __construct() {}
 
-    public function getBlocks(): void {}
+    /**
+     * @return int[]
+     */
+    public function getBlocks(): array {}
 }

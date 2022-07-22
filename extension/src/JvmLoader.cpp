@@ -1,13 +1,14 @@
 #include "JvmLoader.h"
 #include "ZendUtil.h"
 #include "stubs/tedo0627/jegenerator/extension/JvmLoader_arginfo.h"
-#include "JvmLoaderObj.h"
 
-#include <jni.h>
 #include <iostream>
-#include <cstdio>
-#include <cstring>
-using namespace std;
+#include <jni.h>
+
+typedef struct {
+    zend_string* path;
+    zend_object std;
+} jvm_obj;
 
 static zend_object_handlers jvmloader_handlers;
 
@@ -20,9 +21,9 @@ static void jvmloader_free(zend_object* obj) {
     zend_object_std_dtor(obj);
 }
 
-char* getCstr(string str) {
+char* getCstr(std::string str) {
     char* cstr = new char[str.size() + 1];
-    char_traits<char>::copy(cstr, str.c_str(), str.size() + 1);
+    std::char_traits<char>::copy(cstr, str.c_str(), str.size() + 1);
     return cstr;
 }
 
@@ -43,7 +44,7 @@ JVMLOADER_METHOD(init) {
     auto object = fetch_from_zend_object<jvm_obj>(Z_OBJ_P(getThis()));
     zend_string* path = object->path;
 
-    string str = "-Djava.class.path=";
+    std::string str = "-Djava.class.path=";
     str.append(ZSTR_VAL(path));
 
     JavaVM *jvm;
@@ -64,10 +65,31 @@ JVMLOADER_METHOD(init) {
         return;
     }
 
-    object->jvm = jvm;
-    object->env = env;
-
     RETURN_BOOL(true);
+}
+
+JavaVM* getJvm() {
+    JavaVM* jvm;
+    jsize ct;
+    JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
+
+    return jvm;
+}
+
+JNIEnv* getEnv() {
+    JavaVM* jvm = getJvm();
+    JNIEnv* env;
+    jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
+
+    return env;
+}
+
+JNIEnv* attachThread() {
+    JavaVM* jvm = getJvm();
+    JNIEnv* env;
+    jvm->AttachCurrentThread((void**) &env, NULL);
+
+    return env;
 }
 
 void register_jvmloader_class() {

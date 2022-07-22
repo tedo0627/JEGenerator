@@ -1,22 +1,23 @@
+#include "JEChunk.h"
+#include "JEChunkObj.h"
 #include "JEGenerator.h"
+#include "JEGeneratorObj.h"
+#include "JvmLoader.h"
 #include "ZendUtil.h"
 #include "stubs/tedo0627/jegenerator/extension/JEGenerator_arginfo.h"
-#include "JvmLoaderObj.h"
-#include "JEGeneratorObj.h"
-#include "JEChunkObj.h"
-#include "JEChunk.h"
 
 #include <jni.h>
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-using namespace std;
 
 zend_class_entry* jegenerator_class_entry;
 static zend_object_handlers jegenerator_handlers;
 
 static zend_object* jegenerator_new(zend_class_entry* class_type) {
     auto object = alloc_custom_zend_object<jegenerator_obj>(class_type, &jegenerator_handlers);
+
+    JNIEnv* env = attachThread();
+    object->jegenerator_class = env->FindClass("jp/tedo0627/jeloader/JEGenerator");
+    object->generate_chunk_method = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
+    
     return &object->std;
 }
 
@@ -38,20 +39,13 @@ JEGENERATOR_METHOD(generateChunk) {
         Z_PARAM_LONG(z)
     ZEND_PARSE_PARAMETERS_END();
 
-    JavaVM* jvm;
-    jsize ct;
-    JNI_GetCreatedJavaVMs(&jvm, 1, &ct);
-    JNIEnv* env;
-    jvm->GetEnv((void**) &env, JNI_VERSION_1_6);
-    jvm->AttachCurrentThread((void**) &env, NULL);
+    JNIEnv* env = attachThread();
 
     auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
-    jmethodID mid = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
-    jobject jechunk = env->CallObjectMethod(object->jegenerator_obj, mid, (int) x, (int) z);
+    jobject jechunk = env->CallObjectMethod(object->jegenerator_obj, object->generate_chunk_method, (int) x, (int) z);
+
     object_init_ex(return_value, jechunk_class_entry);
     jechunk_obj* jechunk_o = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(return_value));
-    jechunk_o->jvm_obj = object->jvm_obj;
-    jechunk_o->jechunk_class = env->FindClass("jp/tedo0627/jeloader/JEChunk");
     jechunk_o->jechunk_obj = jechunk;
 }
 
