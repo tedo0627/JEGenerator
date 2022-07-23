@@ -11,6 +11,7 @@ typedef struct {
     jobject jechunk_obj;
     jclass jechunk_class;
     jmethodID get_blocks_method;
+    jmethodID get_biomes_method;
     zend_object std;
 } jechunk_obj;
 

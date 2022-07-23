@@ -37,5 +37,12 @@ class JEOverworldGenerator extends Generator {
 
             $chunk->setFullBlock($x, $y, $z, $value);
         }
+
+        foreach ($jechunk->getBiomes() as $i => $value) {
+            $x = $i / 16;
+            $z = $i % 16;
+
+            $chunk->setBiomeId($x, $z, $value);
+        }
     }
 }

@@ -7,6 +7,7 @@ extern "C" {
 
 PHP_METHOD(JEChunk, __construct);
 PHP_METHOD(JEChunk, getBlocks);
+PHP_METHOD(JEChunk, getBiomes);
 
 extern zend_class_entry* jechunk_class_entry;
 

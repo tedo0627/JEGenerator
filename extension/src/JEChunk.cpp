@@ -15,6 +15,7 @@ static zend_object* jechunk_new(zend_class_entry* class_type) {
     JNIEnv* env = attachThread();
     object->jechunk_class = env->FindClass("jp/tedo0627/jeloader/JEChunk");
     object->get_blocks_method = env->GetMethodID(object->jechunk_class, "getBlocks", "()[I");
+    object->get_biomes_method = env->GetMethodID(object->jechunk_class, "getBiomes", "()[I");
 
     return &object->std;
 }
@@ -33,6 +34,23 @@ JECHUNK_METHOD(getBlocks) {
 
     auto object = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(getThis()));
     jarray array = (jarray) env->CallObjectMethod(object->jechunk_obj, object->get_blocks_method, 0, 0);
+
+    array_init(return_value);
+
+    int len = env->GetArrayLength(array);
+    jint* jintarray = env->GetIntArrayElements((jintArray) array, 0);
+    for (int i = 0; i < len; i++) {
+        jint value = jintarray[i];
+        add_next_index_long(return_value, (int) value);
+    }
+    env->ReleaseIntArrayElements((jintArray) array, jintarray, 0);
+}
+
+JECHUNK_METHOD(getBiomes) {
+    JNIEnv* env = attachThread();
+
+    auto object = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(getThis()));
+    jarray array = (jarray) env->CallObjectMethod(object->jechunk_obj, object->get_biomes_method, 0, 0);
 
     array_init(return_value);
 

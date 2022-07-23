@@ -1,5 +1,6 @@
 package jp.tedo0627.jeloader
 
+import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.chunk.ChunkAccess
@@ -7,7 +8,8 @@ import net.minecraft.world.level.chunk.ChunkStatus
 
 class JEGenerator(
     private val level: ServerLevel,
-    private val blockConverter: BlockConverter
+    private val blockConverter: BlockConverter,
+    private val biomeConverter: BiomeConverter
 ) {
 
     private val status = ChunkStatus.getStatusList().apply {
@@ -25,6 +27,6 @@ class JEGenerator(
 
         if (chunk == null) throw IllegalStateException()
 
-        return JEChunk(chunk, blockConverter)
+        return JEChunk(level, chunk, blockConverter, biomeConverter)
     }
 }

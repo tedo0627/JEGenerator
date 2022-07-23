@@ -10,4 +10,10 @@ class JEChunk {
      * @return int[]
      */
     public function getBlocks(): array {}
+
+
+    /**
+     * @return int[]
+     */
+    public function getBiomes(): array {}
 }

@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfileRepository
 import com.mojang.authlib.minecraft.MinecraftSessionService
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService
 import com.mojang.serialization.Lifecycle
+import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
 import jp.tedo0627.jeloader.modification.IgnoreLoggerModification
 import jp.tedo0627.jeloader.modification.StoredUserListModification
@@ -64,6 +65,7 @@ class JELoader {
     private lateinit var serverResources: ServerResources
 
     private lateinit var blockConverter: BlockConverter
+    private lateinit var biomeConverter: BiomeConverter
 
     fun checkEula(): Boolean {
         agreedToEULA = Eula(Paths.get("eula.txt")).hasAgreedToEULA()
@@ -115,6 +117,7 @@ class JELoader {
         serverResources.updateGlobals()
 
         blockConverter = BlockConverter()
+        biomeConverter = BiomeConverter()
 
         initialized = true
     }
@@ -217,7 +220,7 @@ class JELoader {
             val map = field.get(server) as MutableMap<ResourceKey<Level>, Level>
             map[Level.OVERWORLD] = level
 
-            return JEGenerator(level, blockConverter)
+            return JEGenerator(level, blockConverter, biomeConverter)
         }
     }
 }
