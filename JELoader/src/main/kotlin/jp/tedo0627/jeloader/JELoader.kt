@@ -7,6 +7,7 @@ import com.mojang.serialization.Lifecycle
 import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
 import jp.tedo0627.jeloader.modification.IgnoreLoggerModification
+import jp.tedo0627.jeloader.modification.ProtoChunkModification
 import jp.tedo0627.jeloader.modification.StoredUserListModification
 import net.minecraft.SharedConstants
 import net.minecraft.Util
@@ -83,6 +84,7 @@ class JELoader {
             IgnoreLoggerModification(RecipeManager::class.java),
             IgnoreLoggerModification(SimpleReloadableResourceManager::class.java),
             IgnoreLoggerModification(YggdrasilAuthenticationService::class.java),
+            ProtoChunkModification(),
             StoredUserListModification(),
         )
         for (modification in modifications) modification.applyReflection()

@@ -6,7 +6,8 @@ extern "C" {
 }
 
 PHP_METHOD(JEGenerator, __construct);
-PHP_METHOD(JEGenerator, getGenerator);
+PHP_METHOD(JEGenerator, generateChunk);
+PHP_METHOD(JEGenerator, populateChunk);
 
 extern zend_class_entry* jegenerator_class_entry;
 

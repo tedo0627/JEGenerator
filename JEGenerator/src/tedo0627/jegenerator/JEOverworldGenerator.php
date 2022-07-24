@@ -23,10 +23,7 @@ class JEOverworldGenerator extends Generator {
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
         $chunk = new Chunk([], BiomeArray::fill(0), false);
         $world->setChunk($chunkX, $chunkZ, $chunk);
-    }
 
-    public function populateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
-        $chunk = $world->getChunk($chunkX, $chunkZ);
         $jechunk = $this->generator->generateChunk($chunkX, $chunkZ);
         foreach ($jechunk->getBlocks() as $i => $value) {
             if ($value == 0) continue;
@@ -43,6 +40,25 @@ class JEOverworldGenerator extends Generator {
             $z = $i % 16;
 
             $chunk->setBiomeId($x, $z, $value);
+        }
+    }
+
+    public function populateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
+        $xOffset = 16 * ($chunkX - 1);
+        $zOffset = 16 * ($chunkZ - 1);
+
+        foreach ($this->generator->populateChunk($chunkX, $chunkZ) as $i => $value) {
+            $x = ($i >> 16);
+            $y = $i % 256;
+            $z = ($i >> 8) - ($x << 8);
+
+            $x += $xOffset;
+            $z += $zOffset;
+
+            $chunk = $world->getChunk($x >> 4, $z >> 4);
+            if ($chunk == null) continue;
+
+            $chunk->setFullBlock($x - (($x >> 4) * 16), $y, $z - (($z >> 4) * 16), $value);
         }
     }
 }

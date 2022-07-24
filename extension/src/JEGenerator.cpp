@@ -17,6 +17,11 @@ static zend_object* jegenerator_new(zend_class_entry* class_type) {
     JNIEnv* env = attachThread();
     object->jegenerator_class = env->FindClass("jp/tedo0627/jeloader/JEGenerator");
     object->generate_chunk_method = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
+    object->populate_chunk_method = env->GetMethodID(object->jegenerator_class, "populateChunk", "(II)[Ljp/tedo0627/jeloader/FeatureData;");
+
+    jclass cls = env->FindClass("jp/tedo0627/jeloader/FeatureData");
+    object->get_index_method = env->GetMethodID(cls, "getIndex", "()I");
+    object->get_value_method = env->GetMethodID(cls, "getValue", "()I");
     
     return &object->std;
 }
@@ -47,6 +52,31 @@ JEGENERATOR_METHOD(generateChunk) {
     object_init_ex(return_value, jechunk_class_entry);
     jechunk_obj* jechunk_o = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(return_value));
     jechunk_o->jechunk_obj = jechunk;
+}
+
+JEGENERATOR_METHOD(populateChunk) {
+    zend_long x;
+    zend_long z;
+
+    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 2, 2)
+        Z_PARAM_LONG(x)
+        Z_PARAM_LONG(z)
+    ZEND_PARSE_PARAMETERS_END();
+
+    JNIEnv* env = attachThread();
+
+    auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
+    jobjectArray array = (jobjectArray) env->CallObjectMethod(object->jegenerator_obj, object->populate_chunk_method, (int) x, (int) z);
+
+    array_init(return_value);
+    int len = env->GetArrayLength(array);
+    for (int i = 0; i < len; i++) {
+        jobject obj = env->GetObjectArrayElement(array, i);
+        jint index = env->CallIntMethod(obj, object->get_index_method);
+        jint value = env->CallIntMethod(obj, object->get_value_method);
+        
+        add_index_long(return_value, (long) index, (long) value);
+    }
 }
 
 void register_jegenerator_class() {
