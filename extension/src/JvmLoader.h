@@ -18,4 +18,6 @@ JNIEnv* getEnv();
 
 JNIEnv* attachThread();
 
+bool exceptionCheck();
+
 #endif

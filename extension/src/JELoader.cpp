@@ -23,7 +23,9 @@ static zend_object* jeloader_new(zend_class_entry* class_type) {
 
     JNIEnv* env = attachThread();
     object->jeloader_class = env->FindClass("jp/tedo0627/jeloader/JELoader");
+    if (exceptionCheck()) return &object->std;
     object->get_generator_method = env->GetMethodID(object->jeloader_class, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
+    if (exceptionCheck()) return &object->std;
 
     return &object->std;
 }
@@ -39,8 +41,11 @@ JELOADER_METHOD(__construct) {
     
     JNIEnv* env = getEnv();
     jclass cls = env->FindClass("jp/tedo0627/jeloader/JELoader");
+    if (exceptionCheck()) return;
     jmethodID mid = env->GetMethodID(cls, "<init>", "()V");
+    if (exceptionCheck()) return;
     jobject obj = env->NewObject(cls, mid);
+    if (exceptionCheck()) return;
 
     object->jeloader_class = cls;
     object->jeloader_obj = obj;
@@ -52,14 +57,20 @@ JELOADER_METHOD(checkEula) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     JNIEnv* env = getEnv();
     jmethodID mid = env->GetMethodID(object->jeloader_class, "checkEula", "()Z");
-    RETURN_BOOL((bool) env->CallBooleanMethod(object->jeloader_obj, mid));
+    if (exceptionCheck()) return;
+    bool result = (bool) env->CallBooleanMethod(object->jeloader_obj, mid);
+    if (exceptionCheck()) return;
+    RETURN_BOOL(result);
 }
 
 JELOADER_METHOD(init) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     JNIEnv* env = getEnv();
     jmethodID mid = env->GetMethodID(object->jeloader_class, "init", "()V");
+    if (exceptionCheck()) return;
     env->CallVoidMethod(object->jeloader_obj, mid);
+    if (exceptionCheck()) return;
+
     RETURN_BOOL(true);
 }
 
@@ -75,6 +86,7 @@ JELOADER_METHOD(getGenerator) {
     auto object = instance;
     JNIEnv* env = attachThread();
     jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, object->get_generator_method, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(""));
+    if (exceptionCheck()) return;
 
     object_init_ex(return_value, jegenerator_class_entry);
     jegenerator_obj* generator_obj = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(return_value));

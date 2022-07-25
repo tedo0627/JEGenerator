@@ -5,6 +5,10 @@
 #include <iostream>
 #include <jni.h>
 
+extern "C" {
+#include "Zend/zend_exceptions.h"
+}
+
 typedef struct {
     zend_string* path;
     zend_object std;
@@ -86,6 +90,16 @@ JNIEnv* attachThread() {
     jvm->AttachCurrentThread((void**) &env, NULL);
 
     return env;
+}
+
+bool exceptionCheck() {
+    JNIEnv* env = getEnv();
+    jboolean check = env->ExceptionCheck();
+    if (check == JNI_FALSE) return false;
+
+    env->ExceptionDescribe();
+    zend_throw_exception_ex(NULL, 0, "%s", "jni error");
+    return true;
 }
 
 void register_jvmloader_class() {
