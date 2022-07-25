@@ -77,15 +77,18 @@ JELOADER_METHOD(init) {
 JELOADER_METHOD(getGenerator) {
     zend_string* type;
     zend_long seed;
+    zend_string* biome;
 
-    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 2, 2)
+    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 3, 3)
         Z_PARAM_STR_EX(type, 1, 1)
         Z_PARAM_LONG(seed)
+        Z_PARAM_OPTIONAL
+        Z_PARAM_STR_EX(biome, 1, 1)
     ZEND_PARSE_PARAMETERS_END();
 
     auto object = instance;
     JNIEnv* env = attachThread();
-    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, object->get_generator_method, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(""));
+    jobject jegenerator = env->CallObjectMethod(object->jeloader_obj, object->get_generator_method, env->NewStringUTF(ZSTR_VAL(type)), (jlong) seed, env->NewStringUTF(ZSTR_VAL(biome)));
     if (exceptionCheck()) return;
 
     object_init_ex(return_value, jegenerator_class_entry);

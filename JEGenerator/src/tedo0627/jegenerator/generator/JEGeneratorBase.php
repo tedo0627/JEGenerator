@@ -16,7 +16,16 @@ class JEGeneratorBase extends Generator {
     public function __construct(int $seed, string $preset, string $type) {
         parent::__construct($seed, $preset);
 
-        $this->generator = JELoader::getGenerator($type, $seed);
+        $biome = "";
+        $split = explode(",", $preset);
+        foreach ($split as $str) {
+            $pair = explode(",", $str);
+            if (count($pair) < 2) continue;
+
+            if ($pair[0] == "biome") $biome = $pair[1];
+        }
+
+        $this->generator = JELoader::getGenerator($type, $seed, $biome);
     }
 
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
