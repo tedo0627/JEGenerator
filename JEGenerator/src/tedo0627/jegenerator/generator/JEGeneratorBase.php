@@ -1,8 +1,7 @@
 <?php
 
-namespace tedo0627\jegenerator;
+namespace tedo0627\jegenerator\generator;
 
-use pocketmine\block\Block;
 use pocketmine\world\ChunkManager;
 use pocketmine\world\format\BiomeArray;
 use pocketmine\world\format\Chunk;
@@ -10,14 +9,14 @@ use pocketmine\world\generator\Generator;
 use tedo0627\jegenerator\extension\JEGenerator;
 use tedo0627\jegenerator\extension\JELoader;
 
-class JEOverworldGenerator extends Generator {
+class JEGeneratorBase extends Generator {
 
     private JEGenerator $generator;
 
-    public function __construct(int $seed, string $preset) {
+    public function __construct(int $seed, string $preset, string $type) {
         parent::__construct($seed, $preset);
 
-        $this->generator = JELoader::getGenerator("OVERWORLD", $seed);
+        $this->generator = JELoader::getGenerator($type, $seed);
     }
 
     public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {

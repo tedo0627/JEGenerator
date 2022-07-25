@@ -6,6 +6,14 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\world\generator\GeneratorManager;
 use tedo0627\jegenerator\extension\JELoader;
 use tedo0627\jegenerator\extension\JvmLoader;
+use tedo0627\jegenerator\generator\JEAmplifiedGenerator;
+use tedo0627\jegenerator\generator\JECavesGenerator;
+use tedo0627\jegenerator\generator\JEEndGenerator;
+use tedo0627\jegenerator\generator\JEFloatingIslangsGenerator;
+use tedo0627\jegenerator\generator\JELargeBiomesGenerator;
+use tedo0627\jegenerator\generator\JENetherGenerator;
+use tedo0627\jegenerator\generator\JEOverworldGenerator;
+use tedo0627\jegenerator\generator\JESingleBiomeGenerator;
 use Webmozart\PathUtil\Path;
 
 class JEGeneratorPlugin extends PluginBase {
@@ -26,6 +34,17 @@ class JEGeneratorPlugin extends PluginBase {
         $je->init();
 
         $this->loader = $je;
-        GeneratorManager::getInstance()->addGenerator(JEOverworldGenerator::class, "je", fn() => null);
+        $this->addGenerator(JEOverworldGenerator::class, "je_overworld");
+        $this->addGenerator(JENetherGenerator::class, "je_nether");
+        $this->addGenerator(JEEndGenerator::class, "je_end");
+        $this->addGenerator(JELargeBiomesGenerator::class, "je_large_biomes");
+        $this->addGenerator(JEAmplifiedGenerator::class, "je_amplified");
+        $this->addGenerator(JESingleBiomeGenerator::class, "je_single_biome");
+        $this->addGenerator(JECavesGenerator::class, "je_caves");
+        $this->addGenerator(JEFloatingIslangsGenerator::class, "je_floating_islands");
+    }
+
+    private function addGenerator(string $class, string $name) {
+        GeneratorManager::getInstance()->addGenerator($class, $name, fn() => null);
     }
 }
