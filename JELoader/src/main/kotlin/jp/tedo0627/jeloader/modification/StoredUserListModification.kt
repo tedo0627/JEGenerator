@@ -10,8 +10,13 @@ class StoredUserListModification : Modification {
         val cp = ClassPool.getDefault()
         cp.appendClassPath(LoaderClassPath(classLoader))
         val ctc = cp.get("net.minecraft.server.players.StoredUserList")
-        val ctm = ctc.getDeclaredMethod("load")
-        ctm.setBody("{}")
+
+        val ctmSave = ctc.getDeclaredMethod("save")
+        ctmSave.setBody("{}")
+
+        val ctmLoad = ctc.getDeclaredMethod("load")
+        ctmLoad.setBody("{}")
+
         ctc.toClass()
     }
 }
