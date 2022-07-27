@@ -4,6 +4,27 @@ Date: Wed, 13 Jul 2022 10:58:31 +0900
 Subject: [PATCH] Support calljava extension
 
 
+diff --git a/compile.sh b/compile.sh
+index 8669e5a5dd8dc3ac7c612514181198e119fc6094..c31a279e070932fb5243d202a29c4c684b3747d0 100755
+--- a/compile.sh
++++ b/compile.sh
+@@ -844,6 +844,8 @@ get_github_extension "morton" "$EXT_MORTON_VERSION" "pmmp" "ext-morton"
+ 
+ get_github_extension "xxhash" "$EXT_XXHASH_VERSION" "pmmp" "ext-xxhash"
+ 
++cp "$DIR/../../extension" "$BUILD_DIR/php/ext/calljava"
++
+ echo -n "[PHP]"
+ 
+ if [ "$DO_OPTIMIZE" != "no" ]; then
+@@ -974,6 +976,7 @@ $HAVE_MYSQLI \
+ --with-crypto \
+ --enable-recursionguard \
+ --enable-xxhash \
++--enable-calljava \
+ $HAVE_VALGRIND \
+ $CONFIGURE_FLAGS >> "$DIR/install.log" 2>&1
+ echo -n " compiling..."
 diff --git a/windows-compile-vs.bat b/windows-compile-vs.bat
 index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad18577a1c 100644
 --- a/windows-compile-vs.bat
