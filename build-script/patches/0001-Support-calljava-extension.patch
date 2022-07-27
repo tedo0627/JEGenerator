@@ -5,7 +5,7 @@ Subject: [PATCH] Support calljava extension
 
 
 diff --git a/compile.sh b/compile.sh
-index 8669e5a5dd8dc3ac7c612514181198e119fc6094..cd1b501f04cf0982a85d70df195ea4ffda841b56 100755
+index 8669e5a5dd8dc3ac7c612514181198e119fc6094..6db6cbff675b0dfcad8ba2dda6c63ccee2ce3577 100755
 --- a/compile.sh
 +++ b/compile.sh
 @@ -844,6 +844,9 @@ get_github_extension "morton" "$EXT_MORTON_VERSION" "pmmp" "ext-morton"
@@ -13,7 +13,7 @@ index 8669e5a5dd8dc3ac7c612514181198e119fc6094..cd1b501f04cf0982a85d70df195ea4ff
  get_github_extension "xxhash" "$EXT_XXHASH_VERSION" "pmmp" "ext-xxhash"
  
 +mkdir "$BUILD_DIR/php/ext/calljava"
-+cp -rp "$DIR/../../extension/*" "$BUILD_DIR/php/ext/calljava"
++cp -rp $DIR/../../extension/* "$BUILD_DIR/php/ext/calljava"
 +
  echo -n "[PHP]"
  
