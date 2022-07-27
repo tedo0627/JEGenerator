@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [ "linux" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          submodules: true
+
+      - name: Install tools and dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install make autoconf automake libtool libtool-bin m4 wget libc-bin gzip bzip2 bison g++ git re2c
+
+      - name: Set up JDK 16
+        uses: actions/setup-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+
+      - name: Set bot email
+        run: git config --global user.email "action@github.com"
+        
+      - name: Set bot name
+        run: git config --global user.name "GitHub Action"
+
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        working-directory: build-script
+
+      - name: Apply patches
+        run: ./gradlew applypatches
+        working-directory: build-script
+
+      - name: Compile PHP
+        run: |
+          set -ex
+          trap "exit 1" ERR
+          ./compile.sh -t linux64 -j 4 -f -g
+        working-directory: build-script/build-script
+        
+      - name: Create tarball
+        run: tar -czf ./PHP_Linux-x86_64.tar.gz bin
+        working-directory: build-script/build-script
+        
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Linux
+          path: |
+            ./build-script/build-script/PHP_Linux-x86_64.tar.gz
+            build-script/build-script/install.log
+            build-script/build-script/compile.sh
+          if-no-files-found: error
