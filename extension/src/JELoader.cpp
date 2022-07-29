@@ -22,7 +22,7 @@ static zend_object* jeloader_new(zend_class_entry* class_type) {
     auto object = alloc_custom_zend_object<je_obj>(class_type, &jeloader_handlers);
 
     JNIEnv* env = attachThread();
-    object->jeloader_class = env->FindClass("Ljp/tedo0627/jeloader/JELoader;");
+    object->jeloader_class = env->FindClass("jp/tedo0627/jeloader/JELoader");
     if (exceptionCheck()) return &object->std;
     object->get_generator_method = env->GetMethodID(object->jeloader_class, "getGenerator", "(Ljava/lang/String;JLjava/lang/String;)Ljp/tedo0627/jeloader/JEGenerator;");
     if (exceptionCheck()) return &object->std;
@@ -40,7 +40,7 @@ JELOADER_METHOD(__construct) {
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     
     JNIEnv* env = getEnv();
-    jclass cls = env->FindClass("Ljp/tedo0627/jeloader/JELoader;");
+    jclass cls = env->FindClass("jp/tedo0627/jeloader/JELoader");
     if (exceptionCheck()) return;
     jmethodID mid = env->GetMethodID(cls, "<init>", "()V");
     if (exceptionCheck()) return;
