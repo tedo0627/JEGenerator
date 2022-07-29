@@ -44,7 +44,7 @@ jobs:
           make install
 
       - name: Upload artifact
-        use: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with: 
           name: linux
           path: ${{ github.workspace }}/extension/modules/calljava.so
