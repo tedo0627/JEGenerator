@@ -37,7 +37,7 @@ jobs:
         if: steps.php-build-cache.outputs.cache-hit != 'true'
         run: |
           ./install-dependencies.sh
-          PHP_BUILD_ZTS_ENABLE=on PHP_BUILD_CONFIGURE_OPTS="--enable-debug" ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
+          PHP_BUILD_ZTS_ENABLE=on ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
         working-directory: php-build
 
       - name: Dump PHP info
