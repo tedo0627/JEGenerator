@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          submodules: true
+
+      - name: Set up JDK 16
+        uses: actions/setup-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+
+      - name: Restore PHP build cache
+        id: php-build-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/php
+          key: php-8.0.19
+
+      - name: Clone php-build repository
+        if: steps.php-build-cache.outputs.cache-hit != 'true'
+        uses: actions/checkout@v2
+        with:
+          repository: php-build/php-build
+          path: php-build
+
+      - name: Compile PHP
+        if: steps.php-build-cache.outputs.cache-hit != 'true'
+        run: |
+          ./install-dependencies.sh
+          PHP_BUILD_ZTS_ENABLE=on ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
+        working-directory: php-build
+
+      - name: Dump PHP info
+        run: $GITHUB_WORKSPACE/php/bin/php -i
+
+      - name: Build extension
+        run: |
+          $GITHUB_WORKSPACE/php/bin/phpize
+          ./configure --with-php-config=$GITHUB_WORKSPACE/php/bin/php-config --enable-calljava
+          make install
+        working-directory: extension
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with: 
+          name: linux
+          path: ${{ github.workspace }}/extension/modules/calljava.so

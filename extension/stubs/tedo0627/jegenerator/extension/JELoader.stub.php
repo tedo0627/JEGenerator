@@ -10,5 +10,5 @@ class JELoader {
 
     public function init(): bool {}
 
-    public function getGenerator(string $type, int $seed): JEGenerator {}
+    public function getGenerator(string $type, int $seed, string $biome): JEGenerator {}
 }

@@ -27,7 +27,8 @@ class JEGeneratorPlugin extends PluginBase {
         $config = $this->getConfig();
         $loader = Path::join($this->getServer()->getDataPath(), $config->get("loader-path"));
         $server = Path::join($this->getServer()->getDataPath(), $config->get("server-path"));
-        $jvm = new JvmLoader($loader . ";" . $server);
+        $separate = str_starts_with(PHP_OS, "WIN") ? ";" : ":";
+        $jvm = new JvmLoader($loader . $separate . $server);
         $jvm->init();
         $je = new JELoader();
         $je->checkEula();
