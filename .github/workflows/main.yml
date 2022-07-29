@@ -32,7 +32,7 @@ jobs:
         run: |
           ./install-dependencies.sh
           PHP_BUILD_ZTS_ENABLE=on --enable-debug" ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
-        working-directory: $GITHUB_WORKSPACE/php-build
+        working-directory: php-build
 
       - name: Dump PHP info
         run: $GITHUB_WORKSPACE/php/bin/php -i
