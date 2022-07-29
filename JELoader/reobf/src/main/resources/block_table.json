@@ -1,0 +1,9520 @@
+﻿[
+  {
+    "name": "minecraft:air",
+    "id": 0,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:void_air",
+    "id": 0,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cave_air",
+    "id": 0,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stone",
+    "id": 1,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:granite",
+    "id": 1,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:polished_granite",
+    "id": 1,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:diorite",
+    "id": 1,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:polished_diorite",
+    "id": 1,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:andesite",
+    "id": 1,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:polished_andesite",
+    "id": 1,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:grass_block",
+    "id": 2,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dirt",
+    "id": 3,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:coarse_dirt",
+    "id": 3,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:cobblestone",
+    "id": 4,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:oak_planks",
+    "id": 5,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_planks",
+    "id": 5,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:birch_planks",
+    "id": 5,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:jungle_planks",
+    "id": 5,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:acacia_planks",
+    "id": 5,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:dark_oak_planks",
+    "id": 5,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:oak_sapling",
+    "id": 6,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_sapling",
+    "id": 6,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:birch_sapling",
+    "id": 6,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:jungle_sapling",
+    "id": 6,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:acacia_sapling",
+    "id": 6,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:dark_oak_sapling",
+    "id": 6,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:bedrock",
+    "id": 7,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:water",
+    "id": 8,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lava",
+    "id": 10,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:sand",
+    "id": 12,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:red_sand",
+    "id": 12,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:gravel",
+    "id": 13,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:gold_ore",
+    "id": 14,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:iron_ore",
+    "id": 15,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:coal_ore",
+    "id": 16,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:oak_log",
+    "id": 17,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_log",
+    "id": 17,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_log",
+    "id": 17,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_log",
+    "id": 17,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_leaves",
+    "id": 18,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "persistent",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_leaves",
+    "id": 18,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "persistent",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_leaves",
+    "id": 18,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "persistent",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_leaves",
+    "id": 18,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "persistent",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sponge",
+    "id": 19,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:wet_sponge",
+    "id": 19,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:glass",
+    "id": 20,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lapis_ore",
+    "id": 21,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lapis_block",
+    "id": 22,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dispenser",
+    "id": 23,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sandstone",
+    "id": 24,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chiseled_sandstone",
+    "id": 24,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:cut_sandstone",
+    "id": 24,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:smooth_sandstone",
+    "id": 24,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:note_block",
+    "id": 25,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:white_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 0
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:orange_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 1
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:magenta_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 2
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:light_blue_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 3
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:yellow_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 4
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:lime_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 5
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:pink_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 6
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:gray_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 7
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:light_gray_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 8
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cyan_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 9
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:purple_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 10
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:blue_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 11
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:brown_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 12
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:green_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 13
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 14
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:black_bed",
+    "id": 26,
+    "damage": 0,
+    "block_entity": {
+      "id": "Bed",
+      "nbt": {
+        "color": {
+          "type": "byte",
+          "value": 15
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "occupied",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "part",
+        "type": "add_damage",
+        "value": {
+          "foot": 0,
+          "head": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:powered_rail",
+    "id": 27,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:detector_rail",
+    "id": 28,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:sticky_piston",
+    "id": 29,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "south": 2,
+          "north": 3,
+          "east": 4,
+          "west": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cobweb",
+    "id": 30,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:grass",
+    "id": 31,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:fern",
+    "id": 31,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:dead_bush",
+    "id": 32,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:piston",
+    "id": 33,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:piston_head",
+    "id": 34,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:white_wool",
+    "id": 35,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_wool",
+    "id": 35,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_wool",
+    "id": 35,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_wool",
+    "id": 35,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_wool",
+    "id": 35,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_wool",
+    "id": 35,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_wool",
+    "id": 35,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_wool",
+    "id": 35,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_wool",
+    "id": 35,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_wool",
+    "id": 35,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_wool",
+    "id": 35,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_wool",
+    "id": 35,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_wool",
+    "id": 35,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_wool",
+    "id": 35,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_wool",
+    "id": 35,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_wool",
+    "id": 35,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:dandelion",
+    "id": 37,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:poppy",
+    "id": 38,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:blue_orchid",
+    "id": 38,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:allium",
+    "id": 38,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:azure_bluet",
+    "id": 38,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:red_tulip",
+    "id": 38,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:orange_tulip",
+    "id": 38,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:white_tulip",
+    "id": 38,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:pink_tulip",
+    "id": 38,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:oxeye_daisy",
+    "id": 38,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cornflower",
+    "id": 38,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:lily_of_the_valley",
+    "id": 38,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:brown_mushroom",
+    "id": 39,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:red_mushroom",
+    "id": 40,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:gold_block",
+    "id": 41,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:iron_block",
+    "id": 42,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:smooth_stone_slab",
+    "id": 44,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sandstone_slab",
+    "id": 44,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:petrified_oak_slab",
+    "id": 44,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cobblestone_slab",
+    "id": 44,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:brick_slab",
+    "id": 44,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_brick_slab",
+    "id": 44,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:quartz_slab",
+    "id": 44,
+    "damage": 6,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:nether_brick_slab",
+    "id": 44,
+    "damage": 7,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 43,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:bricks",
+    "id": 45,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:tnt",
+    "id": 46,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:bookshelf",
+    "id": 47,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:mossy_cobblestone",
+    "id": 48,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:obsidian",
+    "id": 49,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:torch",
+    "id": 50,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:wall_torch",
+    "id": 50,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 1,
+          "west": 2,
+          "south": 3,
+          "north": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:fire",
+    "id": 51,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spawner",
+    "id": 52,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:oak_stairs",
+    "id": 53,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:chest",
+    "id": 54,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:redstone_wire",
+    "id": 55,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "power",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8,
+          "9": 9,
+          "10": 10,
+          "11": 11,
+          "12": 12,
+          "13": 13,
+          "14": 14,
+          "15": 15
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:diamond_ore",
+    "id": 56,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:diamond_block",
+    "id": 57,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crafting_table",
+    "id": 58,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:wheat",
+    "id": 59,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:farmland",
+    "id": 60,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "moisture",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:furnace",
+    "id": 61,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_sign",
+    "id": 63,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:oak_door",
+    "id": 64,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:ladder",
+    "id": 65,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:rail",
+    "id": 66,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "shape",
+        "type": "set_damage",
+        "value": {
+          "north_south": 0,
+          "east_west": 1,
+          "ascending_east": 2,
+          "ascending_west": 3,
+          "ascending_north": 4,
+          "ascending_south": 5,
+          "south_east": 6,
+          "south_west": 7,
+          "north_west": 8,
+          "north_east": 9
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cobblestone_stairs",
+    "id": 67,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_wall_sign",
+    "id": 68,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lever",
+    "id": 69,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 1,
+          "west": 2,
+          "south": 3,
+          "north": 4
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_pressure_plate",
+    "id": 70,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:iron_door",
+    "id": 71,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_pressure_plate",
+    "id": 72,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:redstone_ore",
+    "id": 73,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:redstone_torch",
+    "id": 76,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:redstone_wall_torch",
+    "id": 76,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 1,
+          "west": 2,
+          "south": 3,
+          "north": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_button",
+    "id": 77,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:snow",
+    "id": 78,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "layers",
+        "type": "set_damage",
+        "value": {
+          "1": 0,
+          "2": 1,
+          "3": 2,
+          "4": 3,
+          "5": 4,
+          "6": 5,
+          "7": 6,
+          "8": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:ice",
+    "id": 79,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:snow_block",
+    "id": 80,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cactus",
+    "id": 81,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8,
+          "9": 9,
+          "10": 10,
+          "11": 11,
+          "12": 12,
+          "13": 13,
+          "14": 14,
+          "15": 15
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:clay",
+    "id": 82,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:sugar_cane",
+    "id": 83,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8,
+          "9": 9,
+          "10": 10,
+          "11": 11,
+          "12": 12,
+          "13": 13,
+          "14": 14,
+          "15": 15
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jukebox",
+    "id": 84,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:oak_fence",
+    "id": 85,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_fence",
+    "id": 85,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:birch_fence",
+    "id": 85,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:jungle_fence",
+    "id": 85,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:acacia_fence",
+    "id": 85,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:dark_oak_fence",
+    "id": 85,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pumpkin",
+    "id": 86,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:netherrack",
+    "id": 87,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:soul_sand",
+    "id": 88,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:glowstone",
+    "id": 89,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_portal",
+    "id": 90,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:jack_o_lantern",
+    "id": 91,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cake",
+    "id": 92,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:repeater",
+    "id": 93,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "delay",
+        "type": "add_damage",
+        "value": {
+          "1": 0,
+          "2": 4,
+          "3": 8,
+          "4": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_trapdoor",
+    "id": 96,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:infested_stone",
+    "id": 97,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:infested_cobblestone",
+    "id": 97,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:infested_stone_bricks",
+    "id": 97,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:infested_mossy_stone_bricks",
+    "id": 97,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:infested_cracked_stone_bricks",
+    "id": 97,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:infested_chiseled_stone_bricks",
+    "id": 97,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:stone_bricks",
+    "id": 98,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:mossy_stone_bricks",
+    "id": 98,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:cracked_stone_bricks",
+    "id": 98,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:chiseled_stone_bricks",
+    "id": 98,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:brown_mushroom_block",
+    "id": 99,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": -3
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": -1
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 1
+        }
+      },
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_mushroom_block",
+    "id": 100,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": -3
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": -1
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 1
+        }
+      },
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mushroom_stem",
+    "id": 100,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:iron_bars",
+    "id": 101,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:glass_pane",
+    "id": 102,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:melon",
+    "id": 103,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:pumpkin_stem",
+    "id": 104,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:attached_pumpkin_stem",
+    "id": 104,
+    "damage": 7,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "north": 16,
+          "south": 24,
+          "west": 32,
+          "east": 40
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:melon_stem",
+    "id": 105,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:attached_melon_stem",
+    "id": 105,
+    "damage": 7,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "north": 16,
+          "south": 24,
+          "west": 32,
+          "east": 40
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:vine",
+    "id": 106,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 1
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 2
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_fence_gate",
+    "id": 107,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:brick_stairs",
+    "id": 108,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_brick_stairs",
+    "id": 109,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mycelium",
+    "id": 110,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lily_pad",
+    "id": 111,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_bricks",
+    "id": 112,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_brick_fence",
+    "id": 113,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_brick_stairs",
+    "id": 114,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:nether_wart",
+    "id": 115,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:enchanting_table",
+    "id": 116,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:brewing_stand",
+    "id": 117,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cauldron",
+    "id": 118,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "level",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:end_portal",
+    "id": 119,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:end_portal_frame",
+    "id": 120,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "eye",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:end_stone",
+    "id": 121,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dragon_egg",
+    "id": 122,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:redstone_lamp",
+    "id": 123,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dropper",
+    "id": 125,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:activator_rail",
+    "id": 126,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cocoa",
+    "id": 127,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "age",
+        "type": "add_damage",
+        "value": {
+          "0": 0,
+          "1": 4,
+          "2": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sandstone_stairs",
+    "id": 128,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:emerald_ore",
+    "id": 129,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:ender_chest",
+    "id": 130,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:tripwire_hook",
+    "id": 131,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "attached",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:tripwire",
+    "id": 132,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "attached",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "disarmed",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:emerald_block",
+    "id": 133,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_stairs",
+    "id": 134,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_stairs",
+    "id": 135,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_stairs",
+    "id": 136,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:command_block",
+    "id": 137,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:beacon",
+    "id": 138,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cobblestone_wall",
+    "id": 139,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mossy_cobblestone_wall",
+    "id": 139,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:granite_wall",
+    "id": 139,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:diorite_wall",
+    "id": 139,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:andesite_wall",
+    "id": 139,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sandstone_wall",
+    "id": 139,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:brick_wall",
+    "id": 139,
+    "damage": 6,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_brick_wall",
+    "id": 139,
+    "damage": 7,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mossy_stone_brick_wall",
+    "id": 139,
+    "damage": 8,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:end_stone_brick_wall",
+    "id": 139,
+    "damage": 9,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:nether_brick_wall",
+    "id": 139,
+    "damage": 10,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:prismarine_wall",
+    "id": 139,
+    "damage": 11,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_sandstone_wall",
+    "id": 139,
+    "damage": 12,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_nether_brick_wall",
+    "id": 139,
+    "damage": 13,
+    "properties": [
+      {
+        "name": "south",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 16,
+          "tall": 32
+        }
+      },
+      {
+        "name": "west",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 64,
+          "tall": 128
+        }
+      },
+      {
+        "name": "north",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 256,
+          "tall": 512
+        }
+      },
+      {
+        "name": "east",
+        "type": "add_damage",
+        "value": {
+          "none": 0,
+          "low": 1024,
+          "tall": 2048
+        }
+      },
+      {
+        "name": "up",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4096
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:flower_pot",
+    "id": 140,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:potted_oak_sapling",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 6
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_spruce_sapling",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 6
+        },
+        "data": {
+          "type": "short",
+          "value": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_birch_sapling",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 6
+        },
+        "data": {
+          "type": "short",
+          "value": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_jungle_sapling",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 6
+        },
+        "data": {
+          "type": "short",
+          "value": 3
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_acacia_sapling",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 6
+        },
+        "data": {
+          "type": "short",
+          "value": 4
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_dark_oak_sapling",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 6
+        },
+        "data": {
+          "type": "short",
+          "value": 5
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_fern",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 31
+        },
+        "data": {
+          "type": "short",
+          "value": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_dandelion",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 37
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_poppy",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_blue_orchid",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_allium",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_azure_bluet",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 3
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_red_tulip",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 4
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_orange_tulip",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 5
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_white_tulip",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 6
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_pink_tulip",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 7
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_oxeye_daisy",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_cornflower",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 9
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_lily_of_the_valley",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 38
+        },
+        "data": {
+          "type": "short",
+          "value": 10
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_wither_rose",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 471
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_brown_mushroom",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 39
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_red_mushroom",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 40
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_dead_bush",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 32
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_cactus",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 81
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_bamboo",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 418
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_crimson_fungus",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 483
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_warped_fungus",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 484
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_crimson_roots",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 478
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:potted_warped_roots",
+    "id": 140,
+    "damage": 1,
+    "block_entity": {
+      "id": "FlowerPot",
+      "nbt": {
+        "item": {
+          "type": "short",
+          "value": 479
+        },
+        "data": {
+          "type": "short",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:carrots",
+    "id": 141,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:potatoes",
+    "id": 142,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_button",
+    "id": 143,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:skeleton_skull",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:skeleton_wall_skull",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 0
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:wither_skeleton_skull",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:wither_skeleton_wall_skull",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 1
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:zombie_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:zombie_wall_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 2
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:player_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 3
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:player_wall_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 3
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:creeper_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 4
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:creeper_wall_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 4
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dragon_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 5
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:dragon_wall_head",
+    "id": 144,
+    "damage": 1,
+    "block_entity": {
+      "id": "Skull",
+      "nbt": {
+        "SkullType": {
+          "type": "byte",
+          "value": 5
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:anvil",
+    "id": 145,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "west": 0,
+          "north": 1,
+          "east": 2,
+          "south": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:chipped_anvil",
+    "id": 145,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "west": 0,
+          "north": 1,
+          "east": 2,
+          "south": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:damaged_anvil",
+    "id": 145,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "west": 0,
+          "north": 1,
+          "east": 2,
+          "south": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:trapped_chest",
+    "id": 146,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:light_weighted_pressure_plate",
+    "id": 147,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:heavy_weighted_pressure_plate",
+    "id": 148,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:comparator",
+    "id": 149,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:daylight_detector",
+    "id": 151,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:redstone_block",
+    "id": 152,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_quartz_ore",
+    "id": 153,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:hopper",
+    "id": 154,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:quartz_block",
+    "id": 155,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chiseled_quartz_block",
+    "id": 155,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:quartz_pillar",
+    "id": 155,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:smooth_quartz",
+    "id": 155,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:quartz_stairs",
+    "id": 156,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:oak_slab",
+    "id": 158,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 5,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_slab",
+    "id": 158,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 5,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_slab",
+    "id": 158,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 5,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_slab",
+    "id": 158,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 5,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_slab",
+    "id": 158,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 5,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_slab",
+    "id": 158,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 5,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:white_terracotta",
+    "id": 159,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_terracotta",
+    "id": 159,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_terracotta",
+    "id": 159,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_terracotta",
+    "id": 159,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_terracotta",
+    "id": 159,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_terracotta",
+    "id": 159,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_terracotta",
+    "id": 159,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_terracotta",
+    "id": 159,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_terracotta",
+    "id": 159,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_terracotta",
+    "id": 159,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_terracotta",
+    "id": 159,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_terracotta",
+    "id": 159,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_terracotta",
+    "id": 159,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_terracotta",
+    "id": 159,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_terracotta",
+    "id": 159,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_terracotta",
+    "id": 159,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:white_stained_glass_pane",
+    "id": 160,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_stained_glass_pane",
+    "id": 160,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_stained_glass_pane",
+    "id": 160,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_stained_glass_pane",
+    "id": 160,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_stained_glass_pane",
+    "id": 160,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_stained_glass_pane",
+    "id": 160,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_stained_glass_pane",
+    "id": 160,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_stained_glass_pane",
+    "id": 160,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_stained_glass_pane",
+    "id": 160,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_stained_glass_pane",
+    "id": 160,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_stained_glass_pane",
+    "id": 160,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_stained_glass_pane",
+    "id": 160,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_stained_glass_pane",
+    "id": 160,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_stained_glass_pane",
+    "id": 160,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_stained_glass_pane",
+    "id": 160,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_stained_glass_pane",
+    "id": 160,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:acacia_leaves",
+    "id": 161,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "persistent",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_leaves",
+    "id": 161,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "persistent",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_log",
+    "id": 162,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_log",
+    "id": 162,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_stairs",
+    "id": 163,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_stairs",
+    "id": 164,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:slime_block",
+    "id": 165,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:iron_trapdoor",
+    "id": 167,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:prismarine",
+    "id": 168,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dark_prismarine",
+    "id": 168,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:prismarine_bricks",
+    "id": 168,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:sea_lantern",
+    "id": 169,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:hay_block",
+    "id": 170,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:white_carpet",
+    "id": 171,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_carpet",
+    "id": 171,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_carpet",
+    "id": 171,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_carpet",
+    "id": 171,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_carpet",
+    "id": 171,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_carpet",
+    "id": 171,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_carpet",
+    "id": 171,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_carpet",
+    "id": 171,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_carpet",
+    "id": 171,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_carpet",
+    "id": 171,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_carpet",
+    "id": 171,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_carpet",
+    "id": 171,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_carpet",
+    "id": 171,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_carpet",
+    "id": 171,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_carpet",
+    "id": 171,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_carpet",
+    "id": 171,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:terracotta",
+    "id": 172,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:coal_block",
+    "id": 173,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:packed_ice",
+    "id": 174,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:sunflower",
+    "id": 175,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "upper": 8,
+          "lower": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:lilac",
+    "id": 175,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "upper": 8,
+          "lower": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:tall_grass",
+    "id": 175,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "upper": 8,
+          "lower": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:large_fern",
+    "id": 175,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "upper": 8,
+          "lower": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:rose_bush",
+    "id": 175,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "upper": 8,
+          "lower": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:peony",
+    "id": 175,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "upper": 8,
+          "lower": 0
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:white_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 15
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:orange_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 14
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:magenta_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 13
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:light_blue_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 12
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:yellow_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 11
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:lime_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 10
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:pink_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 9
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:gray_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:light_gray_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 7
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:cyan_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 6
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:purple_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 5
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:blue_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 4
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:brown_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 3
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:green_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:red_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:black_banner",
+    "id": 176,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "minecraft:white_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 15
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:orange_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 14
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:magenta_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 13
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:light_blue_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 12
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:yellow_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 11
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:lime_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 10
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:pink_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 9
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:gray_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 8
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:light_gray_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 7
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cyan_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 6
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:purple_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 5
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:blue_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 4
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:brown_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 3
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:green_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 2
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 1
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:black_wall_banner",
+    "id": 177,
+    "damage": 0,
+    "block_entity": {
+      "id": "Banner",
+      "nbt": {
+        "Base": {
+          "type": "byte",
+          "value": 0
+        }
+      }
+    },
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_sandstone",
+    "id": 179,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chiseled_red_sandstone",
+    "id": 179,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:cut_red_sandstone",
+    "id": 179,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:smooth_red_sandstone",
+    "id": 179,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:red_sandstone_stairs",
+    "id": 180,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_sandstone_slab",
+    "id": 182,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:purpur_slab",
+    "id": 182,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:prismarine_slab",
+    "id": 182,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_prismarine_slab",
+    "id": 182,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:prismarine_brick_slab",
+    "id": 182,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mossy_cobblestone_slab",
+    "id": 182,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smooth_sandstone_slab",
+    "id": 182,
+    "damage": 6,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:red_nether_brick_slab",
+    "id": 182,
+    "damage": 7,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 181,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_fence_gate",
+    "id": 183,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_fence_gate",
+    "id": 184,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_fence_gate",
+    "id": 185,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_fence_gate",
+    "id": 186,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_fence_gate",
+    "id": 187,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:repeating_command_block",
+    "id": 188,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chain_command_block",
+    "id": 189,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_door",
+    "id": 193,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_door",
+    "id": 194,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_door",
+    "id": 195,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_door",
+    "id": 196,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_door",
+    "id": 197,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "south": 1,
+          "west": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "lower": 0,
+          "upper": 8
+        }
+      },
+      {
+        "name": "hinge",
+        "type": "add_damage",
+        "value": {
+          "left": 0,
+          "right": 16
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:grass_path",
+    "id": 198,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chorus_flower",
+    "id": 200,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:purpur_block",
+    "id": 201,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:purpur_pillar",
+    "id": 201,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:purpur_stairs",
+    "id": 203,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:shulker_box",
+    "id": 205,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:end_stone_bricks",
+    "id": 206,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:frosted_ice",
+    "id": 207,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:end_rod",
+    "id": 208,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "south": 2,
+          "north": 3,
+          "east": 4,
+          "west": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:end_gateway",
+    "id": 209,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:magma_block",
+    "id": 213,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_wart_block",
+    "id": 214,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:red_nether_bricks",
+    "id": 215,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:bone_block",
+    "id": 216,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 4,
+          "z": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:structure_void",
+    "id": 217,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:observer",
+    "id": 218,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:white_shulker_box",
+    "id": 218,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_shulker_box",
+    "id": 218,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_shulker_box",
+    "id": 218,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_shulker_box",
+    "id": 218,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_shulker_box",
+    "id": 218,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_shulker_box",
+    "id": 218,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_shulker_box",
+    "id": 218,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_shulker_box",
+    "id": 218,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_shulker_box",
+    "id": 218,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_shulker_box",
+    "id": 218,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_shulker_box",
+    "id": 218,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_shulker_box",
+    "id": 218,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_shulker_box",
+    "id": 218,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_shulker_box",
+    "id": 218,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_shulker_box",
+    "id": 218,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_shulker_box",
+    "id": 218,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:purple_glazed_terracotta",
+    "id": 219,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:white_glazed_terracotta",
+    "id": 220,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_glazed_terracotta",
+    "id": 221,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:magenta_glazed_terracotta",
+    "id": 222,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:light_blue_glazed_terracotta",
+    "id": 223,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:yellow_glazed_terracotta",
+    "id": 224,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lime_glazed_terracotta",
+    "id": 225,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:pink_glazed_terracotta",
+    "id": 226,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:gray_glazed_terracotta",
+    "id": 227,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:light_gray_glazed_terracotta",
+    "id": 228,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cyan_glazed_terracotta",
+    "id": 229,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:blue_glazed_terracotta",
+    "id": 231,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:brown_glazed_terracotta",
+    "id": 232,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:green_glazed_terracotta",
+    "id": 233,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:red_glazed_terracotta",
+    "id": 234,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:black_glazed_terracotta",
+    "id": 235,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:white_concrete",
+    "id": 236,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_concrete",
+    "id": 236,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_concrete",
+    "id": 236,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_concrete",
+    "id": 236,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_concrete",
+    "id": 236,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_concrete",
+    "id": 236,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_concrete",
+    "id": 236,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_concrete",
+    "id": 236,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_concrete",
+    "id": 236,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_concrete",
+    "id": 236,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_concrete",
+    "id": 236,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_concrete",
+    "id": 236,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_concrete",
+    "id": 236,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_concrete",
+    "id": 236,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_concrete",
+    "id": 236,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_concrete",
+    "id": 236,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:white_concrete_powder",
+    "id": 237,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_concrete_powder",
+    "id": 237,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_concrete_powder",
+    "id": 237,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_concrete_powder",
+    "id": 237,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_concrete_powder",
+    "id": 237,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_concrete_powder",
+    "id": 237,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_concrete_powder",
+    "id": 237,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_concrete_powder",
+    "id": 237,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_concrete_powder",
+    "id": 237,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_concrete_powder",
+    "id": 237,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_concrete_powder",
+    "id": 237,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_concrete_powder",
+    "id": 237,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_concrete_powder",
+    "id": 237,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_concrete_powder",
+    "id": 237,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_concrete_powder",
+    "id": 237,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_concrete_powder",
+    "id": 237,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:chorus_plant",
+    "id": 240,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:white_stained_glass",
+    "id": 241,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:orange_stained_glass",
+    "id": 241,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:magenta_stained_glass",
+    "id": 241,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:light_blue_stained_glass",
+    "id": 241,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:yellow_stained_glass",
+    "id": 241,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:lime_stained_glass",
+    "id": 241,
+    "damage": 5
+  },
+  {
+    "name": "minecraft:pink_stained_glass",
+    "id": 241,
+    "damage": 6
+  },
+  {
+    "name": "minecraft:gray_stained_glass",
+    "id": 241,
+    "damage": 7
+  },
+  {
+    "name": "minecraft:light_gray_stained_glass",
+    "id": 241,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:cyan_stained_glass",
+    "id": 241,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:purple_stained_glass",
+    "id": 241,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:blue_stained_glass",
+    "id": 241,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:brown_stained_glass",
+    "id": 241,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:green_stained_glass",
+    "id": 241,
+    "damage": 13
+  },
+  {
+    "name": "minecraft:red_stained_glass",
+    "id": 241,
+    "damage": 14
+  },
+  {
+    "name": "minecraft:black_stained_glass",
+    "id": 241,
+    "damage": 15
+  },
+  {
+    "name": "minecraft:podzol",
+    "id": 243,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:beetroots",
+    "id": 244,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:moving_piston",
+    "id": 250,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:structure_block",
+    "id": 252,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:prismarine_stairs",
+    "id": 257,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_prismarine_stairs",
+    "id": 258,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:prismarine_brick_stairs",
+    "id": 259,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_spruce_log",
+    "id": 260,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_birch_log",
+    "id": 261,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_jungle_log",
+    "id": 262,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_acacia_log",
+    "id": 263,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_dark_oak_log",
+    "id": 264,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_oak_log",
+    "id": 265,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:blue_ice",
+    "id": 266,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:seagrass",
+    "id": 385,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:tall_seagrass",
+    "id": 385,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "half",
+        "type": "set_damage",
+        "value": {
+          "upper": 1,
+          "lower": 2
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:tube_coral",
+    "id": 386,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:brain_coral",
+    "id": 386,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:bubble_coral",
+    "id": 386,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:fire_coral",
+    "id": 386,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:horn_coral",
+    "id": 386,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:dead_brain_coral",
+    "id": 386,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:dead_bubble_coral",
+    "id": 386,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:dead_fire_coral",
+    "id": 386,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:dead_horn_coral",
+    "id": 386,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:dead_tube_coral",
+    "id": 386,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:tube_coral_block",
+    "id": 387,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:brain_coral_block",
+    "id": 387,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:bubble_coral_block",
+    "id": 387,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:fire_coral_block",
+    "id": 387,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:horn_coral_block",
+    "id": 387,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:dead_tube_coral_block",
+    "id": 387,
+    "damage": 8
+  },
+  {
+    "name": "minecraft:dead_brain_coral_block",
+    "id": 387,
+    "damage": 9
+  },
+  {
+    "name": "minecraft:dead_bubble_coral_block",
+    "id": 387,
+    "damage": 10
+  },
+  {
+    "name": "minecraft:dead_fire_coral_block",
+    "id": 387,
+    "damage": 11
+  },
+  {
+    "name": "minecraft:dead_horn_coral_block",
+    "id": 387,
+    "damage": 12
+  },
+  {
+    "name": "minecraft:tube_coral_fan",
+    "id": 388,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:brain_coral_fan",
+    "id": 388,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:bubble_coral_fan",
+    "id": 388,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:fire_coral_fan",
+    "id": 388,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:horn_coral_fan",
+    "id": 388,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:dead_tube_coral_fan",
+    "id": 389,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dead_brain_coral_fan",
+    "id": 389,
+    "damage": 1
+  },
+  {
+    "name": "minecraft:dead_bubble_coral_fan",
+    "id": 389,
+    "damage": 2
+  },
+  {
+    "name": "minecraft:dead_fire_coral_fan",
+    "id": 389,
+    "damage": 3
+  },
+  {
+    "name": "minecraft:dead_horn_coral_fan",
+    "id": 389,
+    "damage": 4
+  },
+  {
+    "name": "minecraft:tube_coral_wall_fan",
+    "id": 390,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:brain_coral_wall_fan",
+    "id": 390,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dead_tube_coral_wall_fan",
+    "id": 390,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dead_brain_coral_wall_fan",
+    "id": 390,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:bubble_coral_wall_fan",
+    "id": 391,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:fire_coral_wall_fan",
+    "id": 391,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dead_bubble_coral_wall_fan",
+    "id": 391,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dead_fire_coral_wall_fan",
+    "id": 391,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:horn_coral_wall_fan",
+    "id": 392,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dead_horn_coral_wall_fan",
+    "id": 392,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "west": 0,
+          "east": 4,
+          "north": 8,
+          "south": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:kelp",
+    "id": 393,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8,
+          "9": 9,
+          "10": 10,
+          "11": 11,
+          "12": 12,
+          "13": 13,
+          "14": 14,
+          "15": 15,
+          "16": 16,
+          "17": 17,
+          "18": 18,
+          "19": 19,
+          "20": 20,
+          "21": 21,
+          "22": 22,
+          "23": 23,
+          "24": 24,
+          "25": 25
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:kelp_plant",
+    "id": 393,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dried_kelp_block",
+    "id": 394,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:acacia_button",
+    "id": 395,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_button",
+    "id": 396,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_button",
+    "id": 397,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_button",
+    "id": 398,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_button",
+    "id": 399,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      },
+      {
+        "name": "powered",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_trapdoor",
+    "id": 400,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_trapdoor",
+    "id": 401,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_trapdoor",
+    "id": 402,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_trapdoor",
+    "id": 403,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_trapdoor",
+    "id": 404,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_pressure_plate",
+    "id": 405,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:birch_pressure_plate",
+    "id": 406,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dark_oak_pressure_plate",
+    "id": 407,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:jungle_pressure_plate",
+    "id": 408,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_pressure_plate",
+    "id": 409,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:carved_pumpkin",
+    "id": 410,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sea_pickle",
+    "id": 411,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "pickles",
+        "type": "add_damage",
+        "value": {
+          "1": 0,
+          "2": 1,
+          "3": 2,
+          "4": 3
+        }
+      },
+      {
+        "name": "waterlogged",
+        "type": "add_damage",
+        "value": {
+          "true": 0,
+          "false": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:conduit",
+    "id": 412,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:turtle_egg",
+    "id": 414,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:bubble_column",
+    "id": 415,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:barrier",
+    "id": 416,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:end_stone_brick_slab",
+    "id": 417,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smooth_red_sandstone_slab",
+    "id": 417,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_granite_slab",
+    "id": 417,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:granite_slab",
+    "id": 417,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:diorite_slab",
+    "id": 417,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_diorite_slab",
+    "id": 417,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:andesite_slab",
+    "id": 417,
+    "damage": 6,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_andesite_slab",
+    "id": 417,
+    "damage": 7,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 422,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:bamboo",
+    "id": 418,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:bamboo_sapling",
+    "id": 419,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:scaffolding",
+    "id": 420,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:mossy_cobblestone_slab",
+    "id": 421,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 423,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mossy_stone_brick_slab",
+    "id": 421,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 423,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smooth_quartz_slab",
+    "id": 421,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 423,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_slab",
+    "id": 421,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 423,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cut_sandstone_slab",
+    "id": 421,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 423,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cut_red_sandstone_slab",
+    "id": 421,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "type",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 8,
+          "double": {
+            "id": 423,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:granite_stairs",
+    "id": 424,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:diorite_stairs",
+    "id": 425,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:andesite_stairs",
+    "id": 426,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_granite_stairs",
+    "id": 427,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_diorite_stairs",
+    "id": 428,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_andesite_stairs",
+    "id": 429,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mossy_stone_brick_stairs",
+    "id": 430,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smooth_red_sandstone_stairs",
+    "id": 431,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smooth_sandstone_stairs",
+    "id": 432,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:end_stone_brick_stairs",
+    "id": 433,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:mossy_cobblestone_stairs",
+    "id": 434,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stone_stairs",
+    "id": 435,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_sign",
+    "id": 436,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:spruce_wall_sign",
+    "id": 437,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:smooth_stone",
+    "id": 438,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:red_nether_brick_stairs",
+    "id": 439,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smooth_quartz_stairs",
+    "id": 440,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_sign",
+    "id": 441,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:birch_wall_sign",
+    "id": 442,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:jungle_sign",
+    "id": 443,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:jungle_wall_sign",
+    "id": 444,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:acacia_sign",
+    "id": 445,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:acacia_wall_sign",
+    "id": 446,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dark_oak_sign",
+    "id": 447,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:dark_oak_wall_sign",
+    "id": 448,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lectern",
+    "id": 449,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:grindstone",
+    "id": 450,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "face",
+        "type": "add_damage",
+        "value": {
+          "FLOOR": 0,
+          "CEILING": 4,
+          "WALL": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:blast_furnace",
+    "id": 451,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stonecutter",
+    "id": 452,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:smoker",
+    "id": 453,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:cartography_table",
+    "id": 455,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:fletching_table",
+    "id": 456,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:smithing_table",
+    "id": 457,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:barrel",
+    "id": 458,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:loom",
+    "id": 459,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:bell",
+    "id": 461,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "attachment",
+        "type": "add_damage",
+        "value": {
+          "FLOOR": 0,
+          "CEILING": 4,
+          "SINGLE_WALL": 8,
+          "DOUBLE_WALL": 12
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:sweet_berry_bush",
+    "id": 462,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "age",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 2,
+          "2": 4,
+          "3": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:lantern",
+    "id": 463,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "hanging",
+        "type": "set_damage",
+        "value": {
+          "false": 0,
+          "true": 1
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:campfire",
+    "id": 464,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jigsaw",
+    "id": 466,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:oak_wood",
+    "id": 467,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:spruce_wood",
+    "id": 467,
+    "damage": 1,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:birch_wood",
+    "id": 467,
+    "damage": 2,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:jungle_wood",
+    "id": 467,
+    "damage": 3,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:acacia_wood",
+    "id": 467,
+    "damage": 4,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:dark_oak_wood",
+    "id": 467,
+    "damage": 5,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_oak_wood",
+    "id": 467,
+    "damage": 8,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_spruce_wood",
+    "id": 467,
+    "damage": 9,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_birch_wood",
+    "id": 467,
+    "damage": 10,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_jungle_wood",
+    "id": 467,
+    "damage": 11,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_acacia_wood",
+    "id": 467,
+    "damage": 12,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:stripped_dark_oak_wood",
+    "id": 467,
+    "damage": 13,
+    "properties": [
+      {
+        "name": "axis",
+        "type": "add_damage",
+        "value": {
+          "y": 0,
+          "x": 16,
+          "z": 32
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:composter",
+    "id": 468,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "level",
+        "type": "set_damage",
+        "value": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:wither_rose",
+    "id": 471,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:bee_nest",
+    "id": 473,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 0,
+          "east": 1,
+          "south": 2,
+          "west": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:beehive",
+    "id": 474,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "set_damage",
+        "value": {
+          "north": 0,
+          "east": 1,
+          "south": 2,
+          "west": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:honey_block",
+    "id": 475,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:honeycomb_block",
+    "id": 476,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:lodestone",
+    "id": 477,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_roots",
+    "id": 478,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_roots",
+    "id": 479,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_stem",
+    "id": 480,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_stem",
+    "id": 481,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_wart_block",
+    "id": 482,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_fungus",
+    "id": 483,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_fungus",
+    "id": 484,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:shroomlight",
+    "id": 485,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:weeping_vines",
+    "id": 486,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:weeping_vines_plant",
+    "id": 486,
+    "damage": 25
+  },
+  {
+    "name": "minecraft:crimson_nylium",
+    "id": 487,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_nylium",
+    "id": 488,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:basalt",
+    "id": 489,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_basalt",
+    "id": 490,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:soul_soil",
+    "id": 491,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:soul_fire",
+    "id": 492,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:nether_sprouts",
+    "id": 493,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:target",
+    "id": 494,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_crimson_stem",
+    "id": 495,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_warped_stem",
+    "id": 496,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_planks",
+    "id": 497,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_planks",
+    "id": 498,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_door",
+    "id": 499,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_door",
+    "id": 500,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_trapdoor",
+    "id": 501,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_trapdoor",
+    "id": 502,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_sign",
+    "id": 505,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_sign",
+    "id": 506,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_wall_sign",
+    "id": 507,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_wall_sign",
+    "id": 508,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_stairs",
+    "id": 509,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:warped_stairs",
+    "id": 510,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:crimson_fence",
+    "id": 511,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_fence",
+    "id": 512,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_fence_gate",
+    "id": 513,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:warped_fence_gate",
+    "id": 514,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "south": 0,
+          "west": 1,
+          "north": 2,
+          "east": 3
+        }
+      },
+      {
+        "name": "open",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 4
+        }
+      },
+      {
+        "name": "in_wall",
+        "type": "add_damage",
+        "value": {
+          "false": 0,
+          "true": 8
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:crimson_button",
+    "id": 515,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_button",
+    "id": 516,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_pressure_plate",
+    "id": 517,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_pressure_plate",
+    "id": 518,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_slab",
+    "id": 519,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "set_damage",
+        "value": {
+          "bottom": 0,
+          "top": 1,
+          "double": {
+            "id": 521,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:warped_slab",
+    "id": 520,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "type",
+        "type": "set_damage",
+        "value": {
+          "bottom": 0,
+          "top": 1,
+          "double": {
+            "id": 522,
+            "damage": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:soul_torch",
+    "id": 523,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:soul_wall_torch",
+    "id": 523,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 1,
+          "west": 2,
+          "south": 3,
+          "north": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:soul_lantern",
+    "id": 524,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:netherite_block",
+    "id": 525,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:ancient_debris",
+    "id": 526,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:respawn_anchor",
+    "id": 527,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:blackstone",
+    "id": 528,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_bricks",
+    "id": 529,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_brick_stairs",
+    "id": 530,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:blackstone_stairs",
+    "id": 531,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:blackstone_wall",
+    "id": 532,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_brick_wall",
+    "id": 533,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chiseled_polished_blackstone",
+    "id": 534,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cracked_polished_blackstone_bricks",
+    "id": 535,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:gilded_blackstone",
+    "id": 536,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:blackstone_slab",
+    "id": 537,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_brick_slab",
+    "id": 539,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chain",
+    "id": 541,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:twisting_vines",
+    "id": 542,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:twisting_vines_plant",
+    "id": 542,
+    "damage": 25
+  },
+  {
+    "name": "minecraft:nether_gold_ore",
+    "id": 543,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crying_obsidian",
+    "id": 544,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:soul_campfire",
+    "id": 545,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone",
+    "id": 546,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_stairs",
+    "id": 547,
+    "damage": 0,
+    "properties": [
+      {
+        "name": "facing",
+        "type": "add_damage",
+        "value": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      {
+        "name": "half",
+        "type": "add_damage",
+        "value": {
+          "bottom": 0,
+          "top": 4
+        }
+      }
+    ]
+  },
+  {
+    "name": "minecraft:polished_blackstone_slab",
+    "id": 548,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_pressure_plate",
+    "id": 550,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_button",
+    "id": 551,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:polished_blackstone_wall",
+    "id": 552,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:warped_hyphae",
+    "id": 553,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:crimson_hyphae",
+    "id": 554,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_crimson_hyphae",
+    "id": 555,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:stripped_warped_hyphae",
+    "id": 556,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:chiseled_nether_bricks",
+    "id": 557,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:cracked_nether_bricks",
+    "id": 558,
+    "damage": 0
+  },
+  {
+    "name": "minecraft:quartz_bricks",
+    "id": 559,
+    "damage": 0
+  }
+]

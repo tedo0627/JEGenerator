@@ -6,30 +6,12 @@ import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.util.zip.ZipInputStream
 
-plugins {
-    kotlin("jvm") version "1.6.20"
-    java
-    id("com.github.johnrengelman.shadow") version "7.1.2"
-}
-
 group = "jp.tedo0627.jeloader"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
 
-dependencies {
-    implementation(kotlin("stdlib"))
-    implementation("org.javassist:javassist:3.29.0-GA")
-    implementation(fileTree(mapOf("dir" to "lib", "include" to "server.jar")))
-}
 
 tasks {
-    shadowJar {
-        exclude("server.jar")
-    }
-
     register("setupMinecraft") {
         val jar = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar"
         val mapping = "https://launcher.mojang.com/v1/objects/f6cae1c5c1255f68ba4834b16a0da6a09621fe13/server.txt"
@@ -102,10 +84,15 @@ tasks {
             process.destroy()
         }
 
-        println("Copy deobf.jar")
-        val sourcePath = Paths.get(binPath.toString(), "deobf.jar")
-        val targetPath = Paths.get(project.projectDir.toString(), "lib", "server.jar")
-        Files.createDirectories(targetPath.parent)
-        Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING)
+        println("Copy server.jar")
+        val sourcePathDev = Paths.get(binPath.toString(), "deobf.jar")
+        val targetPathDev = Paths.get(project.projectDir.toString(), "dev", "lib", "server.jar")
+        Files.createDirectories(targetPathDev.parent)
+        Files.copy(sourcePathDev, targetPathDev, StandardCopyOption.REPLACE_EXISTING)
+
+        val sourcePathReobf = Paths.get(executePath.toString(), "server.jar")
+        val targetPathReobf = Paths.get(project.projectDir.toString(), "reobf", "lib", "server.jar")
+        Files.createDirectories(targetPathReobf.parent)
+        Files.copy(sourcePathReobf, targetPathReobf, StandardCopyOption.REPLACE_EXISTING)
     }
 }
