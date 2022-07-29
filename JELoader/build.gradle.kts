@@ -9,8 +9,6 @@ import java.util.zip.ZipInputStream
 group = "jp.tedo0627.jeloader"
 version = "1.0-SNAPSHOT"
 
-
-
 tasks {
     register("setupMinecraft") {
         val jar = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar"
