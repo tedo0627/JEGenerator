@@ -13,20 +13,38 @@ jobs:
         with: 
           submodules: true
 
-      - name: Setup PHP
-        uses: "shivammathur/setup-php@v2"
+      - name: Restore PHP build cache
+        id: php-build-cache
+        uses: actions/cache@v2
         with:
-          php-version: "8.0"
-          coverage: "none"
-          tools: "phpize, php-config"
-          
-      - name: Run
+          path: ${{ github.workspace }}/php
+          key: php-build-8.0.19
+
+      - name: Clone php-build repository
+        if: steps.php-build-cache.outputs.cache-hit != 'true'
+        uses: actions/checkout@v2
+        with:
+          repository: php-build/php-build
+          path: php-build
+
+      - name: Compile PHP
+        if: steps.php-build-cache.outputs.cache-hit != 'true'
         run: |
-          phpize
-          ./configure --with-calljava
-          make all
-        working-directory: extension
-        
-      - name: Check files
-        run: ls
-        working-directory: extension
+          cd $GITHUB_WORKSPACE/php-build
+          ./install-dependencies.sh
+          PHP_BUILD_ZTS_ENABLE=on --enable-debug" ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
+      - name: Dump PHP info
+        run: $GITHUB_WORKSPACE/php/bin/php -i
+
+      - name: Build extension
+        run: |
+          cd extension
+          $GITHUB_WORKSPACE/php/bin/phpize
+          ./configure --with-php-config=$GITHUB_WORKSPACE/php/bin/php-config --enable-calljava
+          make install
+
+      - name: Upload artifact
+        use: actions/upload-artifact@v2
+        with: 
+          name: linux
+          path: ${{ github.workspace }}/extension/modules/calljava.so
