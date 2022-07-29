@@ -30,18 +30,19 @@ jobs:
       - name: Compile PHP
         if: steps.php-build-cache.outputs.cache-hit != 'true'
         run: |
-          cd $GITHUB_WORKSPACE/php-build
           ./install-dependencies.sh
           PHP_BUILD_ZTS_ENABLE=on --enable-debug" ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
+        working-directory: $GITHUB_WORKSPACE/php-build
+
       - name: Dump PHP info
         run: $GITHUB_WORKSPACE/php/bin/php -i
 
       - name: Build extension
         run: |
-          cd extension
           $GITHUB_WORKSPACE/php/bin/phpize
           ./configure --with-php-config=$GITHUB_WORKSPACE/php/bin/php-config --enable-calljava
           make install
+        working-directory: extension
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
