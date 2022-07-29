@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "linux" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -13,52 +13,45 @@ jobs:
         with: 
           submodules: true
 
-      - name: Install tools and dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install make autoconf automake libtool libtool-bin m4 wget libc-bin gzip bzip2 bison g++ git re2c
-
       - name: Set up JDK 16
         uses: actions/setup-java@v2
         with:
           java-version: '16'
           distribution: 'adopt'
 
-      - name: Set bot email
-        run: git config --global user.email "action@github.com"
-        
-      - name: Set bot name
-        run: git config --global user.name "GitHub Action"
+      - name: Restore PHP build cache
+        id: php-build-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/php
+          key: php-8.0.19
 
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.4
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        working-directory: build-script
-
-      - name: Apply patches
-        run: ./gradlew applypatches
-        working-directory: build-script
+      - name: Clone php-build repository
+        if: steps.php-build-cache.outputs.cache-hit != 'true'
+        uses: actions/checkout@v2
+        with:
+          repository: php-build/php-build
+          path: php-build
 
       - name: Compile PHP
+        if: steps.php-build-cache.outputs.cache-hit != 'true'
         run: |
-          set -ex
-          trap "exit 1" ERR
-          ./compile.sh -t linux64 -j 4 -f -g
-        working-directory: build-script/build-script
-        
-      - name: Create tarball
-        run: tar -czf ./PHP_Linux-x86_64.tar.gz bin
-        working-directory: build-script/build-script
-        
-      - name: Upload artifacts
+          ./install-dependencies.sh
+          PHP_BUILD_ZTS_ENABLE=on ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
+        working-directory: php-build
+
+      - name: Dump PHP info
+        run: $GITHUB_WORKSPACE/php/bin/php -i
+
+      - name: Build extension
+        run: |
+          $GITHUB_WORKSPACE/php/bin/phpize
+          ./configure --with-php-config=$GITHUB_WORKSPACE/php/bin/php-config --enable-calljava
+          make install
+        working-directory: extension
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: Linux
-          path: |
-            ./build-script/build-script/PHP_Linux-x86_64.tar.gz
-            build-script/build-script/install.log
-            build-script/build-script/compile.sh
-          if-no-files-found: error
+        with: 
+          name: linux
+          path: ${{ github.workspace }}/extension/modules/calljava.so
