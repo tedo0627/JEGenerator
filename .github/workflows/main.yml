@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/php
-          key: php-build-8.0.19
+          key: php-8.0.19
 
       - name: Clone php-build repository
         if: steps.php-build-cache.outputs.cache-hit != 'true'
