@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ "linux" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          submodules: true
+
+      - name: Setup PHP
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "8.0"
+          coverage: "none"
+          tools: "phpize, php-config"
+          
+      - name: Run
+        run: |
+          phpize
+          ./configure --with-calljava
+          make all
+        working-directory: extension
+        
+      - name: Check files
+        run: ls
+        working-directory: extension
