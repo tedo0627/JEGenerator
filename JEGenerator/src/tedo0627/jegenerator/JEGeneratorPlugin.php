@@ -30,11 +30,16 @@ class JEGeneratorPlugin extends PluginBase {
         $separate = str_starts_with(PHP_OS, "WIN") ? ";" : ":";
         $jvm = new JvmLoader($loader . $separate . $server);
         $jvm->init();
-        $je = new JELoader();
-        $je->checkEula();
-        $je->init();
 
+        $je = new JELoader();
+        if (!$je->checkEula()) {
+            $this->getLogger()->error("You must agree to eula.");
+            return;
+        }
+
+        $je->init();
         $this->loader = $je;
+
         $this->addGenerator(JEOverworldGenerator::class, "je_overworld");
         $this->addGenerator(JENetherGenerator::class, "je_nether");
         $this->addGenerator(JEEndGenerator::class, "je_end");
