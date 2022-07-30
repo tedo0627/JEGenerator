@@ -3,3 +3,4 @@ main: tedo0627\jegenerator\JEGeneratorPlugin
 version: 1.0.0
 api: 4.5.0
 author: tedo0627
+extensions: [ calljava ]
