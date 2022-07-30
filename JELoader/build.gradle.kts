@@ -7,7 +7,10 @@ import java.nio.file.StandardCopyOption
 import java.util.zip.ZipInputStream
 
 group = "jp.tedo0627.jeloader"
-version = "1.0-SNAPSHOT"
+
+allprojects {
+    version = "1.0.0"
+}
 
 tasks {
     register("setupMinecraft") {

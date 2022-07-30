@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "jp.tedo0627.jeloader.reobf"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
