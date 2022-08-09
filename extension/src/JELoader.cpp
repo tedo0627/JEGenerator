@@ -54,21 +54,33 @@ JELOADER_METHOD(__construct) {
 }
 
 JELOADER_METHOD(checkEula) {
+    zend_string* path;
+
+    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
+        Z_PARAM_STR_EX(path, 1, 1)
+    ZEND_PARSE_PARAMETERS_END();
+
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     JNIEnv* env = getEnv();
-    jmethodID mid = env->GetMethodID(object->jeloader_class, "checkEula", "()Z");
+    jmethodID mid = env->GetMethodID(object->jeloader_class, "checkEula", "(Ljava/lang/String;)Z");
     if (exceptionCheck()) return;
-    bool result = (bool) env->CallBooleanMethod(object->jeloader_obj, mid);
+    bool result = (bool) env->CallBooleanMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(path)));
     if (exceptionCheck()) return;
     RETURN_BOOL(result);
 }
 
 JELOADER_METHOD(init) {
+    zend_string* path;
+
+    ZEND_PARSE_PARAMETERS_START_EX(ZEND_PARSE_PARAMS_THROW, 1, 1)
+        Z_PARAM_STR_EX(path, 1, 1)
+    ZEND_PARSE_PARAMETERS_END();
+
     auto object = fetch_from_zend_object<je_obj>(Z_OBJ_P(getThis()));
     JNIEnv* env = getEnv();
-    jmethodID mid = env->GetMethodID(object->jeloader_class, "init", "()V");
+    jmethodID mid = env->GetMethodID(object->jeloader_class, "init", "(Ljava/lang/String;)V");
     if (exceptionCheck()) return;
-    env->CallVoidMethod(object->jeloader_obj, mid);
+    env->CallVoidMethod(object->jeloader_obj, mid, env->NewStringUTF(ZSTR_VAL(path)));
     if (exceptionCheck()) return;
 
     RETURN_BOOL(true);

@@ -68,12 +68,12 @@ class JELoader {
     private lateinit var blockConverter: BlockConverter
     private lateinit var biomeConverter: BiomeConverter
 
-    fun checkEula(): Boolean {
-        agreedToEULA = Eula(Paths.get("eula.txt")).hasAgreedToEULA()
+    fun checkEula(path: String): Boolean {
+        agreedToEULA = Eula(Paths.get(path)).hasAgreedToEULA()
         return agreedToEULA
     }
 
-    fun init() {
+    fun init(path: String) {
         if (initialized) return
 
         if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
@@ -98,7 +98,7 @@ class JELoader {
         val serverPropertiesPath = Paths.get("server.properties")
         serverSettings = DedicatedServerSettings(serverPropertiesPath)
 
-        val file = File("jeloader") // TODO
+        val file = File(path)
         val yggdrasil = YggdrasilAuthenticationService(Proxy.NO_PROXY)
         sessionService = yggdrasil.createMinecraftSessionService()
         profileRepository = yggdrasil.createProfileRepository()
@@ -129,15 +129,7 @@ class JELoader {
             if (!initialized) throw IllegalStateException("Not initialized")
             if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
 
-            val levelSettings = LevelSettings(
-                "world",
-                GameType.SURVIVAL,
-                false,
-                Difficulty.PEACEFUL,
-                false,
-                GameRules(),
-                dataPackConfig
-            )
+            val levelSettings = LevelSettings("world", GameType.SURVIVAL, false, Difficulty.PEACEFUL, false, GameRules(), dataPackConfig)
 
             val biomeRegistry = registryHolder.registryOrThrow(Registry.BIOME_REGISTRY)
             val dimensionRegistry = registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
@@ -150,33 +142,19 @@ class JELoader {
             }
             val targetBiome = targetBiomeOrNull ?: biomeRegistry.get(Biomes.PLAINS)!!
 
-            val mappedRegistry =
-                DimensionType.defaultDimensions(dimensionRegistry, biomeRegistry, settingsRegistry, seed)
+            val mappedRegistry = DimensionType.defaultDimensions(dimensionRegistry, biomeRegistry, settingsRegistry, seed)
             val genSettings = WorldGenSettings(seed, true, false,
                 WorldGenSettings.withOverworld(dimensionRegistry, mappedRegistry,
                     when (type) {
-                        "OVERWORLD" -> NoiseBasedChunkGenerator(
-                            OverworldBiomeSource(seed, false, false, biomeRegistry),
-                            seed
-                        ) {
+                        "OVERWORLD" -> NoiseBasedChunkGenerator(OverworldBiomeSource(seed, false, false, biomeRegistry), seed) {
                             settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
                         }
                         "NETHER" -> mappedRegistry.get(LevelStem.NETHER)?.generator() ?: throw IllegalStateException()
                         "END" -> mappedRegistry.get(LevelStem.END)?.generator() ?: throw IllegalStateException()
-                        "LARGE_BIOMES" -> NoiseBasedChunkGenerator(
-                            OverworldBiomeSource(
-                                seed,
-                                false,
-                                true,
-                                biomeRegistry
-                            ), seed
-                        ) {
+                        "LARGE_BIOMES" -> NoiseBasedChunkGenerator(OverworldBiomeSource(seed, false, true, biomeRegistry), seed) {
                             settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
                         }
-                        "AMPLIFIED" -> NoiseBasedChunkGenerator(
-                            OverworldBiomeSource(seed, false, false, biomeRegistry),
-                            seed
-                        ) {
+                        "AMPLIFIED" -> NoiseBasedChunkGenerator(OverworldBiomeSource(seed, false, false, biomeRegistry), seed) {
                             settingsRegistry.getOrThrow(NoiseGeneratorSettings.AMPLIFIED)
                         }
                         "SINGLE_BIOME" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {

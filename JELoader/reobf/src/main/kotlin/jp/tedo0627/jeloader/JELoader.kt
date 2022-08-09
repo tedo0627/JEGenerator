@@ -59,12 +59,12 @@ class JELoader {
     private lateinit var blockConverter: BlockConverter
     private lateinit var biomeConverter: BiomeConverter
 
-    fun checkEula(): Boolean {
-        agreedToEULA = xc(Paths.get("eula.txt")).a()
+    fun checkEula(path: String): Boolean {
+        agreedToEULA = xc(Paths.get(path)).a()
         return agreedToEULA
     }
 
-    fun init() {
+    fun init(path: String) {
         if (initialized) return
 
         if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
@@ -89,7 +89,7 @@ class JELoader {
         val serverPropertiesPath = Paths.get("server.properties")
         serverSettings = aau(serverPropertiesPath)
 
-        val file = File("jeloader") // TODO
+        val file = File(path)
         val yggdrasil = YggdrasilAuthenticationService(Proxy.NO_PROXY)
         sessionService = yggdrasil.createMinecraftSessionService()
         profileRepository = yggdrasil.createProfileRepository()

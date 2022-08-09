@@ -32,12 +32,12 @@ class JEGeneratorPlugin extends PluginBase {
         $jvm->init();
 
         $je = new JELoader();
-        if (!$je->checkEula()) {
+        if (!$je->checkEula(Path::join($this->getDataFolder(), "eula.txt"))) {
             $this->getLogger()->error("You must agree to eula.");
             return;
         }
 
-        $je->init();
+        $je->init(Path::join($this->getDataFolder(), "ignore"));
         $this->loader = $je;
 
         $this->addGenerator(JEOverworldGenerator::class, "je_overworld");
