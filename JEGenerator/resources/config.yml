@@ -1,2 +1,2 @@
-loader-path: JELoader-1.0-SNAPSHOT-all.jar
-server-path: server.jar
+loader-path: plugin_data/JEGenerator/JELoader.jar
+server-path: plugin_data/JEGenerator/server.jar
