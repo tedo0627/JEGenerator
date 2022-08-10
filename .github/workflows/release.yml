@@ -58,6 +58,13 @@ jobs:
           #upload_url: ${{ github.event.release.upload_url }}
           #asset_path: ${{ github.workspace }}/extension/modules/calljava.so
 
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        working-directory: JELoader
+
       - name: Compile Loader
         run: |
           ./gradlew setupMinecraft
@@ -125,6 +132,18 @@ jobs:
       - name: ls
         run: ls
         working-directory: build-script/build-script
+
+      - name: ls
+        run: ls
+        working-directory: build-script/build-script/bin
+
+      - name: ls
+        run: ls
+        working-directory: build-script/build-script/bin/php
+
+      - name: ls
+        run: ls
+        working-directory: build-script/build-script/bin/php/ext
 
       #- name: Upload a Release Asset
         #uses: shogo82148/actions-upload-release-asset@v1
