@@ -67,7 +67,7 @@ jobs:
 
       - name: Compile Loader
         run: |
-          ./gradlew setupMinecraft
+          sudo ./gradlew setupMinecraft
           ./gradlew :reobf:shadowjar
         working-directory: JELoader
 
@@ -164,5 +164,5 @@ jobs:
         if: always()
         with:
           name: windows
-          path: ${{ github.workspace }}\pocketmine-php-sdk\php-src\x64\Release_TS\php-debug-pack-8.0.19-Win32-vs16-x64.zip
+          path: ${{ github.workspace }}/build-script/build-script/php-debug-pack-8.0.19-Win32-vs16-x64.zip
           if-no-files-found: error
