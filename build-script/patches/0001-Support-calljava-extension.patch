@@ -5,19 +5,100 @@ Subject: [PATCH] Support calljava extension
 
 
 diff --git a/windows-compile-vs.bat b/windows-compile-vs.bat
-index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad18577a1c 100644
+index 1bb88517342c17e82f422dba7a97b1a491159762..075d759918beceb72e3ec9568a06caad9bba244d 100644
 --- a/windows-compile-vs.bat
 +++ b/windows-compile-vs.bat
 @@ -40,6 +40,8 @@ echo.>"%log_file%"
  
  set outpath="%cd%"
  
-+set CALL_JAVA_DIR=%~dp0..\..\extension\
++set CALL_JAVA_DIR=%script_path%..\..\extension\
 +
  where git >nul 2>nul || (call :pm-echo-error "git is required" & exit 1)
  where cmake >nul 2>nul || (call :pm-echo-error "cmake is required" & exit 1)
  where 7z >nul 2>nul || (call :pm-echo-error "7z is required" & exit 1)
-@@ -192,15 +194,9 @@ cd /D ..
+@@ -111,103 +113,14 @@ call bin\phpsdk_deps.bat -u -t %VC_VER% -b %PHP_MAJOR_VER% -a %ARCH% -f -d %DEPS
+ 
+ call :pm-echo "Getting additional dependencies..."
+ cd /D "%DEPS_DIR%"
+-
+-call :pm-echo "Downloading LibYAML version %LIBYAML_VER%..."
+-call :get-zip https://github.com/yaml/libyaml/archive/%LIBYAML_VER%.zip || exit 1
+-move libyaml-%LIBYAML_VER% libyaml >>"%log_file%" 2>&1
+-cd /D libyaml
+-call :pm-echo "Generating build configuration..."
+-cmake -G "%CMAKE_TARGET%" -A "%ARCH%"^
+- -DCMAKE_PREFIX_PATH="%DEPS_DIR%"^
+- -DCMAKE_INSTALL_PREFIX="%DEPS_DIR%"^
+- -DBUILD_SHARED_LIBS=ON^
+- . >>"%log_file%" 2>&1 || exit 1
+-call :pm-echo "Compiling..."
+-msbuild ALL_BUILD.vcxproj /p:Configuration=%MSBUILD_CONFIGURATION% /m >>"%log_file%" 2>&1 || exit 1
+-call :pm-echo "Installing files..."
+-msbuild INSTALL.vcxproj /p:Configuration=%MSBUILD_CONFIGURATION% /m >>"%log_file%" 2>&1 || exit 1
+-copy %MSBUILD_CONFIGURATION%\yaml.pdb "%DEPS_DIR%\bin\yaml.pdb" >>"%log_file%" 2>&1 || exit 1
+-
+-cd /D "%DEPS_DIR%"
+-
+-call :pm-echo "Downloading pthread-w32 version %PTHREAD_W32_VER%..."
+-mkdir pthread-w32
+-cd /D pthread-w32
+-call :get-zip https://netcologne.dl.sourceforge.net/project/pthreads4w/pthreads4w-code-v%PTHREAD_W32_VER%.zip || exit 1
+-move pthreads4w-code-* pthreads4w-code >>"%log_file%" 2>&1
+-cd /D pthreads4w-code
+-
+-call :pm-echo "Compiling..."
+-nmake VC >>"%log_file%" 2>&1 || exit 1
+-
+-call :pm-echo "Copying files..."
+-copy pthread.h "%DEPS_DIR%\include\pthread.h" >>"%log_file%" 2>&1 || exit 1
+-copy sched.h "%DEPS_DIR%\include\sched.h" >>"%log_file%" 2>&1 || exit 1
+-copy semaphore.h "%DEPS_DIR%\include\semaphore.h" >>"%log_file%" 2>&1 || exit 1
+-copy _ptw32.h "%DEPS_DIR%\include\_ptw32.h" >>"%log_file%" 2>&1 || exit 1
+-copy pthreadVC3.lib "%DEPS_DIR%\lib\pthreadVC3.lib" >>"%log_file%" 2>&1 || exit 1
+-copy pthreadVC3.dll "%DEPS_DIR%\bin\pthreadVC3.dll" >>"%log_file%" 2>&1 || exit 1
+-copy pthreadVC3.pdb "%DEPS_DIR%\bin\pthreadVC3.pdb" >>"%log_file%" 2>&1 || exit 1
+-
+-cd /D "%DEPS_DIR%"
+-
+-call :pm-echo "Downloading pmmp/leveldb version %LEVELDB_MCPE_VER%..."
+-call :get-zip https://github.com/pmmp/leveldb/archive/%LEVELDB_MCPE_VER%.zip || exit 1
+-move leveldb-%LEVELDB_MCPE_VER% leveldb >>"%log_file%" 2>&1
+-cd /D leveldb
+-
+-call :pm-echo "Generating build configuration..."
+-cmake -G "%CMAKE_TARGET%" -A "%ARCH%"^
+- -DCMAKE_PREFIX_PATH="%DEPS_DIR%"^
+- -DCMAKE_INSTALL_PREFIX="%DEPS_DIR%"^
+- -DBUILD_SHARED_LIBS=ON^
+- -DLEVELDB_BUILD_BENCHMARKS=OFF^
+- -DLEVELDB_BUILD_TESTS=OFF^
+- -DZLIB_LIBRARY="%DEPS_DIR%\lib\zlib_a.lib"^
+- . >>"%log_file%" 2>&1 || exit 1
+-call :pm-echo "Compiling"
+-msbuild ALL_BUILD.vcxproj /p:Configuration=%MSBUILD_CONFIGURATION% /m >>"%log_file%" 2>&1 || exit 1
+-call :pm-echo "Installing files..."
+-msbuild INSTALL.vcxproj /p:Configuration=%MSBUILD_CONFIGURATION% >>"%log_file%" 2>&1 || exit 1
+-copy %MSBUILD_CONFIGURATION%\leveldb.pdb "%DEPS_DIR%\bin\leveldb.pdb" >>"%log_file%" 2>&1 || exit 1
+-
+-cd /D "%DEPS_DIR%"
+-
+-call :pm-echo "Downloading libdeflate version %LIBDEFLATE_VER%..."
+-call :get-zip https://github.com/ebiggers/libdeflate/archive/%LIBDEFLATE_VER%.zip || exit 1
+-move libdeflate-%LIBDEFLATE_VER% libdeflate >>"%log_file%" 2>&1
+-cd /D libdeflate
+-
+-call :pm-echo "Compiling..."
+-nmake /f Makefile.msc >>"%log_file%" 2>&1 || exit 1
+-call :pm-echo "Copying files..."
+-copy libdeflate.dll "%DEPS_DIR%\bin\libdeflate.dll" >>"%log_file%" 2>&1 || exit 1
+-copy libdeflate.lib "%DEPS_DIR%\lib\libdeflate.lib" >>"%log_file%" 2>&1 || exit 1
+-copy libdeflate.h "%DEPS_DIR%\include\libdeflate.h" >>"%log_file%" 2>&1 || exit 1
+-
+-cd /D "%DEPS_DIR%"
+-
+ cd /D ..
+ 
  call :pm-echo "Getting additional PHP extensions..."
  cd /D php-src\ext
  
@@ -30,13 +111,20 @@ index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad
 -call :get-extension-zip-from-github "morton"                "%PHP_MORTON_VER%"                "pmmp"     "ext-morton"              || exit 1
 -call :get-extension-zip-from-github "libdeflate"            "%PHP_LIBDEFLATE_VER%"            "pmmp"     "ext-libdeflate"          || exit 1
 -call :get-extension-zip-from-github "xxhash"                "%PHP_XXHASH_VER%"                "pmmp"     "ext-xxhash"              || exit 1
-+xcopy %CALL_JAVA_DIR% calljava /e /h /i
+-
+-call :pm-echo " - crypto: downloading %PHP_CRYPTO_VER%..."
+-git clone https://github.com/bukka/php-crypto.git crypto >>"%log_file%" 2>&1 || exit 1
+-cd /D crypto
+-git checkout %PHP_CRYPTO_VER% >>"%log_file%" 2>&1 || exit 1
+-git submodule update --init --recursive >>"%log_file%" 2>&1 || exit 1
+-cd /D ..
++xcopy %CALL_JAVA_DIR% "calljava" /e /h /i
 +copy "%JAVA_HOME%\bin\server\jvm.dll" "%DEPS_DIR%\bin\jvm.dll"
 +copy "%JAVA_HOME%\lib\jvm.lib" "%DEPS_DIR%\lib\jvm.lib"
  
- call :pm-echo " - crypto: downloading %PHP_CRYPTO_VER%..."
- git clone https://github.com/bukka/php-crypto.git crypto >>"%log_file%" 2>&1 || exit 1
-@@ -226,53 +222,7 @@ call configure^
+ cd /D ..\..
+ 
+@@ -226,53 +139,7 @@ call configure^
   --disable-all^
   --disable-cgi^
   --enable-cli^
@@ -91,7 +179,7 @@ index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad
   --without-readline >>"%log_file%" 2>&1 || call :pm-fatal-error "Error configuring PHP"
  
  call :pm-echo "Compiling PHP..."
-@@ -311,6 +261,7 @@ call :pm-echo "Generating php.ini..."
+@@ -311,6 +178,7 @@ call :pm-echo "Generating php.ini..."
  (echo extension=php_leveldb.dll)>>"%php_ini%"
  (echo extension=php_crypto.dll)>>"%php_ini%"
  (echo extension=php_libdeflate.dll)>>"%php_ini%
@@ -99,7 +187,7 @@ index 1bb88517342c17e82f422dba7a97b1a491159762..915fc7558bb428de4d3fafe0f2810bad
  (echo igbinary.compact_strings=0)>>"%php_ini%"
  (echo zend_extension=php_opcache.dll)>>"%php_ini%"
  (echo opcache.enable=1)>>"%php_ini%"
-@@ -345,8 +296,8 @@ call :pm-echo "Downloading Microsoft Visual C++ Redistributable 2015-2019"
+@@ -345,8 +213,8 @@ call :pm-echo "Downloading Microsoft Visual C++ Redistributable 2015-2019"
  wget https://aka.ms/vs/16/release/vc_redist.x64.exe --no-check-certificate -q -O vc_redist.x64.exe || exit 1
  
  call :pm-echo "Checking PHP build works..."

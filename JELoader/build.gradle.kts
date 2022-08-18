@@ -62,8 +62,8 @@ tasks {
         val binPath = Paths.get(executePath.toString(), "MC-Remapper-master", "build", "install", "MC-Remapper", "bin")
         val inputPath = Paths.get("..", "..", "..", "..", "..", "server.jar")
         mutableListOf(
-            Triple(gradlePath, mutableListOf("${prefix}gradlew$extension", "installDist"), true),
             Triple(gradlePath, mutableListOf("chmod", "+x", "gradlew"), !osCheck),
+            Triple(gradlePath, mutableListOf("${prefix}gradlew$extension", "installDist"), true),
             Triple(binPath, mutableListOf("cmd", "/c", "${prefix}MC-Remapper$extension", inputPath.toString(), mapping, "--output", "deobf.jar", "--fixlocalvar=rename"), true)
         ).forEach {
             if (!it.third) return@forEach
