@@ -61,13 +61,17 @@ tasks {
         val gradlePath = Paths.get(executePath.toString(), "MC-Remapper-master")
         val binPath = Paths.get(executePath.toString(), "MC-Remapper-master", "build", "install", "MC-Remapper", "bin")
         val inputPath = Paths.get("..", "..", "..", "..", "..", "server.jar")
-        mutableMapOf(
-            gradlePath to mutableListOf("${prefix}gradlew$extension", "installDist"),
-            binPath to mutableListOf("cmd", "/c", "${prefix}MC-Remapper$extension", inputPath.toString(), mapping, "--output", "deobf.jar", "--fixlocalvar=rename")
+        mutableListOf(
+            Triple(gradlePath, mutableListOf("${prefix}gradlew$extension", "installDist"), true),
+            Triple(gradlePath, mutableListOf("chmod", "+x", "gradlew"), !osCheck),
+            Triple(binPath, mutableListOf("cmd", "/c", "${prefix}MC-Remapper$extension", inputPath.toString(), mapping, "--output", "deobf.jar", "--fixlocalvar=rename"), true)
         ).forEach {
-            val builder = ProcessBuilder(it.value)
+            if (!it.third) return@forEach
+
+            println("execute: ${it.second.joinToString(" ")}")
+            val builder = ProcessBuilder(it.second)
             builder.redirectErrorStream(true)
-            builder.directory(it.key.toFile())
+            builder.directory(it.first.toFile())
             val process = builder.start()
 
             val inputReader = process.inputReader()
