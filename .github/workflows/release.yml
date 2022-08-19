@@ -1,10 +1,9 @@
 name: release
 
-on: push
-#on:
-#  release:
-#    types:
-#      - created
+on:
+  release:
+    types:
+      - created
 
 jobs:
   linux:
@@ -42,9 +41,6 @@ jobs:
           PHP_BUILD_ZTS_ENABLE=on ./bin/php-build 8.0.19 $GITHUB_WORKSPACE/php
         working-directory: php-build
 
-      - name: Dump PHP info
-        run: $GITHUB_WORKSPACE/php/bin/php -i
-
       - name: Build extension
         run: |
           $GITHUB_WORKSPACE/php/bin/phpize
@@ -52,11 +48,11 @@ jobs:
           make install
         working-directory: extension
 
-      #- name: Upload a Release Asset
-        #uses: shogo82148/actions-upload-release-asset@v1
-        #with:
-          #upload_url: ${{ github.event.release.upload_url }}
-          #asset_path: ${{ github.workspace }}/extension/modules/calljava.so
+      - name: Upload a Release Asset
+        uses: shogo82148/actions-upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ github.workspace }}/extension/modules/calljava.so
 
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1.0.4
@@ -71,22 +67,12 @@ jobs:
           ./gradlew :reobf:shadowjar
         working-directory: JELoader
 
-      #- name: Upload a Release Asset
-        #uses: shogo82148/actions-upload-release-asset@v1
-        #with:
-          #upload_url: ${{ github.event.release.upload_url }}
-          #asset_path: ${{ github.workspace }}/JELoader/reobf/build/libs/*.jar
-          #asset_name: JELoader
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        if: always()
+      - name: Upload a Release Asset
+        uses: shogo82148/actions-upload-release-asset@v1
         with:
-          name: windows
-          path: |
-            ${{ github.workspace }}/extension/modules/calljava.so
-            ${{ github.workspace }}/JELoader/reobf/build/libs/*.jar
-          if-no-files-found: error
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ github.workspace }}/JELoader/reobf/build/libs/*.jar
+          asset_name: JELoader.jar
 
   windows:
     runs-on: windows-2019
@@ -129,40 +115,8 @@ jobs:
           SOURCES_PATH: ${{ github.workspace }}\pocketmine-php-sdk
         working-directory: build-script/build-script
 
-      - name: ls
-        run: ls
-        working-directory: build-script/build-script
-
-      - name: ls
-        run: ls
-        working-directory: build-script/build-script/bin
-
-      - name: ls
-        run: ls
-        working-directory: build-script/build-script/bin/php
-
-      - name: ls
-        run: ls
-        working-directory: build-script/build-script/bin/php/ext
-
-      #- name: Upload a Release Asset
-        #uses: shogo82148/actions-upload-release-asset@v1
-        #with:
-          #upload_url: ${{ github.event.release.upload_url }}
-          #asset_path: ${{ github.workspace }}/build-script/build-script/bin/php/ext/php_calljava.dll
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        if: always()
+      - name: Upload a Release Asset
+        uses: shogo82148/actions-upload-release-asset@v1
         with:
-          name: windows
-          path: ${{ github.workspace }}/build-script/build-script/bin/php/ext/php_calljava.dll
-          if-no-files-found: error
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: windows
-          path: ${{ github.workspace }}/build-script/build-script/php-8.0.19-vs16-x64.zip
-          if-no-files-found: error
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ github.workspace }}/build-script/build-script/bin/php/ext/php_calljava.dll
