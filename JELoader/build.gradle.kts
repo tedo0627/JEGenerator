@@ -14,8 +14,8 @@ allprojects {
 
 tasks {
     register("setupMinecraft") {
-        val jar = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar"
-        val mapping = "https://launcher.mojang.com/v1/objects/f6cae1c5c1255f68ba4834b16a0da6a09621fe13/server.txt"
+        val jar = "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar"
+        val mapping = "https://piston-data.mojang.com/v1/objects/ed5e6e8334ad67f5af0150beed0f3d156d74bd57/server.txt"
         val remapper = "https://github.com/HeartPattern/MC-Remapper/archive/refs/heads/master.zip"
 
         val executePath = Paths.get(project.projectDir.toString(), "..", "setup").normalize()
