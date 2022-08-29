@@ -42,6 +42,28 @@ tasks {
         println("Download MC-Remapper.zip")
         download(remapper, "MC-Remapper.zip")
 
+        println("Unzip libraries")
+        val jarzip = ZipInputStream(Files.newInputStream(Paths.get(executePath.toString(), "server.jar")))
+        val files = mutableListOf("META-INF/classpath-joined", "META-INF/libraries/", "META-INF/versions/")
+        while (true) {
+            val entry = jarzip.nextEntry ?: break
+            if (entry.isDirectory) continue
+
+            val name = entry.name
+            if (files.none { name.startsWith(it) }) continue
+
+            val fileName = entry.name.removePrefix("META-INF/")
+            val targetPathDev = Paths.get(project.projectDir.toString(), "dev", "lib", fileName)
+            val targetPathReobf = Paths.get(project.projectDir.toString(), "reobf", "lib", fileName)
+
+            Files.createDirectories(targetPathDev.parent)
+            Files.createDirectories(targetPathReobf.parent)
+            val bytes = jarzip.readAllBytes()
+            Files.write(targetPathDev, bytes)
+            Files.write(targetPathReobf, bytes)
+        }
+        jarzip.close()
+
         println("Unzip MC-Remapper.zip")
         val zip = ZipInputStream(Files.newInputStream(Paths.get(executePath.toString(), "MC-Remapper.zip")))
         while (true) {
@@ -99,10 +121,5 @@ tasks {
         val targetPathDev = Paths.get(project.projectDir.toString(), "dev", "lib", "server.jar")
         Files.createDirectories(targetPathDev.parent)
         Files.copy(sourcePathDev, targetPathDev, StandardCopyOption.REPLACE_EXISTING)
-
-        val sourcePathReobf = Paths.get(executePath.toString(), "server.jar")
-        val targetPathReobf = Paths.get(project.projectDir.toString(), "reobf", "lib", "server.jar")
-        Files.createDirectories(targetPathReobf.parent)
-        Files.copy(sourcePathReobf, targetPathReobf, StandardCopyOption.REPLACE_EXISTING)
     }
 }
