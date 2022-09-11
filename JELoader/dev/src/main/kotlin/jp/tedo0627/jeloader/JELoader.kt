@@ -1,8 +1,7 @@
 package jp.tedo0627.jeloader
 
-import com.mojang.authlib.GameProfileRepository
-import com.mojang.authlib.minecraft.MinecraftSessionService
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService
+import com.mojang.datafixers.util.Pair
 import com.mojang.serialization.Lifecycle
 import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
@@ -13,13 +12,14 @@ import net.minecraft.SharedConstants
 import net.minecraft.Util
 import net.minecraft.advancements.AdvancementList
 import net.minecraft.commands.Commands
+import net.minecraft.core.MappedRegistry
 import net.minecraft.core.Registry
 import net.minecraft.core.RegistryAccess
+import net.minecraft.data.BuiltinRegistries
+import net.minecraft.nbt.NbtOps
+import net.minecraft.resources.RegistryOps
 import net.minecraft.resources.ResourceKey
-import net.minecraft.server.Bootstrap
-import net.minecraft.server.Eula
-import net.minecraft.server.MinecraftServer
-import net.minecraft.server.ServerResources
+import net.minecraft.server.*
 import net.minecraft.server.dedicated.DedicatedPlayerList
 import net.minecraft.server.dedicated.DedicatedServer
 import net.minecraft.server.dedicated.DedicatedServerSettings
@@ -31,39 +31,37 @@ import net.minecraft.server.packs.repository.FolderRepositorySource
 import net.minecraft.server.packs.repository.PackRepository
 import net.minecraft.server.packs.repository.PackSource
 import net.minecraft.server.packs.repository.ServerPacksSource
-import net.minecraft.server.packs.resources.SimpleReloadableResourceManager
-import net.minecraft.server.players.GameProfileCache
+import net.minecraft.server.packs.resources.ResourceManager
 import net.minecraft.util.datafix.DataFixers
 import net.minecraft.world.Difficulty
 import net.minecraft.world.item.crafting.RecipeManager
 import net.minecraft.world.level.*
 import net.minecraft.world.level.biome.*
-import net.minecraft.world.level.dimension.DimensionType
+import net.minecraft.world.level.biome.MultiNoiseBiomeSource.Preset
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes
 import net.minecraft.world.level.dimension.LevelStem
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings
 import net.minecraft.world.level.levelgen.WorldGenSettings
+import net.minecraft.world.level.storage.DerivedLevelData
 import net.minecraft.world.level.storage.LevelResource
 import net.minecraft.world.level.storage.LevelStorageSource
 import net.minecraft.world.level.storage.PrimaryLevelData
 import java.io.File
 import java.net.Proxy
 import java.nio.file.Paths
+import java.util.*
 
 class JELoader {
 
     private var initialized = false
     private var agreedToEULA = false
 
-    private lateinit var registryHolder: RegistryAccess.RegistryHolder
     private lateinit var serverSettings: DedicatedServerSettings
-    private lateinit var sessionService: MinecraftSessionService
-    private lateinit var profileRepository: GameProfileRepository
-    private lateinit var profileCache: GameProfileCache
+    private lateinit var service: Services
     private lateinit var storageAccess: LevelStorageSource.LevelStorageAccess
     private lateinit var packRepository: PackRepository
-    private lateinit var dataPackConfig: DataPackConfig
-    private lateinit var serverResources: ServerResources
+    private lateinit var registry: RegistryAccess.Writable
 
     private lateinit var blockConverter: BlockConverter
     private lateinit var biomeConverter: BiomeConverter
@@ -82,7 +80,7 @@ class JELoader {
             IgnoreLoggerModification(AdvancementList::class.java),
             IgnoreLoggerModification(Commands::class.java),
             IgnoreLoggerModification(RecipeManager::class.java),
-            IgnoreLoggerModification(SimpleReloadableResourceManager::class.java),
+            //IgnoreLoggerModification(SimpleReloadableResourceManager::class.java),
             IgnoreLoggerModification(YggdrasilAuthenticationService::class.java),
             ProtoChunkModification(),
             StoredUserListModification(),
@@ -94,29 +92,22 @@ class JELoader {
         Bootstrap.bootStrap()
         Bootstrap.validate()
 
-        registryHolder = RegistryAccess.builtin()
         val serverPropertiesPath = Paths.get("server.properties")
         serverSettings = DedicatedServerSettings(serverPropertiesPath)
 
         val file = File(path)
-        val yggdrasil = YggdrasilAuthenticationService(Proxy.NO_PROXY)
-        sessionService = yggdrasil.createMinecraftSessionService()
-        profileRepository = yggdrasil.createProfileRepository()
-        profileCache = GameProfileCache(profileRepository, File(file, MinecraftServer.USERID_CACHE_FILE.name))
+        service = Services.create(YggdrasilAuthenticationService(Proxy.NO_PROXY), file)
 
         val storageSource = LevelStorageSource.createDefault(file.toPath())
         val levelName = "world"
         storageAccess = storageSource.createAccess(levelName)
 
         packRepository = PackRepository(
-            PackType.SERVER_DATA,
-            ServerPacksSource(),
+            PackType.SERVER_DATA, ServerPacksSource(),
             FolderRepositorySource(storageAccess.getLevelPath(LevelResource.DATAPACK_DIR).toFile(), PackSource.WORLD)
         )
-        dataPackConfig = MinecraftServer.configurePackRepository(packRepository, DataPackConfig.DEFAULT, false)
-        val completableFuture = ServerResources.loadResources(packRepository.openAllSelected(), registryHolder, Commands.CommandSelection.DEDICATED, 2, Util.backgroundExecutor(), Util.backgroundExecutor())
-        serverResources = completableFuture.get()
-        serverResources.updateGlobals()
+
+        registry = RegistryAccess.builtinCopy()
 
         blockConverter = BlockConverter()
         biomeConverter = BiomeConverter()
@@ -129,69 +120,69 @@ class JELoader {
             if (!initialized) throw IllegalStateException("Not initialized")
             if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
 
-            val levelSettings = LevelSettings("world", GameType.SURVIVAL, false, Difficulty.PEACEFUL, false, GameRules(), dataPackConfig)
-
-            val biomeRegistry = registryHolder.registryOrThrow(Registry.BIOME_REGISTRY)
-            val dimensionRegistry = registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
-            val settingsRegistry = registryHolder.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY)
-
-            var targetBiomeOrNull: Biome? = null
+            val biomeRegistry = registry.registryOrThrow(Registry.BIOME_REGISTRY)
+            var targetBiomeOrNull: ResourceKey<Biome>? = null
             biomeRegistry.forEach {
                 val location = biomeRegistry.getKey(it) ?: return@forEach
-                if (location.path == biome) targetBiomeOrNull = it
+                if (location.path == biome) targetBiomeOrNull = biomeRegistry.getResourceKey(it).get()
             }
-            val targetBiome = targetBiomeOrNull ?: biomeRegistry.get(Biomes.PLAINS)!!
+            val targetBiome = targetBiomeOrNull ?: Biomes.PLAINS
 
-            val mappedRegistry = DimensionType.defaultDimensions(dimensionRegistry, biomeRegistry, settingsRegistry, seed)
-            val genSettings = WorldGenSettings(seed, true, false,
-                WorldGenSettings.withOverworld(dimensionRegistry, mappedRegistry,
-                    when (type) {
-                        "OVERWORLD" -> NoiseBasedChunkGenerator(OverworldBiomeSource(seed, false, false, biomeRegistry), seed) {
-                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-                        }
-                        "NETHER" -> mappedRegistry.get(LevelStem.NETHER)?.generator() ?: throw IllegalStateException()
-                        "END" -> mappedRegistry.get(LevelStem.END)?.generator() ?: throw IllegalStateException()
-                        "LARGE_BIOMES" -> NoiseBasedChunkGenerator(OverworldBiomeSource(seed, false, true, biomeRegistry), seed) {
-                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-                        }
-                        "AMPLIFIED" -> NoiseBasedChunkGenerator(OverworldBiomeSource(seed, false, false, biomeRegistry), seed) {
-                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.AMPLIFIED)
-                        }
-                        "SINGLE_BIOME" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
-                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-                        }
-                        "CAVES" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
-                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.CAVES)
-                        }
-                        "FLOATING_ISLANDS" -> NoiseBasedChunkGenerator(FixedBiomeSource(targetBiome), seed) {
-                            settingsRegistry.getOrThrow(NoiseGeneratorSettings.FLOATING_ISLANDS)
-                        }
-                        else -> throw IllegalArgumentException("$type is not support generator type")
-                    }
-                )
-            )
-            val chunkGenerator = genSettings.overworld()
-            val levelData = PrimaryLevelData(levelSettings, genSettings, Lifecycle.stable())
+            val biomeSource = Preset.OVERWORLD.biomeSource(BuiltinRegistries.BIOME)
+            val structureSets = BuiltinRegistries.STRUCTURE_SETS
+            val noise = BuiltinRegistries.NOISE
+            val generatorSettings = BuiltinRegistries.NOISE_GENERATOR_SETTINGS
+            val generator = when (type) {
+                "OVERWORLD" -> NoiseBasedChunkGenerator(structureSets, noise, biomeSource, generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.OVERWORLD))
+                "NETHER" -> NoiseBasedChunkGenerator(structureSets, noise, biomeSource, generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.NETHER))
+                "END" -> NoiseBasedChunkGenerator(structureSets, noise, biomeSource, generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.END))
+                "LARGE_BIOMES" -> NoiseBasedChunkGenerator(structureSets, noise, biomeSource, generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.LARGE_BIOMES))
+                "AMPLIFIED" -> NoiseBasedChunkGenerator(structureSets, noise, biomeSource, generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.AMPLIFIED))
+                "SINGLE_BIOME" -> NoiseBasedChunkGenerator(structureSets, noise, FixedBiomeSource(BuiltinRegistries.BIOME.getOrCreateHolderOrThrow(targetBiome)), generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.OVERWORLD))
+                "CAVES" -> NoiseBasedChunkGenerator(structureSets, noise, FixedBiomeSource(BuiltinRegistries.BIOME.getOrCreateHolderOrThrow(targetBiome)), generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.CAVES))
+                "FLOATING_ISLANDS" -> NoiseBasedChunkGenerator(structureSets, noise, FixedBiomeSource(BuiltinRegistries.BIOME.getOrCreateHolderOrThrow(targetBiome)), generatorSettings.getOrCreateHolderOrThrow(NoiseGeneratorSettings.FLOATING_ISLANDS))
+                else -> throw IllegalArgumentException("$type is not support generator type")
+            }
+            val holder = BuiltinRegistries.DIMENSION_TYPE.getHolder(BuiltinDimensionTypes.OVERWORLD).get()
+            val levelStemRegistry = MappedRegistry(Registry.LEVEL_STEM_REGISTRY, Lifecycle.experimental(), null)
+            levelStemRegistry.register(LevelStem.OVERWORLD, LevelStem(holder, generator), Lifecycle.stable())
+            val worldGenSettings = WorldGenSettings(seed, true, false, levelStemRegistry.freeze())
+
+            val dataPackConfig = Objects.requireNonNullElse(storageAccess.dataPacks, DataPackConfig.DEFAULT) ?: throw IllegalStateException()
+            val packConfig = WorldLoader.PackConfig(packRepository, dataPackConfig, false)
+            val initConfig = WorldLoader.InitConfig(packConfig, Commands.CommandSelection.DEDICATED, serverSettings.properties.functionPermissionLevel)
+            val worldStem = Util.blockUntilDone { executor ->
+                WorldStem.load(initConfig, { resourceManager: ResourceManager, dataPackConfig: DataPackConfig ->
+                    val ops = RegistryOps.createAndLoad(NbtOps.INSTANCE, registry, resourceManager)
+                    val worldData = storageAccess.getDataTag(ops, dataPackConfig, registry.allElementsLifecycle())
+                    if (worldData != null) return@load Pair.of(worldData, registry.freeze())
+
+                    val levelSettings = LevelSettings("world", GameType.SURVIVAL, false, Difficulty.PEACEFUL, false, GameRules(), dataPackConfig)
+                    val primaryLevelData = PrimaryLevelData(levelSettings, worldGenSettings, Lifecycle.stable())
+                    return@load Pair.of(primaryLevelData, registry.freeze())
+
+                }, Util.backgroundExecutor(), executor)
+            }.get()
 
             val chunkProgressListener = ::LoggerChunkProgressListener
             val chunkProgressListenerFactory = ChunkProgressListenerFactory { chunkProgressListener(it) }
 
             val server = DedicatedServer(
-                Thread.currentThread(), registryHolder, storageAccess,
-                packRepository, serverResources, levelData, serverSettings,
-                DataFixers.getDataFixer(), sessionService, profileRepository,
-                profileCache, chunkProgressListenerFactory
+                Thread.currentThread(), storageAccess,
+                packRepository, worldStem, serverSettings,
+                DataFixers.getDataFixer(), service, chunkProgressListenerFactory
             )
-            server.playerList = DedicatedPlayerList(server, registryHolder, storageAccess.createPlayerStorage())
+            server.playerList = DedicatedPlayerList(server, worldStem.registryAccess(), storageAccess.createPlayerStorage())
 
+            val derivedLevelData = DerivedLevelData(server.worldData, server.worldData.overworldData())
+            //val levelStem = registry.registryOrThrow(Registry.LEVEL_STEM_REGISTRY).getOrThrow(LevelStem.OVERWORLD)
+            val levelStem = LevelStem(holder, generator)
             val level = ServerLevel(
                 server, Util.backgroundExecutor(), storageAccess,
-                server.worldData.overworldData(), Level.OVERWORLD,
-                registryHolder.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY)
-                    .getOrThrow(DimensionType.OVERWORLD_LOCATION),
-                chunkProgressListenerFactory.create(11), chunkGenerator,
+                derivedLevelData, Level.OVERWORLD, levelStem,
+                chunkProgressListenerFactory.create(11),
                 server.worldData.worldGenSettings().isDebug,
-                BiomeManager.obfuscateSeed(seed), mutableListOf(), true
+                BiomeManager.obfuscateSeed(seed), mutableListOf(), false
             )
 
             val field = MinecraftServer::class.java.getDeclaredField("levels")

@@ -3,6 +3,7 @@ package jp.tedo0627.jeloader
 import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
 import net.minecraft.core.BlockPos
+import net.minecraft.data.BuiltinRegistries
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.chunk.ChunkAccess
 
@@ -34,8 +35,9 @@ class JEChunk(
         val minZ = chunk.pos.minBlockZ
         for (x in 0 until 16) {
             for (z in 0 until 16) {
-                val biome = level.getBiomeName(BlockPos(minX + x, 0, minZ + z))
-                list.add(biomeConverter.getBiomeId(biome.get().location().path))
+                val biome = level.getBiome(BlockPos(minX + x, 63, minZ + z)).value()
+                val location = BuiltinRegistries.BIOME.getResourceKey(biome).get()
+                list.add(biomeConverter.getBiomeId(location.location().path))
             }
         }
         return list.toIntArray()

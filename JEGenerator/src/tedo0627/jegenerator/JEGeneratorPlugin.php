@@ -15,6 +15,7 @@ use tedo0627\jegenerator\generator\JENetherGenerator;
 use tedo0627\jegenerator\generator\JEOverworldGenerator;
 use tedo0627\jegenerator\generator\JESingleBiomeGenerator;
 use Webmozart\PathUtil\Path;
+use ZipArchive;
 
 class JEGeneratorPlugin extends PluginBase {
 
@@ -28,7 +29,11 @@ class JEGeneratorPlugin extends PluginBase {
         $loader = Path::join($this->getServer()->getDataPath(), $config->get("loader-path"));
         $server = Path::join($this->getServer()->getDataPath(), $config->get("server-path"));
         $separate = str_starts_with(PHP_OS, "WIN") ? ";" : ":";
-        $jvm = new JvmLoader($loader . $separate . $server);
+
+        $this->extract($server);
+        $paths = $this->getLibraryPath();
+        $paths[] = $loader;
+        $jvm = new JvmLoader(implode($separate, $paths));
         $jvm->init();
 
         $je = new JELoader();
@@ -48,6 +53,45 @@ class JEGeneratorPlugin extends PluginBase {
         $this->addGenerator(JESingleBiomeGenerator::class, "je_single_biome");
         $this->addGenerator(JECavesGenerator::class, "je_caves");
         $this->addGenerator(JEFloatingIslangsGenerator::class, "je_floating_islands");
+    }
+
+    private function extract(string $serverPath) {
+        $extractPath = Path::join($this->getDataFolder(), "extract");
+        if (file_exists($extractPath)) return;
+        if (!file_exists($serverPath)) return;
+
+        $pattern = [ "META-INF/classpath-joined", "META-INF/libraries/", "META-INF/versions/" ];
+        $zip = new ZipArchive();
+        if ($zip->open($serverPath) !== true) return;
+
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $fileName = $zip->getNameIndex($i);
+            if (str_ends_with($fileName, "/")) continue;
+
+            for ($j = 0; $j < count($pattern); $j++) {
+                if (!str_starts_with($fileName, $pattern[$j])) continue;
+
+                $fileInfo = pathinfo($fileName);
+                $dir = ltrim($fileInfo["dirname"], "META-INF/");
+                $target = Path::join($extractPath, $dir, $fileInfo["basename"]);
+                $targetPath = pathinfo($target)["dirname"] . "/";
+                if (!file_exists($targetPath)) mkdir($targetPath, 0777, true);
+                copy("zip://" . $serverPath . "#" . $fileName, $target);
+            }
+        }
+        $zip->close();
+    }
+
+    private function getLibraryPath(): array {
+        $text = file_get_contents(Path::join($this->getDataFolder(), "extract", "classpath-joined"));
+        if ($text === false) return [];
+
+        $split = explode(";", $text);
+        for ($i = 0; $i < count($split); $i++) {
+            $split[$i] = Path::join($this->getDataFolder(), "extract", $split[$i]);
+        }
+
+        return $split;
     }
 
     private function addGenerator(string $class, string $name) {

@@ -1,9 +1,9 @@
 package jp.tedo0627.jeloader.converter
 
-import ckt
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import cvo
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 
@@ -35,13 +35,13 @@ class BlockConverter {
         }
     }
 
-    fun get(state: ckt): Int {
-        val name = gw.W.b(state.b()).toString()
+    fun get(state: cvo): Int {
+        val name = hm.V.b(state.b()).toString()
         val data = map[name] ?: return 0
 
         var id = data.id
         var damage = data.damage
-        for (property in state.s()) {
+        for (property in state.v()) {
             val converter = data.getPropertyConverter(property.f()) ?: continue
             val pair = converter.getDamage(state, id, damage)
             id = pair.first

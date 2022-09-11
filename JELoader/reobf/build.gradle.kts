@@ -21,13 +21,7 @@ dependencies {
     if (Files.exists(path)) {
         val str = Files.readString(path)
         for (s in str.split(";")) {
-            implementation(files(Paths.get("lib", s).toString()))
+            compileOnly(files(Paths.get("lib", s).toString()))
         }
-    }
-}
-
-tasks {
-    shadowJar {
-        exclude("server.jar")
     }
 }

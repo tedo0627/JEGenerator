@@ -1,7 +1,7 @@
 package jp.tedo0627.jeloader.converter
 
-import ckt
 import com.google.gson.JsonObject
+import cvo
 
 class BlockPropertyConverter(json: JsonObject) {
 
@@ -9,8 +9,8 @@ class BlockPropertyConverter(json: JsonObject) {
     private val type = json["type"].asString
     private val value = json["value"].asJsonObject
 
-    fun getDamage(state: ckt, id: Int, damage: Int): Pair<Int, Int> {
-        for (property in state.s()) {
+    fun getDamage(state: cvo, id: Int, damage: Int): Pair<Int, Int> {
+        for (property in state.v()) {
             if (property.f() != name) continue
 
             val propertyValue = state.c(property).toString()

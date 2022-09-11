@@ -1,66 +1,85 @@
 package jp.tedo0627.jeloader
 
-import aar
-import aas
-import aau
+import aay
+import ab
+import aba
+import abd
+import abh
 import abr
-import acb
-import acc
-import adf
-import adi
-import adl
-import adz
-import aed
-import af
-import btj
-import bwd
-import bwm
-import bwq
-import bwu
-import bxp
-import bxx
-import byd
-import com.mojang.authlib.GameProfileRepository
-import com.mojang.authlib.minecraft.MinecraftSessionService
+import abt
+import abu
+import ad
+import afg
+import afh
+import afj
+import ag
+import agg
+import agq
+import agr
+import ahm
+import ahv
+import ahy
+import ahz
+import aib
+import aim
+import ank
+import bag
+import cdq
+import cgl
+import cgt
+import cgu
+import cgx
+import chb
+import cht
+import chv
+import cia
+import cie
+import cig
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService
+import com.mojang.datafixers.util.Pair
 import com.mojang.serialization.Lifecycle
-import cpu
-import cql
-import dig
-import dm
+import cys
+import cyv
+import dau
+import daw
+import dbm
+import drl
+import dro
+import drq
+import dru
+import ds
+import hh
+import hm
+import hn
+import iw
 import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
 import jp.tedo0627.jeloader.modification.IgnoreLoggerModification
 import jp.tedo0627.jeloader.modification.ProtoChunkModification
 import jp.tedo0627.jeloader.modification.StoredUserListModification
 import net.minecraft.server.MinecraftServer
-import wv
-import xc
-import xk
+import pu
 import java.io.File
 import java.net.Proxy
 import java.nio.file.Paths
+import java.util.*
 
 class JELoader {
 
     private var initialized = false
     private var agreedToEULA = false
 
-    private lateinit var registryHolder: gx.b
-    private lateinit var serverSettings: aau
-    private lateinit var sessionService: MinecraftSessionService
-    private lateinit var profileRepository: GameProfileRepository
-    private lateinit var profileCache: aed
-    private lateinit var storageAccess: dib.a
-    private lateinit var packRepository: adi
-    private lateinit var dataPackConfig: bwd
-    private lateinit var serverResources: xk
+    private lateinit var serverSettings: afj
+    private lateinit var service: abr
+    private lateinit var storageAccess: drq.c
+    private lateinit var packRepository: ahy
+    private lateinit var registry: hn.e
 
     private lateinit var blockConverter: BlockConverter
     private lateinit var biomeConverter: BiomeConverter
 
     fun checkEula(path: String): Boolean {
-        agreedToEULA = xc(Paths.get(path)).a()
+        agreedToEULA = abh(Paths.get(path)).a()
         return agreedToEULA
     }
 
@@ -70,10 +89,10 @@ class JELoader {
         if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
 
         val modifications = mutableListOf(
-            IgnoreLoggerModification(af::class.java),
-            IgnoreLoggerModification(dm::class.java),
-            IgnoreLoggerModification(btj::class.java),
-            IgnoreLoggerModification(adz::class.java),
+            IgnoreLoggerModification(ag::class.java),
+            IgnoreLoggerModification(ds::class.java),
+            IgnoreLoggerModification(cdq::class.java),
+            //IgnoreLoggerModification(SimpleReloadableResourceManager::class.java),
             IgnoreLoggerModification(YggdrasilAuthenticationService::class.java),
             ProtoChunkModification(),
             StoredUserListModification(),
@@ -82,28 +101,25 @@ class JELoader {
         for (modification in modifications) modification.applyJavassist()
 
         ab.a()
-        wy.a()
-        wy.c()
+        abd.a()
+        abd.c()
 
-        registryHolder = gx.a()
         val serverPropertiesPath = Paths.get("server.properties")
-        serverSettings = aau(serverPropertiesPath)
+        serverSettings = afj(serverPropertiesPath)
 
         val file = File(path)
-        val yggdrasil = YggdrasilAuthenticationService(Proxy.NO_PROXY)
-        sessionService = yggdrasil.createMinecraftSessionService()
-        profileRepository = yggdrasil.createProfileRepository()
-        profileCache = aed(profileRepository, File(file, MinecraftServer.f.name))
+        service = abr.a(YggdrasilAuthenticationService(Proxy.NO_PROXY), file)
 
-        val storageSource = dib.a(file.toPath())
+        val storageSource = drq.a(file.toPath())
         val levelName = "world"
-        storageAccess = storageSource.c(levelName)
+        storageAccess = storageSource.javaClass.getMethod("c", String::class.java).invoke(storageSource, levelName) as drq.c
 
-        packRepository = adi(acw.b, adl(), adf(storageAccess.a(dhz.g).toFile(), adj.c))
-        dataPackConfig = MinecraftServer.a(packRepository, bwd.a, false)
-        val completableFuture = xk.a(packRepository.f(), registryHolder, dm.a.b, 2, ad.f(), ad.f())
-        serverResources = completableFuture.get()
-        serverResources.j()
+        packRepository = ahy(
+            ahm.a, aib(),
+            ahv(storageAccess.a(dro.j).toFile(), ahz.a)
+        )
+
+        registry = hn.e()
 
         blockConverter = BlockConverter()
         biomeConverter = BiomeConverter()
@@ -116,75 +132,76 @@ class JELoader {
             if (!initialized) throw IllegalStateException("Not initialized")
             if (!agreedToEULA) throw IllegalStateException("You must agree to eula.")
 
-            val levelSettings = bwu("world", bwn.a, false, ary.a, false, bwm(), dataPackConfig)
-
-            val biomeRegistry = registryHolder.d(gw.aO)
-            val dimensionRegistry = registryHolder.d(gw.P)
-            val settingsRegistry = registryHolder.d(gw.aH)
-
-            var targetBiomeOrNull: bxp? = null
+            val biomeRegistry = registry.d(hm.aR)
+            var targetBiomeOrNull: aba<cht>? = null
             biomeRegistry.forEach {
                 val location = biomeRegistry.b(it) ?: return@forEach
-                if (location.a() == biome) targetBiomeOrNull = it
+                if (location.a() == biome) targetBiomeOrNull = biomeRegistry.c(it).get()
             }
-            val targetBiome = targetBiomeOrNull ?: biomeRegistry.a(bxv.b)
+            val targetBiome = targetBiomeOrNull ?: cia.b
 
-            val mappedRegistry = cnv.a(dimensionRegistry, biomeRegistry, settingsRegistry, seed)
-            val genSettings = cql(seed, true, false,
-                cql.a(dimensionRegistry, mappedRegistry,
-                    when (type) {
-                        "OVERWORLD" -> cpu(byd(seed, false, false, biomeRegistry), seed) {
-                            settingsRegistry.d(cpv.c)
-                        }
-                        "NETHER" -> mappedRegistry.a(cnw.c)?.c() ?: throw IllegalStateException()
-                        "END" -> mappedRegistry.a(cnw.d)?.c() ?: throw IllegalStateException()
-                        "LARGE_BIOMES" -> cpu(byd(seed, false, true, biomeRegistry), seed) {
-                            settingsRegistry.d(cpv.c)
-                        }
-                        "AMPLIFIED" -> cpu(byd(seed, false, false, biomeRegistry), seed) {
-                            settingsRegistry.d(cpv.d)
-                        }
-                        "SINGLE_BIOME" -> cpu(bxx(targetBiome), seed) {
-                            settingsRegistry.d(cpv.c)
-                        }
-                        "CAVES" -> cpu(bxx(targetBiome), seed) {
-                            settingsRegistry.d(cpv.g)
-                        }
-                        "FLOATING_ISLANDS" -> cpu(bxx(targetBiome), seed) {
-                            settingsRegistry.d(cpv.h)
-                        }
-                        else -> throw IllegalArgumentException("$type is not support generator type")
-                    }
-                )
+            val biomeSource = cig.a.b.a(iw.j)
+            val structureSets = iw.g
+            val noise = iw.k
+            val generatorSettings = iw.m
+            val generator = when (type) {
+                "OVERWORLD" -> dau(structureSets, noise, biomeSource, generatorSettings.c(daw.c))
+                "NETHER" -> dau(structureSets, noise, biomeSource, generatorSettings.c(daw.f))
+                "END" -> dau(structureSets, noise, biomeSource, generatorSettings.c(daw.g))
+                "LARGE_BIOMES" -> dau(structureSets, noise, biomeSource, generatorSettings.c(daw.d))
+                "AMPLIFIED" -> dau(structureSets, noise, biomeSource, generatorSettings.c(daw.e))
+                "SINGLE_BIOME" -> dau(structureSets, noise, cie(iw.j.c(targetBiome)), generatorSettings.c(daw.c))
+                "CAVES" -> dau(structureSets, noise, cie(iw.j.c(targetBiome)), generatorSettings.c(daw.h))
+                "FLOATING_ISLANDS" -> dau(structureSets, noise, cie(iw.j.c(targetBiome)), generatorSettings.c(daw.i))
+                else -> throw IllegalArgumentException("$type is not support generator type")
+            }
+            val holder = iw.b.b(cys.a).get()
+            val levelStemRegistry = hh(hm.Q, Lifecycle.experimental(), null)
+            levelStemRegistry.a(cyv.b, cyv(holder, generator), Lifecycle.stable())
+            val worldGenSettings = dbm(seed, true, false, levelStemRegistry.k())
+
+            val dataPackConfig = Objects.requireNonNullElse(storageAccess.d(), cgl.a) ?: throw IllegalStateException()
+            val packConfig = abt.b(packRepository, dataPackConfig, false)
+            val initConfig = abt.a(packConfig, ds.a.b, serverSettings.a().B)
+            val worldStem = ad.b { executor ->
+                abu.a(initConfig, { resourceManager: aim, dataPackConfig: cgl ->
+                    val ops = aay.a(pu.a, registry, resourceManager)
+                    val worldData = storageAccess.a(ops, dataPackConfig, registry.g())
+                    if (worldData != null) return@a Pair.of(worldData, registry.f())
+
+                    val levelSettings = chb("world", cgu.a, false, bag.a, false, cgt(), dataPackConfig)
+                    val primaryLevelData = dru(levelSettings, worldGenSettings, Lifecycle.stable())
+                    return@a Pair.of(primaryLevelData, registry.f())
+
+                }, ad.g(), executor)
+            }.get()
+
+            val chunkProgressListener = ::agr
+            val chunkProgressListenerFactory = agq { chunkProgressListener(it) }
+
+            val server = afh(
+                Thread.currentThread(), storageAccess,
+                packRepository, worldStem, serverSettings,
+                ank.a(), service, chunkProgressListenerFactory
             )
-            val chunkGenerator = genSettings.e()
-            val levelData = dig(levelSettings, genSettings, Lifecycle.stable())
+            server.a(afg(server, worldStem.c(), storageAccess.b()))
 
-            val chunkProgressListener = ::acc
-            val chunkProgressListenerFactory = acb { chunkProgressListener(it) }
-
-            val server = aas(
-                Thread.currentThread(), registryHolder, storageAccess,
-                packRepository, serverResources, levelData, serverSettings,
-                ahr.a(), sessionService, profileRepository,
-                profileCache, chunkProgressListenerFactory
-            )
-            server.a(aar(server, registryHolder, storageAccess.b()))
-
-            val level = abr(
-                server, ad.f(), storageAccess,
-                server.aV().H(), bwq.f,
-                registryHolder.d(gw.P).d(cnv.k),
-                chunkProgressListenerFactory.create(11), chunkGenerator,
-                server.aV().A().g(),
-                bxr.a(seed), mutableListOf(), true
+            val derivedLevelData = drl(server.aW(), server.aW().H())
+            //val levelStem = registry.d(hm.Q).g(cyv.b)
+            val levelStem = cyv(holder, generator)
+            val level = agg(
+                server, ad.g(), storageAccess,
+                derivedLevelData, cgx.e, levelStem,
+                chunkProgressListenerFactory.create(11),
+                server.aW().A().g(),
+                chv.a(seed), mutableListOf(), false
             )
 
-            val field = MinecraftServer::class.java.getDeclaredField("R")
+            val field = MinecraftServer::class.java.getDeclaredField("O")
             field.isAccessible = true
             @Suppress("UNCHECKED_CAST")
-            val map = field.get(server) as MutableMap<wv<bwq>, bwq>
-            map[bwq.f] = level
+            val map = field.get(server) as MutableMap<aba<cgx>, cgx>
+            map[cgx.e] = level
 
             return JEGenerator(level, blockConverter, biomeConverter)
         }
