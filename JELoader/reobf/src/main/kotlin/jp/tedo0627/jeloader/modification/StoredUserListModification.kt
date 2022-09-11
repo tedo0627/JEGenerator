@@ -6,7 +6,6 @@ import javassist.LoaderClassPath
 class StoredUserListModification : Modification {
 
     override fun applyJavassist() {
-        /*
         val classLoader = StoredUserListModification::class.java.classLoader
         val cp = ClassPool.getDefault()
         cp.appendClassPath(LoaderClassPath(classLoader))
@@ -19,6 +18,5 @@ class StoredUserListModification : Modification {
         ctmLoad.setBody("{}")
 
         ctc.toClass()
-        */
     }
 }

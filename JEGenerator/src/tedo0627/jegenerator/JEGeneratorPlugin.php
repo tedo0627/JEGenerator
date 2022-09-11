@@ -77,6 +77,15 @@ class JEGeneratorPlugin extends PluginBase {
                 $targetPath = pathinfo($target)["dirname"] . "/";
                 if (!file_exists($targetPath)) mkdir($targetPath, 0777, true);
                 copy("zip://" . $serverPath . "#" . $fileName, $target);
+
+                if ($j !== 2) continue; // META=INF/versions/
+
+                $serverZip = new ZipArchive();
+                if ($serverZip->open($target) !== true) continue;
+
+                $serverZip->deleteName("META-INF/MOJANGCS.RSA");
+                $serverZip->deleteName("META-INF/MOJANGCS.SF");
+                $serverZip->close();
             }
         }
         $zip->close();

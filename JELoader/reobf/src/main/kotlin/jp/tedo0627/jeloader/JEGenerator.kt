@@ -53,8 +53,8 @@ class JEGenerator(
     }
 
     private fun setListener(chunk: cyc, listener: PopulateFeatureListener?) {
-        //val clazz = cyc::class.java
-        //val field = clazz.getDeclaredField("listener")
-        //field.set(chunk, listener)
+        val clazz = cyc::class.java
+        val field = clazz.getDeclaredField("listener")
+        field.set(chunk, listener)
     }
 }

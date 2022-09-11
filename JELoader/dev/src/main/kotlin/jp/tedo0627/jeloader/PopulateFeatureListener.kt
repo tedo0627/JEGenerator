@@ -14,7 +14,10 @@ class PopulateFeatureListener(
     private val list = mutableListOf<FeatureData>()
 
     fun setBlockState(chunk: ProtoChunk, pos: BlockPos, state: BlockState) {
-        list.add(FeatureData(chunkPos.minBlockX, chunkPos.minBlockZ, pos.x, pos.y, pos.z, converter.get(state)))
+        val y = pos.y
+        if (y < 0 || 256 <= y) return
+
+        list.add(FeatureData(chunkPos.minBlockX, chunkPos.minBlockZ, pos.x, y, pos.z, converter.get(state)))
     }
 
     fun getResult(): Array<FeatureData> {

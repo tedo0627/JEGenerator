@@ -7,7 +7,6 @@ import javassist.LoaderClassPath
 class ProtoChunkModification : Modification {
 
     override fun applyJavassist() {
-        /*
         val classLoader = ProtoChunkModification::class.java.classLoader
         val cp = ClassPool.getDefault()
         cp.appendClassPath(LoaderClassPath(classLoader))
@@ -16,7 +15,5 @@ class ProtoChunkModification : Modification {
         val ctm = ctc.getDeclaredMethod("a")
         ctm.insertBefore("if (listener != null) listener.setBlockState($0, $1, $2);")
         ctc.toClass()
-
-         */
     }
 }
