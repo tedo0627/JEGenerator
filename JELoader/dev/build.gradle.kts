@@ -23,14 +23,8 @@ dependencies {
         for (s in str.split(";")) {
             if (s.startsWith("versions")) continue
 
-            implementation(files(Paths.get("lib", s).toString()))
+            compileOnly(files(Paths.get("lib", s).toString()))
         }
     }
-    implementation(fileTree(mapOf("dir" to "lib", "include" to "server.jar")))
-}
-
-tasks {
-    shadowJar {
-        exclude("server.jar")
-    }
+    compileOnly(fileTree(mapOf("dir" to "lib", "include" to "server.jar")))
 }
