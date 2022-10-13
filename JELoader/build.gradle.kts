@@ -6,10 +6,33 @@ import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.util.zip.ZipInputStream
 
-group = "jp.tedo0627.jeloader"
+plugins {
+    kotlin("jvm") version "1.6.20"
+    java
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+}
 
-allprojects {
-    version = "1.0.0"
+group = "jp.tedo0627.jeloader"
+version = "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation("org.javassist:javassist:3.29.0-GA")
+
+    val path = Paths.get(project.projectDir.toString(), "lib", "classpath-joined")
+    if (Files.exists(path)) {
+        val str = Files.readString(path)
+        for (s in str.split(";")) {
+            if (s.startsWith("versions")) continue
+
+            compileOnly(files(Paths.get("lib", s).toString()))
+        }
+    }
+    compileOnly(fileTree(mapOf("dir" to "lib", "include" to "server.jar")))
 }
 
 tasks {
