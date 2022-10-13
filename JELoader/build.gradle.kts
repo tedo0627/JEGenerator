@@ -76,14 +76,11 @@ tasks {
             if (files.none { name.startsWith(it) }) continue
 
             val fileName = entry.name.removePrefix("META-INF/")
-            val targetPathDev = Paths.get(project.projectDir.toString(), "dev", "lib", fileName)
-            val targetPathReobf = Paths.get(project.projectDir.toString(), "reobf", "lib", fileName)
+            val targetPath = Paths.get(project.projectDir.toString(), "lib", fileName)
 
-            Files.createDirectories(targetPathDev.parent)
-            Files.createDirectories(targetPathReobf.parent)
+            Files.createDirectories(targetPath.parent)
             val bytes = jarzip.readAllBytes()
-            Files.write(targetPathDev, bytes)
-            Files.write(targetPathReobf, bytes)
+            Files.write(targetPath, bytes)
         }
         jarzip.close()
 
@@ -141,7 +138,7 @@ tasks {
 
         println("Copy server.jar")
         val sourcePathDev = Paths.get(binPath.toString(), "deobf.jar")
-        val targetPathDev = Paths.get(project.projectDir.toString(), "dev", "lib", "server.jar")
+        val targetPathDev = Paths.get(project.projectDir.toString(), "lib", "server.jar")
         Files.createDirectories(targetPathDev.parent)
         Files.copy(sourcePathDev, targetPathDev, StandardCopyOption.REPLACE_EXISTING)
     }
