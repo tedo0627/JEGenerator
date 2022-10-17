@@ -39,7 +39,7 @@ tasks {
     register("setupMinecraft") {
         val jar = "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar"
         val mapping = "https://piston-data.mojang.com/v1/objects/ed5e6e8334ad67f5af0150beed0f3d156d74bd57/server.txt"
-        val remapper = "https://github.com/HeartPattern/MC-Remapper/archive/refs/heads/master.zip"
+        val remapper = "https://github.com/tedo0627/MC-Remapper/archive/refs/heads/master.zip"
 
         val executePath = Paths.get(project.projectDir.toString(), "..", "setup").normalize()
         val download = { url: String, name: String ->
@@ -103,11 +103,14 @@ tasks {
         val gradlePath = Paths.get(executePath.toString(), "MC-Remapper-master")
         val binPath = Paths.get(executePath.toString(), "MC-Remapper-master", "build", "install", "MC-Remapper", "bin")
         val inputPath = Paths.get("..", "..", "..", "..", "..", "server.jar")
-        val thirdCommand = if (osCheck) {
-            mutableListOf("cmd", "/c", "${prefix}MC-Remapper$extension", inputPath.toString(), mapping, "--output", "deobf.jar", "--fixlocalvar=rename")
-        } else {
-            mutableListOf("${prefix}MC-Remapper$extension", inputPath.toString(), mapping, "--output", "deobf.jar", "--fixlocalvar=rename")
-        }
+
+        val thirdCommand = mutableListOf(
+            "${prefix}MC-Remapper$extension", inputPath.toString(), mapping,
+            "--output", "deobf.jar",
+            "--fixlocalvar=rename"
+        )
+        if (osCheck) thirdCommand.addAll(0, mutableListOf("cmd", "/c"))
+
         mutableListOf(
             Triple(gradlePath, mutableListOf("chmod", "+x", "gradlew"), !osCheck),
             Triple(gradlePath, mutableListOf("${prefix}gradlew$extension", "installDist"), true),
@@ -141,5 +144,61 @@ tasks {
         val targetPathDev = Paths.get(project.projectDir.toString(), "lib", "server.jar")
         Files.createDirectories(targetPathDev.parent)
         Files.copy(sourcePathDev, targetPathDev, StandardCopyOption.REPLACE_EXISTING)
+    }
+
+    register("reobf") {
+        dependsOn("shadowJar")
+
+        doLast {
+            val fileName = "reobf.jar"
+            val libsPath = Paths.get(project.projectDir.toString(), "build", "libs")
+            val files = libsPath.toFile().listFiles { file: File ->
+                file.name.endsWith(".jar") && file.name != fileName
+            } ?: throw IllegalStateException("Not found target files")
+            files.sortByDescending {
+                Files.getLastModifiedTime(it.toPath()).toMillis()
+            }
+            if (files.isEmpty()) throw IllegalStateException("Not found shadow jar file")
+            val inputPath = files[0].toPath()
+            println("Target file $inputPath")
+
+            val mapping = "https://piston-data.mojang.com/v1/objects/ed5e6e8334ad67f5af0150beed0f3d156d74bd57/server.txt"
+            val executePath = Paths.get(project.projectDir.toString(), "..", "setup").normalize()
+
+            val osCheck = System.getProperty("os.name").toLowerCase().startsWith("windows")
+            val prefix = if (osCheck) "" else "./"
+            val extension = if (osCheck) ".bat" else ""
+            val binPath = Paths.get(executePath.toString(), "MC-Remapper-master", "build", "install", "MC-Remapper", "bin")
+            val serverPath = Paths.get(project.projectDir.toString(), "lib", "server.jar").toString()
+            val outputPath = Paths.get(libsPath.toString(), fileName).toString()
+
+            val command = mutableListOf(
+                "${prefix}MC-Remapper$extension", inputPath.toString(), mapping,
+                "--output", outputPath,
+                "--super-type-resolve-file", serverPath,
+                "--reobf"
+            )
+            if (osCheck) command.addAll(0, mutableListOf("cmd", "/c"))
+
+            println("execute: ${command.joinToString(" ")}")
+            val builder = ProcessBuilder(command)
+            builder.redirectErrorStream(true)
+            builder.directory(binPath.toFile())
+            val process = builder.start()
+
+            val inputReader = process.inputReader()
+            val errorReader = process.errorReader()
+            Thread().run {
+                while (true) println(inputReader.readLine() ?: break)
+            }
+            Thread().run {
+                while (true) println(errorReader.readLine() ?: break)
+            }
+
+            inputReader.close()
+            errorReader.close()
+            process.waitFor()
+            process.destroy()
+        }
     }
 }
