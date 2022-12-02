@@ -32,11 +32,11 @@ class JEGeneratorBase extends Generator {
         $chunk = new Chunk([], BiomeArray::fill(0), false);
         $world->setChunk($chunkX, $chunkZ, $chunk);
 
-        $this->generator->populateChunk($chunkX, $chunkZ);
+        $this->generator->generateChunk($chunkX, $chunkZ);
     }
 
     public function populateChunk(ChunkManager $world, int $chunkX, int $chunkZ): void {
-        $jechunk = $this->generator->generateChunk($chunkX, $chunkZ);
+        $jechunk = $this->generator->populateChunk($chunkX, $chunkZ);
         $chunk = $world->getChunk($chunkX, $chunkZ);
         foreach ($jechunk->getBlocks() as $i => $value) {
             if ($value == 0) continue;

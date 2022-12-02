@@ -19,7 +19,17 @@ class JEGenerator(
     private val thread: GeneratorThread
 ) {
 
-    fun generateChunk(x: Int, z: Int): JEChunk {
+    fun generateChunk(x: Int, z: Int) {
+        val completableFuture = CompletableFuture<CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>>()
+        val task = Runnable {
+            completableFuture.complete(level.chunkSource.getChunkFuture(x, z, ChunkStatus.FULL, true))
+        }
+
+        thread.addTask(task)
+        completableFuture.get()
+    }
+
+    fun populateChunk(x: Int, z: Int): JEChunk {
         val completableFuture = CompletableFuture<ChunkResult>()
         thread.addTask {
             val queue = LinkedList<CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>>()
@@ -53,17 +63,6 @@ class JEGenerator(
             biomeFuture.complete(list.toIntArray())
         }
         return JEChunk(level, chunk, blockConverter, biomeFuture.get())
-    }
-
-    fun populateChunk(x: Int, z: Int): Array<FeatureData> {
-        val completableFuture = CompletableFuture<CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>>()
-        val task = Runnable {
-            completableFuture.complete(level.chunkSource.getChunkFuture(x, z, ChunkStatus.FULL, true))
-        }
-
-        thread.addTask(task)
-        completableFuture.get()
-        return arrayOf()
     }
 
     private fun <T> combineFuture(queue: LinkedList<CompletableFuture<T>>): CompletableFuture<T> {

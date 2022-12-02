@@ -17,16 +17,9 @@ static zend_object* jegenerator_new(zend_class_entry* class_type) {
     JNIEnv* env = attachThread();
     object->jegenerator_class = env->FindClass("jp/tedo0627/jeloader/JEGenerator");
     if (exceptionCheck()) return &object->std;
-    object->generate_chunk_method = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
+    object->generate_chunk_method = env->GetMethodID(object->jegenerator_class, "generateChunk", "(II)V");
     if (exceptionCheck()) return &object->std;
-    object->populate_chunk_method = env->GetMethodID(object->jegenerator_class, "populateChunk", "(II)[Ljp/tedo0627/jeloader/FeatureData;");
-    if (exceptionCheck()) return &object->std;
-
-    jclass cls = env->FindClass("jp/tedo0627/jeloader/FeatureData");
-    if (exceptionCheck()) return &object->std;
-    object->get_index_method = env->GetMethodID(cls, "getIndex", "()I");
-    if (exceptionCheck()) return &object->std;
-    object->get_value_method = env->GetMethodID(cls, "getValue", "()I");
+    object->populate_chunk_method = env->GetMethodID(object->jegenerator_class, "populateChunk", "(II)Ljp/tedo0627/jeloader/JEChunk;");
     if (exceptionCheck()) return &object->std;
     
     return &object->std;
@@ -53,12 +46,8 @@ JEGENERATOR_METHOD(generateChunk) {
     JNIEnv* env = attachThread();
 
     auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
-    jobject jechunk = env->CallObjectMethod(object->jegenerator_obj, object->generate_chunk_method, (int) x, (int) z);
+    env->CallObjectMethod(object->jegenerator_obj, object->generate_chunk_method, (int) x, (int) z);
     if (exceptionCheck()) return;
-
-    object_init_ex(return_value, jechunk_class_entry);
-    jechunk_obj* jechunk_o = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(return_value));
-    jechunk_o->jechunk_obj = jechunk;
 }
 
 JEGENERATOR_METHOD(populateChunk) {
@@ -73,22 +62,12 @@ JEGENERATOR_METHOD(populateChunk) {
     JNIEnv* env = attachThread();
 
     auto object = fetch_from_zend_object<jegenerator_obj>(Z_OBJ_P(getThis()));
-    jobjectArray array = (jobjectArray) env->CallObjectMethod(object->jegenerator_obj, object->populate_chunk_method, (int) x, (int) z);
+    jobject jechunk = env->CallObjectMethod(object->jegenerator_obj, object->populate_chunk_method, (int) x, (int) z);
     if (exceptionCheck()) return;
 
-    array_init(return_value);
-    int len = env->GetArrayLength(array);
-    if (exceptionCheck()) return;
-    for (int i = 0; i < len; i++) {
-        jobject obj = env->GetObjectArrayElement(array, i);
-        if (exceptionCheck()) return;
-        jint index = env->CallIntMethod(obj, object->get_index_method);
-        if (exceptionCheck()) return;
-        jint value = env->CallIntMethod(obj, object->get_value_method);
-        if (exceptionCheck()) return;
-        
-        add_index_long(return_value, (long) index, (long) value);
-    }
+    object_init_ex(return_value, jechunk_class_entry);
+    jechunk_obj* jechunk_o = fetch_from_zend_object<jechunk_obj>(Z_OBJ_P(return_value));
+    jechunk_o->jechunk_obj = jechunk;
 }
 
 void register_jegenerator_class() {
