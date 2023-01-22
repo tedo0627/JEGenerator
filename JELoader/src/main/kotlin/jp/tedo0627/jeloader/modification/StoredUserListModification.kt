@@ -2,6 +2,7 @@ package jp.tedo0627.jeloader.modification
 
 import javassist.ClassPool
 import javassist.LoaderClassPath
+import jp.tedo0627.jeloader.Mapping
 
 class StoredUserListModification : Modification {
 
@@ -9,12 +10,12 @@ class StoredUserListModification : Modification {
         val classLoader = StoredUserListModification::class.java.classLoader
         val cp = ClassPool.getDefault()
         cp.appendClassPath(LoaderClassPath(classLoader))
-        val ctc = cp.get("aem")
+        val ctc = cp.get(Mapping.CLASS_StoredUserList)
 
-        val ctmSave = ctc.getDeclaredMethod("e")
+        val ctmSave = ctc.getDeclaredMethod(Mapping.METHOD_StoredUserList_save)
         ctmSave.setBody("{}")
 
-        val ctmLoad = ctc.getDeclaredMethod("f")
+        val ctmLoad = ctc.getDeclaredMethod(Mapping.METHOD_StoredUserList_load)
         ctmLoad.setBody("{}")
 
         ctc.toClass()

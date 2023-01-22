@@ -121,5 +121,4 @@ build
 .gradle
 /*.jar
 
-dev/lib/
-reobf/lib/
+lib/

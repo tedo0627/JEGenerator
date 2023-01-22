@@ -9,7 +9,7 @@ class IgnoreLoggerModification(private val clazz: Class<*>) : Modification {
     override fun applyReflection() {
         var targetField: Field? = null
         for (field in clazz.declaredFields) {
-            if (field.type != org.apache.logging.log4j.Logger::class.java) continue
+            if (field.type != Logger::class.java) continue
 
             targetField = field
             break

@@ -194,7 +194,7 @@ class JELoader {
                 BiomeManager.obfuscateSeed(seed), mutableListOf(), true
             )
 
-            val field = MinecraftServer::class.java.getDeclaredField("levels")
+            val field = MinecraftServer::class.java.getDeclaredField(Mapping.FIELD_MinecraftServer_levels)
             field.isAccessible = true
             @Suppress("UNCHECKED_CAST")
             val map = field.get(server) as MutableMap<ResourceKey<Level>, Level>
