@@ -1,3 +1,4 @@
+import org.apache.commons.io.FileUtils
 import java.io.DataInputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -25,15 +26,15 @@ dependencies {
     compileOnly(fileTree(mapOf("dir" to "lib", "include" to "server.jar")))
 }
 
-tasks {
-    val jar = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar"
-    val mapping = "https://launcher.mojang.com/v1/objects/f6cae1c5c1255f68ba4834b16a0da6a09621fe13/server.txt"
-    val remapper = "https://github.com/tedo0627/MC-Remapper/archive/refs/heads/master.zip"
+val jar = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar"
+val mapping = "https://launcher.mojang.com/v1/objects/f6cae1c5c1255f68ba4834b16a0da6a09621fe13/server.txt"
+val remapper = "https://github.com/tedo0627/MC-Remapper/archive/refs/heads/master.zip"
 
-    register("setupMinecraft") {
-        group = "JELoader"
-        description = "Set up dependencies."
+tasks.register("setupMinecraft") {
+    group = "JELoader"
+    description = "Set up dependencies."
 
+    doLast {
         val executePath = Paths.get(project.projectDir.toString(), "..", "setup").normalize()
         val download = { url: String, name: String ->
             val connection = URL(url).openConnection() as HttpURLConnection
@@ -116,61 +117,102 @@ tasks {
         Files.createDirectories(targetPathDev.parent)
         Files.copy(sourcePathDev, targetPathDev, StandardCopyOption.REPLACE_EXISTING)
     }
+}
 
-    register("reobf") {
-        group = "JELoader"
-        description = "Build a jar file with obfuscation applied."
-        dependsOn("shadowJar")
+tasks.register("reobf") {
+    group = "JELoader"
+    description = "Build a jar file with obfuscation applied."
+    dependsOn("shadowJar")
 
-        doLast {
-            val fileName = "reobf.jar"
-            val libsPath = Paths.get(project.projectDir.toString(), "build", "libs")
-            val files = libsPath.toFile().listFiles { file: File ->
-                file.name.endsWith(".jar") && file.name != fileName
-            } ?: throw IllegalStateException("Not found target files")
-            files.sortByDescending {
-                Files.getLastModifiedTime(it.toPath()).toMillis()
-            }
-            if (files.isEmpty()) throw IllegalStateException("Not found shadow jar file")
-            val inputPath = files[0].toPath()
-            println("Target file $inputPath")
+    doLast {
+        val fileName = "reobf.jar"
+        val libsPath = Paths.get(project.projectDir.toString(), "build", "libs")
+        val files = libsPath.toFile().listFiles { file: File ->
+            file.name.endsWith(".jar") && file.name != fileName
+        } ?: throw IllegalStateException("Not found target files")
+        files.sortByDescending {
+            Files.getLastModifiedTime(it.toPath()).toMillis()
+        }
+        if (files.isEmpty()) throw IllegalStateException("Not found shadow jar file")
+        val inputPath = files[0].toPath()
+        println("Target file $inputPath")
 
-            val executePath = Paths.get(project.projectDir.toString(), "..", "setup").normalize()
+        val executePath = Paths.get(project.projectDir.toString(), "..", "setup").normalize()
 
-            val osCheck = System.getProperty("os.name").toLowerCase().startsWith("windows")
-            val prefix = if (osCheck) "" else "./"
-            val extension = if (osCheck) ".bat" else ""
-            val binPath = Paths.get(executePath.toString(), "MC-Remapper-master", "build", "install", "MC-Remapper", "bin")
-            val serverPath = Paths.get(project.projectDir.toString(), "lib", "server.jar").toString()
-            val outputPath = Paths.get(libsPath.toString(), fileName).toString()
+        val osCheck = System.getProperty("os.name").toLowerCase().startsWith("windows")
+        val prefix = if (osCheck) "" else "./"
+        val extension = if (osCheck) ".bat" else ""
+        val binPath = Paths.get(executePath.toString(), "MC-Remapper-master", "build", "install", "MC-Remapper", "bin")
+        val serverPath = Paths.get(project.projectDir.toString(), "lib", "server.jar").toString()
+        val outputPath = Paths.get(libsPath.toString(), fileName).toString()
 
-            val command = mutableListOf(
-                "${prefix}MC-Remapper$extension", inputPath.toString(), mapping,
-                "--output", outputPath,
-                "--super-type-resolve-file", serverPath,
-                "--reobf"
-            )
-            if (osCheck) command.addAll(0, mutableListOf("cmd", "/c"))
+        val command = mutableListOf(
+            "${prefix}MC-Remapper$extension", inputPath.toString(), mapping,
+            "--output", outputPath,
+            "--super-type-resolve-file", serverPath,
+            "--reobf"
+        )
+        if (osCheck) command.addAll(0, mutableListOf("cmd", "/c"))
 
-            println("execute: ${command.joinToString(" ")}")
-            val builder = ProcessBuilder(command)
-            builder.redirectErrorStream(true)
-            builder.directory(binPath.toFile())
-            val process = builder.start()
+        println("execute: ${command.joinToString(" ")}")
+        val builder = ProcessBuilder(command)
+        builder.redirectErrorStream(true)
+        builder.directory(binPath.toFile())
+        val process = builder.start()
 
-            val inputReader = process.inputReader()
-            val errorReader = process.errorReader()
-            Thread().run {
-                while (true) println(inputReader.readLine() ?: break)
-            }
-            Thread().run {
-                while (true) println(errorReader.readLine() ?: break)
-            }
+        val inputReader = process.inputReader()
+        val errorReader = process.errorReader()
+        Thread().run {
+            while (true) println(inputReader.readLine() ?: break)
+        }
+        Thread().run {
+            while (true) println(errorReader.readLine() ?: break)
+        }
 
-            inputReader.close()
-            errorReader.close()
-            process.waitFor()
-            process.destroy()
+        inputReader.close()
+        errorReader.close()
+        process.waitFor()
+        process.destroy()
+    }
+}
+
+tasks.register("copy") {
+    group = "JELoader"
+    description = "Copy the necessary files and run pmmp."
+
+    doLast {
+        val basePath = Paths.get(project.projectDir.toString(), "..", "run").normalize()
+
+        println("Copy JELoader.jar")
+        val jarPath = Paths.get(project.projectDir.toString(), "build", "libs", "reobf.jar")
+        if (jarPath.toFile().exists()) {
+            val targetPath = Paths.get(basePath.toString(), "plugin_data", "JEGenerator", "JELoader.jar")
+            Files.createDirectories(targetPath.parent)
+            Files.copy(jarPath, targetPath, StandardCopyOption.REPLACE_EXISTING)
+        } else {
+            println("$jarPath is not found.")
+        }
+
+        println("Copy php_calljava.dll")
+        val dllPath = Paths.get(
+            project.projectDir.toString(), "..", "build-script",
+            "build-script", "bin", "php", "ext", "php_calljava.dll"
+        ).normalize()
+        if (dllPath.toFile().exists()) {
+            val targetPath = Paths.get(basePath.toString(), "bin", "php", "ext", "php_calljava.dll")
+            Files.createDirectories(targetPath.parent)
+            Files.copy(dllPath, targetPath, StandardCopyOption.REPLACE_EXISTING)
+        } else {
+            println("$dllPath is not found.")
+        }
+
+        println("Copy pmmp plugin")
+        val pluginPath = Paths.get(project.projectDir.toString(), "..", "JEGenerator").normalize()
+        if (pluginPath.toFile().exists()) {
+            val targetPath = Paths.get(basePath.toString(), "plugins", "JEGenerator")
+            FileUtils.copyDirectory(pluginPath.toFile(), targetPath.toFile())
+        } else {
+            println("$pluginPath is not found.")
         }
     }
 }
