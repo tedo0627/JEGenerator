@@ -1,6 +1,5 @@
 package jp.tedo0627.jeloader
 
-import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
@@ -10,7 +9,7 @@ class JEChunk(
     private val level: ServerLevel,
     private val chunk: ChunkAccess,
     private val blockConverter: BlockConverter,
-    private val biomeConverter: BiomeConverter
+    val biomes: IntArray
 ) {
 
     fun getBlocks(): IntArray {
@@ -25,19 +24,6 @@ class JEChunk(
             }
         }
 
-        return list.toIntArray()
-    }
-
-    fun getBiomes(): IntArray {
-        val list = mutableListOf<Int>()
-        val minX = chunk.pos.minBlockX
-        val minZ = chunk.pos.minBlockZ
-        for (x in 0 until 16) {
-            for (z in 0 until 16) {
-                val biome = level.getBiomeName(BlockPos(minX + x, 0, minZ + z))
-                list.add(biomeConverter.getBiomeId(biome.get().location().path))
-            }
-        }
         return list.toIntArray()
     }
 }

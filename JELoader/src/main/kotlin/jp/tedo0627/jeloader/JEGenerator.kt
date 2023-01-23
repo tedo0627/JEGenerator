@@ -1,61 +1,80 @@
 package jp.tedo0627.jeloader
 
+import com.mojang.datafixers.util.Either
 import jp.tedo0627.jeloader.converter.BiomeConverter
 import jp.tedo0627.jeloader.converter.BlockConverter
+import net.minecraft.core.BlockPos
+import net.minecraft.server.level.ChunkHolder
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.level.ChunkPos
 import net.minecraft.world.level.chunk.ChunkAccess
 import net.minecraft.world.level.chunk.ChunkStatus
-import net.minecraft.world.level.chunk.ProtoChunk
+import java.util.*
+import java.util.concurrent.CompletableFuture
 
 class JEGenerator(
     private val level: ServerLevel,
     private val blockConverter: BlockConverter,
-    private val biomeConverter: BiomeConverter
+    private val biomeConverter: BiomeConverter,
+    private val thread: GeneratorThread
 ) {
 
-    private val status = ChunkStatus.getStatusList().apply {
-        remove(ChunkStatus.FEATURES)
-        remove(ChunkStatus.LIGHT)
-        remove(ChunkStatus.SPAWN)
-        remove(ChunkStatus.HEIGHTMAPS)
-        remove(ChunkStatus.FULL)
-    }
-
-    fun generateChunk(x: Int, z: Int): JEChunk {
-        var chunk: ChunkAccess? = null
-        for (chunkStats in status) {
-            chunk = level.chunkSource.getChunk(x, z, chunkStats, true) ?: continue
+    fun generateChunk(x: Int, z: Int) {
+        val completableFuture = CompletableFuture<CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>>()
+        thread.addTask {
+            completableFuture.complete(level.chunkSource.getChunkFuture(x, z, ChunkStatus.FULL, true))
         }
-
-        if (chunk == null) throw IllegalStateException()
-
-        return JEChunk(level, chunk, blockConverter, biomeConverter)
+        completableFuture.get()
     }
 
-    fun populateChunk(x: Int, z: Int): Array<FeatureData> {
-        val listener = PopulateFeatureListener(ChunkPos(x - 1, z - 1), blockConverter)
-        val list = mutableListOf<ProtoChunk>()
-        for (xx in -1..1) {
-            for (zz in -1..1) {
-                val chunk = level.chunkSource.getChunk(x + xx, z + zz, ChunkStatus.EMPTY, true)
-                if (chunk is ProtoChunk) {
-                    list.add(chunk)
-                    setListener(chunk, listener)
+    fun populateChunk(x: Int, z: Int): JEChunk {
+        val completableFuture = CompletableFuture<ChunkResult>()
+        thread.addTask {
+            val queue = LinkedList<CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>>()
+            for (xx in -1..1) {
+                for (zz in -1..1) {
+                    if (xx == 0 && zz == 0) continue
+                    queue.add(level.chunkSource.getChunkFuture(x + xx, z + zz, ChunkStatus.FULL, true))
                 }
             }
+
+            val targetChunkFuture = level.chunkSource.getChunkFuture(x, z, ChunkStatus.FULL, true)
+            queue.add(targetChunkFuture)
+            val aroundChunkFuture = combineFuture(queue)
+            val result = ChunkResult(aroundChunkFuture, targetChunkFuture)
+            completableFuture.complete(result)
         }
+        val chunk = completableFuture.get().get()
 
-        level.chunkSource.getChunk(x, z, ChunkStatus.FEATURES, true)
-
-        for (chunk in list) setListener(chunk, null)
-
-        return listener.getResult()
+        val biomeFuture = CompletableFuture<IntArray>()
+        thread.addTask {
+            val list = mutableListOf<Int>()
+            val minX = chunk.pos.minBlockX
+            val minZ = chunk.pos.minBlockZ
+            for (xx in 0 until 16) {
+                for (zz in 0 until 16) {
+                    val biome = level.getBiomeName(BlockPos(minX + x, 63, minZ + z))
+                    list.add(biomeConverter.getBiomeId(biome.get().location().path))
+                }
+            }
+            biomeFuture.complete(list.toIntArray())
+        }
+        return JEChunk(level, chunk, blockConverter, biomeFuture.get())
     }
 
-    private fun setListener(chunk: ProtoChunk, listener: PopulateFeatureListener?) {
-        val clazz = ProtoChunk::class.java
-        val field = clazz.getDeclaredField("listener")
-        field.set(chunk, listener)
+    private fun <T> combineFuture(queue: LinkedList<CompletableFuture<T>>): CompletableFuture<T> {
+        val future = queue.poll()
+        while (queue.isNotEmpty()) future.thenCombine(queue.poll()) { _, _ -> }
+        return future
+    }
+
+    class ChunkResult(
+        private val aroundChunkFuture: CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>,
+        private val targetChunkFuture: CompletableFuture<Either<ChunkAccess, ChunkHolder.ChunkLoadingFailure>>
+    ) {
+
+        fun get(): ChunkAccess {
+            aroundChunkFuture.join()
+            return targetChunkFuture.join().left().get()
+        }
     }
 }
